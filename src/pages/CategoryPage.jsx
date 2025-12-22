@@ -93,7 +93,31 @@ export default function CategoryPage({ navigate, selectedCategory }) {
   const colorClasses = getColorClasses(config.color);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
+      {/* 스티키 탭 */}
+      <div className="sticky top-0 bg-white border-b border-gray-200 shadow-sm z-10">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex gap-2">
+            {Object.keys(categoryConfig).map(tab => {
+              const colors = getColorClasses(categoryConfig[tab].color);
+              return (
+                <button
+                  key={tab}
+                  onClick={() => setCategory(tab)}
+                  className={`px-6 py-4 font-bold text-lg transition-colors ${
+                    category === tab
+                      ? `${colors.text} border-b-2 ${colors.border}`
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                >
+                  {categoryConfig[tab].title}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
       {/* 메인 컨텐츠 */}
       <div className="max-w-7xl mx-auto px-6 py-12">
         {/* 인기 매물 TOP 5 */}
@@ -101,7 +125,7 @@ export default function CategoryPage({ navigate, selectedCategory }) {
           <h2 className="text-3xl font-bold text-gray-900 mb-8">
             {config.emoji} {config.title} 인기 매물 TOP 5
           </h2>
-          
+
           <div className="grid grid-cols-5 gap-6">
             {topProperties.map((property) => {
               return (
@@ -110,12 +134,12 @@ export default function CategoryPage({ navigate, selectedCategory }) {
                   <div className={`absolute top-3 left-3 w-10 h-10 ${colorClasses.bg} text-white rounded-full flex items-center justify-center font-bold text-lg z-10 shadow-lg`}>
                     {property.rank}
                   </div>
-                  
+
                   {/* 썸네일 */}
                   <div className="h-48 bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center text-6xl">
                     {config.emoji}
                   </div>
-                  
+
                   {/* 정보 */}
                   <div className="p-4">
                     <div className="font-bold text-gray-900 text-lg mb-1">{property.name}</div>
@@ -124,8 +148,11 @@ export default function CategoryPage({ navigate, selectedCategory }) {
                       {property.price.toLocaleString()}
                       <span className="text-sm text-gray-500 ml-1">만원</span>
                     </div>
-                    <button className={`w-full mt-4 py-2 ${colorClasses.bg} text-white rounded ${colorClasses.hover} transition-colors text-sm font-medium`}>
-                      상세보기
+                    <button
+                      onClick={() => navigate && navigate('inquiry')}
+                      className={`w-full mt-4 py-2 ${colorClasses.bg} text-white rounded ${colorClasses.hover} transition-colors text-sm font-medium`}
+                    >
+                      문의하기
                     </button>
                   </div>
                 </div>
@@ -139,7 +166,7 @@ export default function CategoryPage({ navigate, selectedCategory }) {
           <h2 className="text-3xl font-bold text-gray-900 mb-8">
             전체 {config.title} 매물
           </h2>
-          
+
           <div className="grid grid-cols-5 gap-6">
             {currentData.map((property) => (
               <div key={property.id} className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
@@ -147,7 +174,7 @@ export default function CategoryPage({ navigate, selectedCategory }) {
                 <div className="h-48 bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center text-6xl">
                   {config.emoji}
                 </div>
-                
+
                 {/* 정보 */}
                 <div className="p-4">
                   <div className="font-bold text-gray-900 text-lg mb-1">{property.name}</div>
@@ -156,8 +183,11 @@ export default function CategoryPage({ navigate, selectedCategory }) {
                     {property.price.toLocaleString()}
                     <span className="text-sm text-gray-500 ml-1">만원</span>
                   </div>
-                  <button className={`w-full mt-4 py-2 ${colorClasses.bg} text-white rounded ${colorClasses.hover} transition-colors text-sm font-medium`}>
-                    상세보기
+                  <button
+                    onClick={() => navigate && navigate('inquiry')}
+                    className={`w-full mt-4 py-2 ${colorClasses.bg} text-white rounded ${colorClasses.hover} transition-colors text-sm font-medium`}
+                  >
+                    문의하기
                   </button>
                 </div>
               </div>

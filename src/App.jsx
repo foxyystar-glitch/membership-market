@@ -40,7 +40,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header navigate={navigate} currentPage={currentPage} />
+      <Header navigate={navigate} currentPage={currentPage} selectedCategory={selectedCategory} />
       {renderPage()}
     </div>
   );
