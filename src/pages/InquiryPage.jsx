@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function InquiryPage() {
+export default function InquiryPage({ navigate }) {
   const [formData, setFormData] = useState({
     category: 'golf',
     membershipName: '',
@@ -26,24 +26,6 @@ export default function InquiryPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* 헤더 */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold text-gray-900">T&G LEISURE 회원권</div>
-            <nav className="flex gap-8">
-              <a href="#" className="text-gray-700 hover:text-gray-900">시세표</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">골프</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">콘도</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">피트니스</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">급매</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">분양</a>
-              <a href="#" className="text-gray-900 font-bold border-b-2 border-gray-900">문의</a>
-            </nav>
-          </div>
-        </div>
-      </header>
-
       {/* 메인 컨텐츠 */}
       <div className="max-w-3xl mx-auto px-6 py-12">
         <div className="bg-white rounded-lg shadow-sm p-8">
