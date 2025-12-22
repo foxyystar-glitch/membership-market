@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function CategoryPage({ navigate, selectedCategory }) {
   const [category, setCategory] = useState(selectedCategory || 'golf');
+
+  // selectedCategory prop이 변경되면 category state 업데이트
+  useEffect(() => {
+    if (selectedCategory) {
+      setCategory(selectedCategory);
+    }
+  }, [selectedCategory]);
 
   // 카테고리별 설정
   const categoryConfig = {
