@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function PresalePage({ navigate }) {
+export default function PresalePage() {
   const [activeTab, setActiveTab] = useState('golf');
 
   // 카테고리별 설정
@@ -98,7 +98,25 @@ export default function PresalePage({ navigate }) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
+      {/* 헤더 */}
+      <header className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="text-2xl font-bold text-gray-900">T&G LEISURE 회원권</div>
+            <nav className="flex gap-8">
+              <a href="#" className="text-gray-700 hover:text-gray-900">시세표</a>
+              <a href="#" className="text-gray-700 hover:text-gray-900">골프</a>
+              <a href="#" className="text-gray-700 hover:text-gray-900">콘도</a>
+              <a href="#" className="text-gray-700 hover:text-gray-900">피트니스</a>
+              <a href="#" className="text-gray-700 hover:text-gray-900">급매</a>
+              <a href="#" className="text-gray-900 font-bold border-b-2 border-gray-900">분양</a>
+              <a href="#" className="text-gray-700 hover:text-gray-900">문의</a>
+            </nav>
+          </div>
+        </div>
+      </header>
+
       {/* 스티키 탭 */}
       <div className="sticky top-0 bg-white border-b border-gray-200 shadow-sm z-10">
         <div className="max-w-7xl mx-auto px-6">
@@ -122,7 +140,7 @@ export default function PresalePage({ navigate }) {
 
       {/* 메인 컨텐츠 */}
       <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="mb-8 flex items-center justify-between">
+        <div className="mb-8 flex items-baseline justify-between">
           <h2 className="text-3xl font-bold text-gray-900">
             {config.emoji} {config.title} 분양 정보
           </h2>
@@ -145,12 +163,12 @@ export default function PresalePage({ navigate }) {
                 <div className={`absolute top-3 left-3 px-3 py-1 ${badgeColor} text-white text-xs font-bold rounded-full z-10 shadow-lg`}>
                   {property.status}
                 </div>
-                
+
                 {/* 썸네일 */}
                 <div className="h-48 bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center text-6xl">
                   {config.emoji}
                 </div>
-                
+
                 {/* 정보 */}
                 <div className="p-4">
                   <div className="font-bold text-gray-900 text-lg mb-1">{property.name}</div>
@@ -159,11 +177,11 @@ export default function PresalePage({ navigate }) {
                     {property.price.toLocaleString()}
                     <span className="text-sm text-gray-500 ml-1">만원</span>
                   </div>
-                  <button 
+                  <button
                     className={`w-full mt-4 py-2 ${buttonColor} text-white rounded ${buttonHover} transition-colors text-sm font-medium ${!isAvailable && 'cursor-not-allowed'}`}
                     disabled={!isAvailable}
                   >
-                    {isAvailable ? '분양문의' : '분양완료'}
+                    {isAvailable ? '문의하기' : '분양완료'}
                   </button>
                 </div>
               </div>
