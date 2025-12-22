@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-export default function CategoryPage() {
-  const [category, setCategory] = useState('golf');
+export default function CategoryPage({ navigate, selectedCategory }) {
+  const [category, setCategory] = useState(selectedCategory || 'golf');
 
   // 카테고리별 설정
   const categoryConfig = {
@@ -94,39 +94,6 @@ export default function CategoryPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* 헤더 */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold text-gray-900">회원권마켓</div>
-            <nav className="flex gap-8">
-              <a href="#" className="text-gray-700 hover:text-gray-900">시세표</a>
-              <button 
-                onClick={() => setCategory('golf')}
-                className={category === 'golf' ? 'text-gray-900 font-bold border-b-2 border-gray-900' : 'text-gray-700 hover:text-gray-900'}
-              >
-                골프
-              </button>
-              <button 
-                onClick={() => setCategory('condo')}
-                className={category === 'condo' ? 'text-gray-900 font-bold border-b-2 border-gray-900' : 'text-gray-700 hover:text-gray-900'}
-              >
-                콘도
-              </button>
-              <button 
-                onClick={() => setCategory('fitness')}
-                className={category === 'fitness' ? 'text-gray-900 font-bold border-b-2 border-gray-900' : 'text-gray-700 hover:text-gray-900'}
-              >
-                피트니스
-              </button>
-              <a href="#" className="text-gray-700 hover:text-gray-900">급매</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">분양</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">문의</a>
-            </nav>
-          </div>
-        </div>
-      </header>
-
       {/* 메인 컨텐츠 */}
       <div className="max-w-7xl mx-auto px-6 py-12">
         {/* 인기 매물 TOP 5 */}

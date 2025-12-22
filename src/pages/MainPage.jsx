@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function MembershipSite() {
+export default function MainPage({ navigate }) {
   const [priceTab, setPriceTab] = useState('golf');
   const [urgentTab, setUrgentTab] = useState('golf');
   const [saleTab, setSaleTab] = useState('golf');
@@ -79,24 +79,6 @@ export default function MembershipSite() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* 헤더 */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold text-gray-900">회원권마켓</div>
-            <nav className="flex gap-8">
-              <a href="#" className="text-gray-700 hover:text-gray-900">시세표</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">골프</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">콘도</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">피트니스</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">급매</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">분양</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">문의</a>
-            </nav>
-          </div>
-        </div>
-      </header>
-
       {/* 메인 배너 */}
       <div className="relative h-80 bg-gradient-to-r from-green-700 to-green-500 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
@@ -162,7 +144,10 @@ export default function MembershipSite() {
               ))}
             </div>
 
-            <button className="w-full py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">
+            <button
+              onClick={() => navigate && navigate('sise')}
+              className="w-full py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+            >
               전체 시세표 보기
             </button>
           </div>
@@ -212,7 +197,10 @@ export default function MembershipSite() {
               ))}
             </div>
 
-            <button className="w-full py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+            <button
+              onClick={() => navigate && navigate('urgent')}
+              className="w-full py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+            >
               전체 급매 보기
             </button>
           </div>
@@ -253,7 +241,10 @@ export default function MembershipSite() {
                   <div className="font-bold text-gray-900 text-lg mb-1">{item.name}</div>
                   <div className="text-sm text-gray-600 mb-3">{item.location}</div>
                   <div className="text-2xl font-bold text-green-600">{item.price}<span className="text-sm text-gray-500 ml-1">만원</span></div>
-                  <button className="w-full mt-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors text-sm font-medium">
+                  <button
+                    onClick={() => navigate && navigate('presale')}
+                    className="w-full mt-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors text-sm font-medium"
+                  >
                     분양문의
                   </button>
                 </div>
