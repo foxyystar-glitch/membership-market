@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import Header from './components/Header';
+import CategoryTabs from './components/CategoryTabs';
+import PropertyCard from './components/PropertyCard';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('main');
@@ -12,66 +15,6 @@ function App() {
     }
     window.scrollTo(0, 0);
   };
-
-  // 공통 Header 컴포넌트
-  const Header = ({ activePage }) => (
-    <header className="bg-white border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div 
-            className="text-2xl font-bold text-gray-900 cursor-pointer hover:text-green-600 transition-colors"
-            onClick={() => navigate('main')}
-          >
-            회원권마켓
-          </div>
-          <nav className="flex gap-8">
-            <button
-              onClick={() => navigate('sise')}
-              className={activePage === 'sise' ? 'text-gray-900 font-bold border-b-2 border-gray-900' : 'text-gray-700 hover:text-gray-900'}
-            >
-              시세표
-            </button>
-            <button
-              onClick={() => navigate('category', 'golf')}
-              className={activePage === 'category' && selectedCategory === 'golf' ? 'text-gray-900 font-bold border-b-2 border-gray-900' : 'text-gray-700 hover:text-gray-900'}
-            >
-              골프
-            </button>
-            <button
-              onClick={() => navigate('category', 'condo')}
-              className={activePage === 'category' && selectedCategory === 'condo' ? 'text-gray-900 font-bold border-b-2 border-gray-900' : 'text-gray-700 hover:text-gray-900'}
-            >
-              콘도
-            </button>
-            <button
-              onClick={() => navigate('category', 'fitness')}
-              className={activePage === 'category' && selectedCategory === 'fitness' ? 'text-gray-900 font-bold border-b-2 border-gray-900' : 'text-gray-700 hover:text-gray-900'}
-            >
-              피트니스
-            </button>
-            <button
-              onClick={() => navigate('urgent')}
-              className={activePage === 'urgent' ? 'text-gray-900 font-bold border-b-2 border-gray-900' : 'text-gray-700 hover:text-gray-900'}
-            >
-              급매
-            </button>
-            <button
-              onClick={() => navigate('presale')}
-              className={activePage === 'presale' ? 'text-gray-900 font-bold border-b-2 border-gray-900' : 'text-gray-700 hover:text-gray-900'}
-            >
-              분양
-            </button>
-            <button
-              onClick={() => navigate('inquiry')}
-              className={activePage === 'inquiry' ? 'text-gray-900 font-bold border-b-2 border-gray-900' : 'text-gray-700 hover:text-gray-900'}
-            >
-              문의
-            </button>
-          </nav>
-        </div>
-      </div>
-    </header>
-  );
 
   // 렌더링 함수
   const renderPage = () => {
@@ -170,7 +113,7 @@ function App() {
 
     return (
       <div className="min-h-screen bg-gray-50">
-        <Header activePage="main" />
+        <Header navigate={navigate} activePage="main" selectedCategory={selectedCategory} />
 
         <div className="relative h-80 bg-gradient-to-r from-green-700 to-green-500 overflow-hidden">
           <div className="absolute inset-0 opacity-20">
@@ -439,30 +382,16 @@ function App() {
 
     return (
       <div className="min-h-screen bg-white">
-        <Header activePage="sise" />
+        <Header navigate={navigate} activePage="sise" selectedCategory={selectedCategory} />
 
-        <div className="sticky top-0 bg-white border-b border-gray-200 shadow-sm z-10">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="flex gap-2">
-              {Object.keys(tabLabels).map(tab => (
-                <button
-                  key={tab}
-                  onClick={() => {
-                    setActiveTab(tab);
-                    setSelectedItem(null);
-                  }}
-                  className={`px-6 py-4 font-bold text-lg transition-colors ${
-                    activeTab === tab
-                      ? 'text-green-600 border-b-2 border-green-600'
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                >
-                  {tabLabels[tab]}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+        <CategoryTabs
+          activeTab={activeTab}
+          setActiveTab={(tab) => {
+            setActiveTab(tab);
+            setSelectedItem(null);
+          }}
+          colorScheme="default"
+        />
 
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="grid grid-cols-2 gap-8">
@@ -705,7 +634,7 @@ function App() {
 
     return (
       <div className="min-h-screen bg-gray-50">
-        <Header activePage="category" />
+        <Header navigate={navigate} activePage="category" selectedCategory={selectedCategory} />
 
         <div className="max-w-7xl mx-auto px-6 py-12">
           <section className="mb-16">
@@ -714,31 +643,14 @@ function App() {
             </h2>
             
             <div className="grid grid-cols-5 gap-6">
-              {topProperties.map((property) => {
-                return (
-                  <div key={property.id} className={`relative bg-white border ${colorClasses.border} rounded-lg overflow-hidden hover:shadow-lg transition-shadow`}>
-                    <div className={`absolute top-3 left-3 w-10 h-10 ${colorClasses.bg} text-white rounded-full flex items-center justify-center font-bold text-lg z-10 shadow-lg`}>
-                      {property.rank}
-                    </div>
-                    
-                    <div className="h-48 bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center text-6xl">
-                      {config.emoji}
-                    </div>
-                    
-                    <div className="p-4">
-                      <div className="font-bold text-gray-900 text-lg mb-1">{property.name}</div>
-                      <div className="text-sm text-gray-600 mb-3">{property.location}</div>
-                      <div className={`text-2xl font-bold ${colorClasses.text}`}>
-                        {property.price.toLocaleString()}
-                        <span className="text-sm text-gray-500 ml-1">만원</span>
-                      </div>
-                      <button className={`w-full mt-4 py-2 ${colorClasses.bg} text-white rounded ${colorClasses.hover} transition-colors text-sm font-medium`}>
-                        상세보기
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
+              {topProperties.map((property) => (
+                <PropertyCard
+                  key={property.id}
+                  property={property}
+                  category={category}
+                  type="category"
+                />
+              ))}
             </div>
           </section>
 
@@ -749,23 +661,12 @@ function App() {
             
             <div className="grid grid-cols-5 gap-6">
               {currentData.map((property) => (
-                <div key={property.id} className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="h-48 bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center text-6xl">
-                    {config.emoji}
-                  </div>
-                  
-                  <div className="p-4">
-                    <div className="font-bold text-gray-900 text-lg mb-1">{property.name}</div>
-                    <div className="text-sm text-gray-600 mb-3">{property.location}</div>
-                    <div className={`text-2xl font-bold ${colorClasses.text}`}>
-                      {property.price.toLocaleString()}
-                      <span className="text-sm text-gray-500 ml-1">만원</span>
-                    </div>
-                    <button className={`w-full mt-4 py-2 ${colorClasses.bg} text-white rounded ${colorClasses.hover} transition-colors text-sm font-medium`}>
-                      상세보기
-                    </button>
-                  </div>
-                </div>
+                <PropertyCard
+                  key={property.id}
+                  property={property}
+                  category={category}
+                  type="category"
+                />
               ))}
             </div>
           </section>
@@ -872,27 +773,13 @@ function App() {
 
     return (
       <div className="min-h-screen bg-gray-50">
-        <Header activePage="urgent" />
+        <Header navigate={navigate} activePage="urgent" selectedCategory={selectedCategory} />
 
-        <div className="sticky top-0 bg-white border-b border-gray-200 shadow-sm z-10">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="flex gap-2">
-              {Object.keys(tabLabels).map(tab => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`px-6 py-4 font-bold text-lg transition-colors ${
-                    activeTab === tab
-                      ? 'text-red-600 border-b-2 border-red-600'
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                >
-                  {tabLabels[tab]}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+        <CategoryTabs
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          colorScheme="red"
+        />
 
         <div className="max-w-7xl mx-auto px-6 py-12">
           <div className="mb-8 flex items-center justify-between">
@@ -903,54 +790,14 @@ function App() {
           </div>
 
           <div className="grid grid-cols-5 gap-6">
-            {currentData.map((property) => {
-              const isAvailable = property.status === '거래가능';
-              const badgeColor = isAvailable ? 'bg-red-600' : 'bg-gray-400';
-              const borderColor = isAvailable ? 'border-red-200' : 'border-gray-300';
-              const priceColor = isAvailable ? 'text-red-600' : 'text-gray-400';
-              const buttonColor = isAvailable ? 'bg-red-600' : 'bg-gray-400';
-              const buttonHover = isAvailable ? 'hover:bg-red-700' : '';
-              const discountBadgeColor = isAvailable ? 'bg-red-600' : 'bg-gray-400';
-
-              return (
-                <div key={property.id} className={`relative bg-white border-2 ${borderColor} rounded-lg overflow-hidden hover:shadow-xl transition-all`}>
-                  <div className={`absolute top-3 left-3 px-3 py-1 ${badgeColor} text-white text-xs font-bold rounded-full z-10 shadow-lg`}>
-                    {property.status}
-                  </div>
-                  
-                  <div className={`h-48 bg-gradient-to-br ${isAvailable ? 'from-red-50 to-red-100' : 'from-gray-100 to-gray-50'} flex items-center justify-center text-6xl`}>
-                    {config.emoji}
-                  </div>
-                  
-                  <div className="p-4">
-                    <div className="font-bold text-gray-900 text-lg mb-1">{property.name}</div>
-                    <div className="text-sm text-gray-600 mb-3">{property.location}</div>
-                    
-                    <div className="mb-3">
-                      <div className="text-xs text-gray-400 line-through mb-1">
-                        {property.originalPrice.toLocaleString()}만원
-                      </div>
-                      <div className="flex items-end justify-between">
-                        <div className={`text-2xl font-bold ${priceColor}`}>
-                          {property.price.toLocaleString()}
-                          <span className="text-sm text-gray-500 ml-1">만원</span>
-                        </div>
-                        <div className={`px-2 py-1 ${discountBadgeColor} text-white text-xs font-bold rounded`}>
-                          {property.discount}% ↓
-                        </div>
-                      </div>
-                    </div>
-
-                    <button 
-                      className={`w-full py-2 ${buttonColor} text-white rounded ${buttonHover} transition-colors text-sm font-medium ${!isAvailable && 'cursor-not-allowed'}`}
-                      disabled={!isAvailable}
-                    >
-                      {isAvailable ? '급매 문의' : '거래완료'}
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
+            {currentData.map((property) => (
+              <PropertyCard
+                key={property.id}
+                property={property}
+                category={activeTab}
+                type="urgent"
+              />
+            ))}
           </div>
         </div>
       </div>
@@ -1055,27 +902,13 @@ function App() {
 
     return (
       <div className="min-h-screen bg-gray-50">
-        <Header activePage="presale" />
+        <Header navigate={navigate} activePage="presale" selectedCategory={selectedCategory} />
 
-        <div className="sticky top-0 bg-white border-b border-gray-200 shadow-sm z-10">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="flex gap-2">
-              {Object.keys(tabLabels).map(tab => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`px-6 py-4 font-bold text-lg transition-colors ${
-                    activeTab === tab
-                      ? `${getColorClasses(categoryConfig[tab].color).text} border-b-2 ${getColorClasses(categoryConfig[tab].color).border}`
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                >
-                  {tabLabels[tab]}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+        <CategoryTabs
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          colorScheme="category"
+        />
 
         <div className="max-w-7xl mx-auto px-6 py-12">
           <div className="mb-8 flex items-center justify-between">
@@ -1086,41 +919,14 @@ function App() {
           </div>
 
           <div className="grid grid-cols-5 gap-6">
-            {currentData.map((property) => {
-              const isAvailable = property.status === '분양가능';
-              const badgeColor = isAvailable ? colorClasses.bg : 'bg-gray-400';
-              const borderColor = isAvailable ? colorClasses.border : 'border-gray-300';
-              const priceColor = isAvailable ? colorClasses.text : 'text-gray-400';
-              const buttonColor = isAvailable ? colorClasses.bg : 'bg-gray-400';
-              const buttonHover = isAvailable ? colorClasses.hover : '';
-
-              return (
-                <div key={property.id} className={`relative bg-white border ${borderColor} rounded-lg overflow-hidden hover:shadow-lg transition-shadow`}>
-                  <div className={`absolute top-3 left-3 px-3 py-1 ${badgeColor} text-white text-xs font-bold rounded-full z-10 shadow-lg`}>
-                    {property.status}
-                  </div>
-                  
-                  <div className="h-48 bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center text-6xl">
-                    {config.emoji}
-                  </div>
-                  
-                  <div className="p-4">
-                    <div className="font-bold text-gray-900 text-lg mb-1">{property.name}</div>
-                    <div className="text-sm text-gray-600 mb-3">{property.location}</div>
-                    <div className={`text-2xl font-bold ${priceColor}`}>
-                      {property.price.toLocaleString()}
-                      <span className="text-sm text-gray-500 ml-1">만원</span>
-                    </div>
-                    <button 
-                      className={`w-full mt-4 py-2 ${buttonColor} text-white rounded ${buttonHover} transition-colors text-sm font-medium ${!isAvailable && 'cursor-not-allowed'}`}
-                      disabled={!isAvailable}
-                    >
-                      {isAvailable ? '분양문의' : '분양완료'}
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
+            {currentData.map((property) => (
+              <PropertyCard
+                key={property.id}
+                property={property}
+                category={activeTab}
+                type="presale"
+              />
+            ))}
           </div>
         </div>
       </div>
@@ -1154,7 +960,7 @@ function App() {
 
     return (
       <div className="min-h-screen bg-gray-50">
-        <Header activePage="inquiry" />
+        <Header navigate={navigate} activePage="inquiry" selectedCategory={selectedCategory} />
 
         <div className="max-w-3xl mx-auto px-6 py-12">
           <div className="bg-white rounded-lg shadow-sm p-8">
