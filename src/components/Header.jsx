@@ -9,7 +9,7 @@ export default function Header({ navigate, activePage, selectedCategory }) {
             className="text-2xl font-bold text-gray-900 cursor-pointer hover:text-green-600 transition-colors"
             onClick={() => navigate('main')}
           >
-            회원권마켓
+            T&G LEISURE 회원권
           </div>
           <nav className="flex gap-8">
             <button
