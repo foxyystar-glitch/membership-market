@@ -214,7 +214,7 @@ const PropertyCard = ({
                   fontSize: '16px',
                   lineHeight: '120%',
                   letterSpacing: '0%',
-                  fontWeight: 700,
+                  fontWeight: 500,
                   color: '#717171'
                 }}
               >
