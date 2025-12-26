@@ -1,4 +1,5 @@
 import React from 'react';
+import { colors, borderColors } from '../config/colors';
 
 /**
  * 카테고리 탭바 공통 컴포넌트
@@ -14,20 +15,18 @@ export default function CategoryTabs({ activeTab, onTabChange, variant = 'defaul
   };
 
   const getTabColors = (tab) => {
-    const colors = {
-      golf: { color: '#16a34a', border: 'border-green-600' },      // green-600
-      condo: { color: '#2563eb', border: 'border-blue-600' },      // blue-600
-      fitness: { color: '#9333ea', border: 'border-purple-600' }   // purple-600
+    return {
+      color: colors[tab],
+      border: borderColors[tab]
     };
-    return colors[tab];
   };
 
   // variant별 색상 설정
   const getVariantColor = () => {
     if (variant === 'urgent') {
-      return { color: '#dc2626', border: 'border-red-600' };       // red-600
+      return { color: colors.urgent, border: borderColors.urgent };
     } else if (variant === 'presale') {
-      return { color: '#4f46e5', border: 'border-indigo-600' };    // indigo-600
+      return { color: colors.presale, border: borderColors.presale };
     }
     return null; // default는 카테고리별 색상 사용
   };
@@ -35,7 +34,7 @@ export default function CategoryTabs({ activeTab, onTabChange, variant = 'defaul
   return (
     <div className="flex gap-2">
       {Object.keys(tabLabels).map(tab => {
-        const colors = variant === 'default' ? getTabColors(tab) : getVariantColor();
+        const tabColors = variant === 'default' ? getTabColors(tab) : getVariantColor();
 
         return (
           <button
@@ -43,12 +42,12 @@ export default function CategoryTabs({ activeTab, onTabChange, variant = 'defaul
             onClick={() => onTabChange(tab)}
             className={`px-6 py-4 font-bold transition-colors ${
               activeTab === tab
-                ? `border-b-2 ${colors.border}`
+                ? `border-b-2 ${tabColors.border}`
                 : ''
             }`}
             style={{
               fontSize: '18px',
-              color: activeTab === tab ? colors.color : '#999999'
+              color: activeTab === tab ? tabColors.color : colors.textGray
             }}
           >
             {tabLabels[tab]}

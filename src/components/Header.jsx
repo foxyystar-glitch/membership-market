@@ -1,8 +1,9 @@
 import React from 'react';
+import { colors } from '../config/colors';
 
 export default function Header({ navigate, currentPage, selectedCategory }) {
   return (
-    <header className="w-full" style={{ backgroundColor: '#284AB5' }}>
+    <header className="w-full" style={{ backgroundColor: colors.brand }}>
       <div className="mx-auto px-6 flex items-center justify-between" style={{ maxWidth: '1200px', height: '64px' }}>
         {/* 로고 및 회원권 텍스트 */}
         <button
@@ -27,10 +28,10 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
             onClick={() => navigate('sise')}
             className={`transition-all ${currentPage === 'sise' ? 'border-b-2' : ''}`}
             style={{
-              color: currentPage === 'sise' ? '#AFC6FD' : '#FFFFFF',
+              color: currentPage === 'sise' ? colors.selectedLight : colors.textWhite,
               fontWeight: currentPage === 'sise' ? '700' : '500',
               fontSize: '18px',
-              borderColor: currentPage === 'sise' ? '#AFC6FD' : 'transparent'
+              borderColor: currentPage === 'sise' ? colors.selectedLight : 'transparent'
             }}
           >
             시세표
@@ -39,10 +40,10 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
             onClick={() => navigate('category', 'golf')}
             className={`transition-all ${currentPage === 'category' && selectedCategory === 'golf' ? 'border-b-2' : ''}`}
             style={{
-              color: currentPage === 'category' && selectedCategory === 'golf' ? '#AFC6FD' : '#FFFFFF',
+              color: currentPage === 'category' && selectedCategory === 'golf' ? colors.selectedLight : colors.textWhite,
               fontWeight: currentPage === 'category' && selectedCategory === 'golf' ? '700' : '500',
               fontSize: '18px',
-              borderColor: currentPage === 'category' && selectedCategory === 'golf' ? '#AFC6FD' : 'transparent'
+              borderColor: currentPage === 'category' && selectedCategory === 'golf' ? colors.selectedLight : 'transparent'
             }}
           >
             골프
@@ -51,10 +52,10 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
             onClick={() => navigate('category', 'condo')}
             className={`transition-all ${currentPage === 'category' && selectedCategory === 'condo' ? 'border-b-2' : ''}`}
             style={{
-              color: currentPage === 'category' && selectedCategory === 'condo' ? '#AFC6FD' : '#FFFFFF',
+              color: currentPage === 'category' && selectedCategory === 'condo' ? colors.selectedLight : colors.textWhite,
               fontWeight: currentPage === 'category' && selectedCategory === 'condo' ? '700' : '500',
               fontSize: '18px',
-              borderColor: currentPage === 'category' && selectedCategory === 'condo' ? '#AFC6FD' : 'transparent'
+              borderColor: currentPage === 'category' && selectedCategory === 'condo' ? colors.selectedLight : 'transparent'
             }}
           >
             콘도
@@ -63,10 +64,10 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
             onClick={() => navigate('category', 'fitness')}
             className={`transition-all ${currentPage === 'category' && selectedCategory === 'fitness' ? 'border-b-2' : ''}`}
             style={{
-              color: currentPage === 'category' && selectedCategory === 'fitness' ? '#AFC6FD' : '#FFFFFF',
+              color: currentPage === 'category' && selectedCategory === 'fitness' ? colors.selectedLight : colors.textWhite,
               fontWeight: currentPage === 'category' && selectedCategory === 'fitness' ? '700' : '500',
               fontSize: '18px',
-              borderColor: currentPage === 'category' && selectedCategory === 'fitness' ? '#AFC6FD' : 'transparent'
+              borderColor: currentPage === 'category' && selectedCategory === 'fitness' ? colors.selectedLight : 'transparent'
             }}
           >
             피트니스
@@ -75,10 +76,10 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
             onClick={() => navigate('urgent')}
             className={`transition-all ${currentPage === 'urgent' ? 'border-b-2' : ''}`}
             style={{
-              color: currentPage === 'urgent' ? '#AFC6FD' : '#FFFFFF',
+              color: currentPage === 'urgent' ? colors.selectedLight : colors.textWhite,
               fontWeight: currentPage === 'urgent' ? '700' : '500',
               fontSize: '18px',
-              borderColor: currentPage === 'urgent' ? '#AFC6FD' : 'transparent'
+              borderColor: currentPage === 'urgent' ? colors.selectedLight : 'transparent'
             }}
           >
             급매
@@ -87,10 +88,10 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
             onClick={() => navigate('presale')}
             className={`transition-all ${currentPage === 'presale' ? 'border-b-2' : ''}`}
             style={{
-              color: currentPage === 'presale' ? '#AFC6FD' : '#FFFFFF',
+              color: currentPage === 'presale' ? colors.selectedLight : colors.textWhite,
               fontWeight: currentPage === 'presale' ? '700' : '500',
               fontSize: '18px',
-              borderColor: currentPage === 'presale' ? '#AFC6FD' : 'transparent'
+              borderColor: currentPage === 'presale' ? colors.selectedLight : 'transparent'
             }}
           >
             분양
@@ -99,10 +100,10 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
             onClick={() => navigate('inquiry')}
             className={`transition-all ${currentPage === 'inquiry' ? 'border-b-2' : ''}`}
             style={{
-              color: currentPage === 'inquiry' ? '#AFC6FD' : '#FFFFFF',
+              color: currentPage === 'inquiry' ? colors.selectedLight : colors.textWhite,
               fontWeight: currentPage === 'inquiry' ? '700' : '500',
               fontSize: '18px',
-              borderColor: currentPage === 'inquiry' ? '#AFC6FD' : 'transparent'
+              borderColor: currentPage === 'inquiry' ? colors.selectedLight : 'transparent'
             }}
           >
             문의
