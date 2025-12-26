@@ -8,7 +8,6 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
         <button
           onClick={() => navigate('main')}
           className="flex items-center gap-2.5 hover:opacity-80 transition-opacity"
-          style={{ marginLeft: '24px' }}
         >
           {/* 로고 이미지 */}
           <img
@@ -17,21 +16,21 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
             style={{ width: '212px', height: '32px' }}
           />
           {/* 회원권 텍스트 */}
-          <span className="text-white font-bold text-lg">
+          <span className="text-white font-bold" style={{ fontSize: '24px' }}>
             회원권
           </span>
         </button>
 
         {/* 네비게이션 메뉴 */}
-        <nav className="flex gap-8" style={{ marginRight: '24px' }}>
+        <nav className="flex gap-8">
           <button
             onClick={() => navigate('sise')}
             className={`transition-all ${currentPage === 'sise' ? 'border-b-2' : ''}`}
             style={{
               color: currentPage === 'sise' ? '#AFC6FD' : '#FFFFFF',
-              fontWeight: currentPage === 'sise' ? '700' : '400',
-              borderColor: currentPage === 'sise' ? '#AFC6FD' : 'transparent',
-              transform: currentPage === 'sise' ? 'translateY(-2px)' : 'translateY(0)'
+              fontWeight: currentPage === 'sise' ? '700' : '500',
+              fontSize: '18px',
+              borderColor: currentPage === 'sise' ? '#AFC6FD' : 'transparent'
             }}
           >
             시세표
@@ -41,9 +40,9 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
             className={`transition-all ${currentPage === 'category' && selectedCategory === 'golf' ? 'border-b-2' : ''}`}
             style={{
               color: currentPage === 'category' && selectedCategory === 'golf' ? '#AFC6FD' : '#FFFFFF',
-              fontWeight: currentPage === 'category' && selectedCategory === 'golf' ? '700' : '400',
-              borderColor: currentPage === 'category' && selectedCategory === 'golf' ? '#AFC6FD' : 'transparent',
-              transform: currentPage === 'category' && selectedCategory === 'golf' ? 'translateY(-2px)' : 'translateY(0)'
+              fontWeight: currentPage === 'category' && selectedCategory === 'golf' ? '700' : '500',
+              fontSize: '18px',
+              borderColor: currentPage === 'category' && selectedCategory === 'golf' ? '#AFC6FD' : 'transparent'
             }}
           >
             골프
@@ -53,9 +52,9 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
             className={`transition-all ${currentPage === 'category' && selectedCategory === 'condo' ? 'border-b-2' : ''}`}
             style={{
               color: currentPage === 'category' && selectedCategory === 'condo' ? '#AFC6FD' : '#FFFFFF',
-              fontWeight: currentPage === 'category' && selectedCategory === 'condo' ? '700' : '400',
-              borderColor: currentPage === 'category' && selectedCategory === 'condo' ? '#AFC6FD' : 'transparent',
-              transform: currentPage === 'category' && selectedCategory === 'condo' ? 'translateY(-2px)' : 'translateY(0)'
+              fontWeight: currentPage === 'category' && selectedCategory === 'condo' ? '700' : '500',
+              fontSize: '18px',
+              borderColor: currentPage === 'category' && selectedCategory === 'condo' ? '#AFC6FD' : 'transparent'
             }}
           >
             콘도
@@ -65,9 +64,9 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
             className={`transition-all ${currentPage === 'category' && selectedCategory === 'fitness' ? 'border-b-2' : ''}`}
             style={{
               color: currentPage === 'category' && selectedCategory === 'fitness' ? '#AFC6FD' : '#FFFFFF',
-              fontWeight: currentPage === 'category' && selectedCategory === 'fitness' ? '700' : '400',
-              borderColor: currentPage === 'category' && selectedCategory === 'fitness' ? '#AFC6FD' : 'transparent',
-              transform: currentPage === 'category' && selectedCategory === 'fitness' ? 'translateY(-2px)' : 'translateY(0)'
+              fontWeight: currentPage === 'category' && selectedCategory === 'fitness' ? '700' : '500',
+              fontSize: '18px',
+              borderColor: currentPage === 'category' && selectedCategory === 'fitness' ? '#AFC6FD' : 'transparent'
             }}
           >
             피트니스
@@ -77,9 +76,9 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
             className={`transition-all ${currentPage === 'urgent' ? 'border-b-2' : ''}`}
             style={{
               color: currentPage === 'urgent' ? '#AFC6FD' : '#FFFFFF',
-              fontWeight: currentPage === 'urgent' ? '700' : '400',
-              borderColor: currentPage === 'urgent' ? '#AFC6FD' : 'transparent',
-              transform: currentPage === 'urgent' ? 'translateY(-2px)' : 'translateY(0)'
+              fontWeight: currentPage === 'urgent' ? '700' : '500',
+              fontSize: '18px',
+              borderColor: currentPage === 'urgent' ? '#AFC6FD' : 'transparent'
             }}
           >
             급매
@@ -89,9 +88,9 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
             className={`transition-all ${currentPage === 'presale' ? 'border-b-2' : ''}`}
             style={{
               color: currentPage === 'presale' ? '#AFC6FD' : '#FFFFFF',
-              fontWeight: currentPage === 'presale' ? '700' : '400',
-              borderColor: currentPage === 'presale' ? '#AFC6FD' : 'transparent',
-              transform: currentPage === 'presale' ? 'translateY(-2px)' : 'translateY(0)'
+              fontWeight: currentPage === 'presale' ? '700' : '500',
+              fontSize: '18px',
+              borderColor: currentPage === 'presale' ? '#AFC6FD' : 'transparent'
             }}
           >
             분양
@@ -101,9 +100,9 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
             className={`transition-all ${currentPage === 'inquiry' ? 'border-b-2' : ''}`}
             style={{
               color: currentPage === 'inquiry' ? '#AFC6FD' : '#FFFFFF',
-              fontWeight: currentPage === 'inquiry' ? '700' : '400',
-              borderColor: currentPage === 'inquiry' ? '#AFC6FD' : 'transparent',
-              transform: currentPage === 'inquiry' ? 'translateY(-2px)' : 'translateY(0)'
+              fontWeight: currentPage === 'inquiry' ? '700' : '500',
+              fontSize: '18px',
+              borderColor: currentPage === 'inquiry' ? '#AFC6FD' : 'transparent'
             }}
           >
             문의
