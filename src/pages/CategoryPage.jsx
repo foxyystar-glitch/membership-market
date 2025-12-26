@@ -67,10 +67,10 @@ export default function CategoryPage({ navigate, selectedCategory }) {
       <div style={{ width: '100%', height: '5px', backgroundColor: '#F6F5FD' }} />
 
       {/* 메인 컨텐츠 */}
-      <div className="mx-auto py-12" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
+      <div className="mx-auto" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px', paddingTop: '48px', paddingBottom: '48px' }}>
         {/* 인기 매물 TOP 5 */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">
+        <section style={{ marginBottom: '48px' }}>
+          <h2 className="text-3xl font-bold mb-8" style={{ color: '#111111' }}>
             {config.emoji} {config.title} 인기 매물 TOP 5
           </h2>
 
@@ -89,11 +89,17 @@ export default function CategoryPage({ navigate, selectedCategory }) {
           </div>
         </section>
 
+        {/* 섹션 구분선 */}
+        <div style={{ width: '100%', height: '5px', backgroundColor: '#F6F5FD', marginBottom: '48px' }} />
+
         {/* 전체 매물 리스트 */}
         <section>
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">
-            전체 {config.title} 매물
-          </h2>
+          <div className="mb-8 flex items-baseline justify-between">
+            <h2 className="text-3xl font-bold" style={{ color: '#111111' }}>
+              전체 {config.title} 매물
+            </h2>
+            <span className="font-bold text-lg" style={{ color: '#111111' }}>총 {propertyData.length}건</span>
+          </div>
 
           <div className="flex flex-wrap gap-6">
             {propertyData.map((property) => (

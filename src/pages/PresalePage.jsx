@@ -112,12 +112,12 @@ export default function PresalePage({ navigate }) {
       <div style={{ width: '100%', height: '5px', backgroundColor: '#F6F5FD' }} />
 
       {/* 메인 컨텐츠 */}
-      <div className="mx-auto py-12" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
+      <div className="mx-auto" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px', paddingTop: '48px', paddingBottom: '48px' }}>
         <div className="mb-8 flex items-baseline justify-between">
-          <h2 className="text-3xl font-bold text-gray-900">
+          <h2 className="text-3xl font-bold" style={{ color: '#111111' }}>
             {config.emoji} {config.title} 분양 정보
           </h2>
-          <span className={`${colorClasses.text} font-bold text-lg`}>총 {currentData.length}건</span>
+          <span className="font-bold text-lg" style={{ color: '#111111' }}>총 {currentData.length}건</span>
         </div>
 
         {/* 분양 리스트 */}
