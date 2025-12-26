@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { memberships } from '../data/memberships';
 import { urgentSales } from '../data/urgentSales';
 import { presales } from '../data/presales';
+import CategoryTabs from '../components/CategoryTabs';
 
 export default function MainPage({ navigate }) {
   const [priceTab, setPriceTab] = useState('golf');
@@ -117,24 +118,7 @@ export default function MainPage({ navigate }) {
             <h2 className="text-2xl font-bold text-gray-900 mb-6">실시간 시세표</h2>
 
             {/* 탭 */}
-            <div className="flex gap-2 mb-6 border-b border-gray-200">
-              {Object.keys(tabLabels).map(tab => {
-                const colors = getTabColors(tab);
-                return (
-                  <button
-                    key={tab}
-                    onClick={() => setPriceTab(tab)}
-                    className={`px-4 py-2 font-medium transition-colors ${
-                      priceTab === tab
-                        ? `${colors.text} border-b-2 ${colors.border}`
-                        : 'text-gray-500 hover:text-gray-700'
-                    }`}
-                  >
-                    {tabLabels[tab]}
-                  </button>
-                );
-              })}
-            </div>
+            <CategoryTabs activeTab={priceTab} onTabChange={setPriceTab} variant="default" />
 
             {/* 시세 리스트 */}
             <div className="h-96 overflow-y-auto space-y-3 mb-6">
@@ -183,21 +167,7 @@ export default function MainPage({ navigate }) {
             <h2 className="text-2xl font-bold text-gray-900 mb-6">급매 정보</h2>
 
             {/* 탭 */}
-            <div className="flex gap-2 mb-6 border-b border-gray-200">
-              {Object.keys(tabLabels).map(tab => (
-                <button
-                  key={tab}
-                  onClick={() => setUrgentTab(tab)}
-                  className={`px-4 py-2 font-medium transition-colors ${
-                    urgentTab === tab
-                      ? 'text-red-600 border-b-2 border-red-600'
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                >
-                  {tabLabels[tab]}
-                </button>
-              ))}
-            </div>
+            <CategoryTabs activeTab={urgentTab} onTabChange={setUrgentTab} variant="urgent" />
 
             {/* 급매 리스트 */}
             <div className="h-96 overflow-y-auto space-y-4 mb-6">
@@ -236,24 +206,7 @@ export default function MainPage({ navigate }) {
           <h2 className="text-2xl font-bold text-gray-900 mb-6">분양 정보</h2>
 
           {/* 탭 */}
-          <div className="flex gap-2 mb-6 border-b border-gray-200">
-            {Object.keys(tabLabels).map(tab => {
-              const colors = getTabColors(tab);
-              return (
-                <button
-                  key={tab}
-                  onClick={() => setSaleTab(tab)}
-                  className={`px-4 py-2 font-medium transition-colors ${
-                    saleTab === tab
-                      ? `${colors.text} border-b-2 ${colors.border}`
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                >
-                  {tabLabels[tab]}
-                </button>
-              );
-            })}
-          </div>
+          <CategoryTabs activeTab={saleTab} onTabChange={setSaleTab} variant="default" />
 
           {/* 분양 카드 그리드 */}
           <div className="grid grid-cols-5 gap-6">

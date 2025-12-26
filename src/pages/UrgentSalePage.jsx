@@ -1,6 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { memberships } from '../data/memberships';
 import { urgentSales } from '../data/urgentSales';
+import CategoryTabs from '../components/CategoryTabs';
+import PropertyCard from '../components/PropertyCard';
 
 export default function UrgentSalePage({ navigate }) {
   const [activeTab, setActiveTab] = useState('golf');
@@ -101,22 +103,8 @@ export default function UrgentSalePage({ navigate }) {
     <div className="min-h-screen bg-white">
       {/* 스티키 탭 */}
       <div className="sticky top-0 bg-white border-b border-gray-200 shadow-sm z-10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex gap-2">
-            {Object.keys(tabLabels).map(tab => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-6 py-4 font-bold text-lg transition-colors ${
-                  activeTab === tab
-                    ? 'text-red-600 border-b-2 border-red-600'
-                    : 'text-gray-500 hover:text-gray-700'
-                }`}
-              >
-                {tabLabels[tab]}
-              </button>
-            ))}
-          </div>
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <CategoryTabs activeTab={activeTab} onTabChange={setActiveTab} variant="urgent" />
         </div>
       </div>
 
@@ -131,50 +119,15 @@ export default function UrgentSalePage({ navigate }) {
 
         {/* 급매 리스트 */}
         <div className="grid grid-cols-5 gap-6">
-          {currentData.map((property) => {
-            const isAvailable = property.status === '거래가능';
-            const badgeColor = isAvailable ? 'bg-red-600' : 'bg-gray-400';
-            const borderColor = isAvailable ? 'border-red-200' : 'border-gray-300';
-            const priceColor = isAvailable ? 'text-red-600' : 'text-gray-400';
-            const buttonColor = isAvailable ? 'bg-red-600' : 'bg-gray-400';
-            const buttonHover = isAvailable ? 'hover:bg-red-700' : '';
-
-            return (
-              <div key={property.id} className={`relative bg-white border-2 ${borderColor} rounded-lg overflow-hidden hover:shadow-xl transition-all`}>
-                {/* 거래 상태 배지 */}
-                <div className={`absolute top-3 left-3 px-3 py-1 ${badgeColor} text-white text-xs font-bold rounded-full z-10 shadow-lg`}>
-                  {property.status}
-                </div>
-
-                {/* 썸네일 */}
-                <div className={`h-48 bg-gradient-to-br ${isAvailable ? 'from-red-50 to-red-100' : 'from-gray-100 to-gray-50'} flex items-center justify-center text-6xl`}>
-                  {config.emoji}
-                </div>
-
-                {/* 정보 */}
-                <div className="p-4">
-                  <div className="font-bold text-gray-900 text-lg mb-1">{property.name}</div>
-                  <div className="text-sm text-gray-600 mb-3">{property.location}</div>
-
-                  {/* 가격 정보 */}
-                  <div className="mb-3">
-                    <div className={`text-2xl font-bold ${priceColor}`}>
-                      {property.price.toLocaleString()}
-                      <span className="text-sm text-gray-500 ml-1">만원</span>
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={() => isAvailable && navigate && navigate('inquiry')}
-                    className={`w-full py-2 ${buttonColor} text-white rounded ${buttonHover} transition-colors text-sm font-medium ${!isAvailable && 'cursor-not-allowed'}`}
-                    disabled={!isAvailable}
-                  >
-                    {isAvailable ? '문의하기' : '거래완료'}
-                  </button>
-                </div>
-              </div>
-            );
-          })}
+          {currentData.map((property) => (
+            <PropertyCard
+              key={property.id}
+              item={property}
+              category={activeTab}
+              type="urgent"
+              onInquiry={() => navigate && navigate('inquiry')}
+            />
+          ))}
         </div>
       </div>
     </div>

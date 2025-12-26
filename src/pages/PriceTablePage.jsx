@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { memberships } from '../data/memberships';
 import { priceHistory } from '../data/priceHistory';
+import CategoryTabs from '../components/CategoryTabs';
 
 export default function PriceTablePage({ navigate }) {
   const [activeTab, setActiveTab] = useState('golf');
@@ -128,28 +129,15 @@ export default function PriceTablePage({ navigate }) {
     <div className="min-h-screen bg-white">
       {/* 스티키 탭 */}
       <div className="sticky top-0 bg-white border-b border-gray-200 shadow-sm z-10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex gap-2">
-            {Object.keys(tabLabels).map(tab => {
-              const colors = getTabColors(tab);
-              return (
-                <button
-                  key={tab}
-                  onClick={() => {
-                    setActiveTab(tab);
-                    setSelectedItem(null);
-                  }}
-                  className={`px-6 py-4 font-bold text-lg transition-colors ${
-                    activeTab === tab
-                      ? `${colors.text} border-b-2 ${colors.border}`
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                >
-                  {tabLabels[tab]}
-                </button>
-              );
-            })}
-          </div>
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <CategoryTabs
+            activeTab={activeTab}
+            onTabChange={(tab) => {
+              setActiveTab(tab);
+              setSelectedItem(null);
+            }}
+            variant="default"
+          />
         </div>
       </div>
 
