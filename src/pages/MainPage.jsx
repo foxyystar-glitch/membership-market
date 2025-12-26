@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { memberships } from '../data/memberships';
 import { urgentSales } from '../data/urgentSales';
 import { presales } from '../data/presales';
+import { colors } from '../config/colors';
 
 export default function MainPage({ navigate }) {
   const [priceTab, setPriceTab] = useState('golf');
@@ -80,12 +81,12 @@ export default function MainPage({ navigate }) {
   };
 
   const getTabColors = (tab) => {
-    const colors = {
-      golf: { text: 'text-green-600', border: 'border-green-600', bg: 'bg-green-600', hover: 'hover:bg-green-700' },
-      condo: { text: 'text-blue-600', border: 'border-blue-600', bg: 'bg-blue-600', hover: 'hover:bg-blue-700' },
-      fitness: { text: 'text-purple-600', border: 'border-purple-600', bg: 'bg-purple-600', hover: 'hover:bg-purple-700' }
+    return {
+      color: colors[tab],
+      textClass: `text-[${colors[tab]}]`,
+      borderClass: `border-[${colors[tab]}]`,
+      bgClass: `bg-[${colors[tab]}]`
     };
-    return colors[tab];
   };
 
   return (
