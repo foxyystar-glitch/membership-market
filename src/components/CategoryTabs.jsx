@@ -33,7 +33,7 @@ export default function CategoryTabs({ activeTab, onTabChange, variant = 'defaul
   };
 
   return (
-    <div className="flex gap-2 mb-6 border-b border-gray-200">
+    <div className="flex gap-2">
       {Object.keys(tabLabels).map(tab => {
         const colors = variant === 'default' ? getTabColors(tab) : getVariantColor();
 
@@ -41,7 +41,7 @@ export default function CategoryTabs({ activeTab, onTabChange, variant = 'defaul
           <button
             key={tab}
             onClick={() => onTabChange(tab)}
-            className={`px-4 py-2 font-medium transition-colors ${
+            className={`px-6 py-4 font-bold text-lg transition-colors ${
               activeTab === tab
                 ? `${colors.text} border-b-2 ${colors.border}`
                 : 'text-gray-500 hover:text-gray-700'
