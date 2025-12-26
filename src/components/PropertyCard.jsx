@@ -144,13 +144,13 @@ const PropertyCard = ({
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
-          padding: '16px 16px 0 16px'
+          padding: '16px'
         }}
       >
         {/* Name - 본문 최상단 */}
         <div
           style={{
-            fontSize: '20px',
+            fontSize: '18px',
             lineHeight: '120%',
             letterSpacing: '0%',
             fontWeight: 600,
@@ -197,7 +197,7 @@ const PropertyCard = ({
               justifyContent: 'space-between'
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '5px' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '5px' }}>
               <span
                 style={{
                   fontSize: '28px',
@@ -211,7 +211,7 @@ const PropertyCard = ({
               </span>
               <span
                 style={{
-                  fontSize: '28px',
+                  fontSize: '16px',
                   lineHeight: '120%',
                   letterSpacing: '0%',
                   fontWeight: 700,
@@ -240,15 +240,12 @@ const PropertyCard = ({
           </div>
         </div>
 
-        {/* 문의하기 버튼 - 14px 여백, 좌우하단 여백 없이 */}
+        {/* 문의하기 버튼 - 14px 여백, 높이 36px */}
         <button
           disabled={hasStatus && !isAvailable}
           style={{
-            marginTop: '14px',
-            marginLeft: '-16px',
-            marginRight: '-16px',
-            marginBottom: 0,
-            flex: 1,
+            marginTop: 'auto',
+            height: '36px',
             borderRadius: '2px',
             backgroundColor: hasStatus && !isAvailable ? '#9E9E9E' : identityColor,
             color: '#ffffff',
