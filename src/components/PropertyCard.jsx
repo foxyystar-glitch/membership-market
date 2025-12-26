@@ -44,8 +44,8 @@ const PropertyCard = ({
   // 버튼 텍스트 결정
   const getButtonText = () => {
     if (!hasStatus) return '문의하기';
-    if (isUrgentSale) return isAvailable ? '급매 문의' : '거래완료';
-    if (isPresale) return isAvailable ? '분양문의' : '분양완료';
+    if (isUrgentSale) return isAvailable ? '문의하기' : '거래완료';
+    if (isPresale) return isAvailable ? '문의하기' : '분양완료';
     return '문의하기';
   };
 
@@ -71,8 +71,8 @@ const PropertyCard = ({
             position: 'absolute',
             top: '12px',
             left: '12px',
-            width: '40px',
-            height: '40px',
+            width: '30px',
+            height: '30px',
             backgroundColor: identityColor,
             color: '#ffffff',
             borderRadius: '50%',
@@ -80,7 +80,7 @@ const PropertyCard = ({
             alignItems: 'center',
             justifyContent: 'center',
             fontWeight: 700,
-            fontSize: '18px',
+            fontSize: '16px',
             zIndex: 10,
             boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
           }}
@@ -137,16 +137,6 @@ const PropertyCard = ({
           }}
         />
       </div>
-
-      {/* 단 구분선 - 스티키 탭바와 분리 */}
-      <div
-        style={{
-          width: '100%',
-          height: '5px',
-          backgroundColor: '#F6F5FD',
-          flexShrink: 0
-        }}
-      />
 
       {/* 본문 영역 - 나머지 185px */}
       <div

@@ -63,6 +63,9 @@ export default function CategoryPage({ navigate, selectedCategory }) {
         </div>
       </div>
 
+      {/* 구분선 */}
+      <div style={{ width: '100%', height: '5px', backgroundColor: '#F6F5FD' }} />
+
       {/* 메인 컨텐츠 */}
       <div className="mx-auto py-12" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
         {/* 인기 매물 TOP 5 */}
