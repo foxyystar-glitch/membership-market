@@ -67,14 +67,14 @@ export default function CategoryPage({ navigate, selectedCategory }) {
       <div style={{ width: '100%', height: '5px', backgroundColor: '#F6F5FD' }} />
 
       {/* 메인 컨텐츠 */}
-      <div className="mx-auto" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px', paddingTop: '48px', paddingBottom: '48px' }}>
+      <div className="mx-auto" style={{ maxWidth: '1200px', paddingLeft: '25px', paddingRight: '25px', paddingTop: '48px', paddingBottom: '48px' }}>
         {/* 인기 매물 TOP 5 */}
         <section style={{ marginBottom: '48px' }}>
           <h2 className="text-3xl font-bold mb-8" style={{ color: '#111111' }}>
             {config.emoji} {config.title} 인기 매물 TOP 5
           </h2>
 
-          <div className="flex flex-wrap gap-6">
+          <div className="flex flex-wrap" style={{ gap: '25px' }}>
             {topProperties.map((property) => (
               <PropertyCard
                 key={property.id}
@@ -88,11 +88,13 @@ export default function CategoryPage({ navigate, selectedCategory }) {
             ))}
           </div>
         </section>
+      </div>
 
-        {/* 섹션 구분선 */}
-        <div style={{ width: '100%', height: '5px', backgroundColor: '#F6F5FD', marginBottom: '48px' }} />
+      {/* 섹션 구분선 - 페이지 전체 너비 */}
+      <div style={{ width: '100%', height: '5px', backgroundColor: '#F6F5FD', marginBottom: '48px' }} />
 
-        {/* 전체 매물 리스트 */}
+      {/* 전체 매물 리스트 */}
+      <div className="mx-auto" style={{ maxWidth: '1200px', paddingLeft: '25px', paddingRight: '25px', paddingBottom: '48px' }}>
         <section>
           <div className="mb-8 flex items-baseline justify-between">
             <h2 className="text-3xl font-bold" style={{ color: '#111111' }}>
@@ -101,7 +103,7 @@ export default function CategoryPage({ navigate, selectedCategory }) {
             <span className="font-bold text-lg" style={{ color: '#111111' }}>총 {propertyData.length}건</span>
           </div>
 
-          <div className="flex flex-wrap gap-6">
+          <div className="flex flex-wrap" style={{ gap: '25px' }}>
             {propertyData.map((property) => (
               <PropertyCard
                 key={property.id}

@@ -112,7 +112,7 @@ export default function PresalePage({ navigate }) {
       <div style={{ width: '100%', height: '5px', backgroundColor: '#F6F5FD' }} />
 
       {/* 메인 컨텐츠 */}
-      <div className="mx-auto" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px', paddingTop: '48px', paddingBottom: '48px' }}>
+      <div className="mx-auto" style={{ maxWidth: '1200px', paddingLeft: '25px', paddingRight: '25px', paddingTop: '48px', paddingBottom: '48px' }}>
         <div className="mb-8 flex items-baseline justify-between">
           <h2 className="text-3xl font-bold" style={{ color: '#111111' }}>
             {config.emoji} {config.title} 분양 정보
@@ -121,7 +121,7 @@ export default function PresalePage({ navigate }) {
         </div>
 
         {/* 분양 리스트 */}
-        <div className="flex flex-wrap gap-6">
+        <div className="flex flex-wrap" style={{ gap: '25px' }}>
           {currentData.map((property) => (
             <PropertyCard
               key={property.id}
