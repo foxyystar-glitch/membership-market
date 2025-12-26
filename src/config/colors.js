@@ -17,7 +17,7 @@ export const colors = {
   presale: '#4f46e5',  // indigo-600 (기존값 유지)
 
   // 기타 UI 색상
-  textGray: '#999999',
+  textGray: '#717171',
   textWhite: '#FFFFFF',
   selectedLight: '#AFC6FD'
 };

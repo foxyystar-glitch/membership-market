@@ -103,13 +103,13 @@ export default function PresalePage({ navigate }) {
     <div className="min-h-screen bg-white">
       {/* 스티키 탭 */}
       <div className="sticky top-0 bg-white z-10" style={{ height: '64px' }}>
-        <div className="max-w-7xl mx-auto px-6 h-full flex items-center">
+        <div className="mx-auto h-full flex items-center" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
           <CategoryTabs activeTab={activeTab} onTabChange={setActiveTab} variant="default" />
         </div>
       </div>
 
       {/* 메인 컨텐츠 */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="mx-auto py-12" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
         <div className="mb-8 flex items-baseline justify-between">
           <h2 className="text-3xl font-bold text-gray-900">
             {config.emoji} {config.title} 분양 정보

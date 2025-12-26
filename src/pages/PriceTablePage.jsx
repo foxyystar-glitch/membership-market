@@ -129,7 +129,7 @@ export default function PriceTablePage({ navigate }) {
     <div className="min-h-screen bg-white">
       {/* 스티키 탭 */}
       <div className="sticky top-0 bg-white z-10" style={{ height: '64px' }}>
-        <div className="max-w-7xl mx-auto px-6 h-full flex items-center">
+        <div className="mx-auto h-full flex items-center" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
           <CategoryTabs
             activeTab={activeTab}
             onTabChange={(tab) => {
@@ -142,7 +142,7 @@ export default function PriceTablePage({ navigate }) {
       </div>
 
       {/* 메인 컨텐츠 */}
-      <div className="max-w-7xl mx-auto px-6 py-6">
+      <div className="mx-auto py-6" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
         <div className="grid grid-cols-2 gap-8">
           {/* 좌측: 시세표 테이블 */}
           <div className="bg-white rounded-lg border border-gray-200 shadow-sm">

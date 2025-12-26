@@ -101,7 +101,7 @@ export default function MainPage({ navigate }) {
             <circle cx="1050" cy="170" r="8" fill="white"/>
           </svg>
         </div>
-        <div className="relative max-w-7xl mx-auto px-6 h-full flex items-center">
+        <div className="relative mx-auto h-full flex items-center" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
           <div className="text-white">
             <h1 className="text-5xl font-bold mb-4">프리미엄 회원권 거래</h1>
             <p className="text-xl opacity-90">골프 · 콘도 · 피트니스 회원권의 모든 것</p>
@@ -110,7 +110,7 @@ export default function MainPage({ navigate }) {
       </div>
 
       {/* 메인 컨텐츠 */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="mx-auto py-12" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
         <div className="grid grid-cols-2 gap-8">
           {/* 실시간 시세표 */}
           <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
