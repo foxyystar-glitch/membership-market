@@ -15,9 +15,9 @@ export default function CategoryTabs({ activeTab, onTabChange, variant = 'defaul
 
   const getTabColors = (tab) => {
     const colors = {
-      golf: { text: 'text-green-600', border: 'border-green-600' },
-      condo: { text: 'text-blue-600', border: 'border-blue-600' },
-      fitness: { text: 'text-purple-600', border: 'border-purple-600' }
+      golf: { color: '#16a34a', border: 'border-green-600' },      // green-600
+      condo: { color: '#2563eb', border: 'border-blue-600' },      // blue-600
+      fitness: { color: '#9333ea', border: 'border-purple-600' }   // purple-600
     };
     return colors[tab];
   };
@@ -25,9 +25,9 @@ export default function CategoryTabs({ activeTab, onTabChange, variant = 'defaul
   // variant별 색상 설정
   const getVariantColor = () => {
     if (variant === 'urgent') {
-      return { text: 'text-red-600', border: 'border-red-600' };
+      return { color: '#dc2626', border: 'border-red-600' };       // red-600
     } else if (variant === 'presale') {
-      return { text: 'text-indigo-600', border: 'border-indigo-600' };
+      return { color: '#4f46e5', border: 'border-indigo-600' };    // indigo-600
     }
     return null; // default는 카테고리별 색상 사용
   };
@@ -41,11 +41,15 @@ export default function CategoryTabs({ activeTab, onTabChange, variant = 'defaul
           <button
             key={tab}
             onClick={() => onTabChange(tab)}
-            className={`px-6 py-4 font-bold text-lg transition-colors ${
+            className={`px-6 py-4 font-bold transition-colors ${
               activeTab === tab
-                ? `${colors.text} border-b-2 ${colors.border}`
-                : 'text-gray-500 hover:text-gray-700'
+                ? `border-b-2 ${colors.border}`
+                : ''
             }`}
+            style={{
+              fontSize: '18px',
+              color: activeTab === tab ? colors.color : '#999999'
+            }}
           >
             {tabLabels[tab]}
           </button>
