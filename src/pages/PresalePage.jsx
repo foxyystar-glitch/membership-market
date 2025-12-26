@@ -118,14 +118,16 @@ export default function PresalePage({ navigate }) {
         </div>
 
         {/* 분양 리스트 */}
-        <div className="grid grid-cols-5 gap-6">
+        <div className="flex flex-wrap gap-6">
           {currentData.map((property) => (
             <PropertyCard
               key={property.id}
-              item={property}
               category={activeTab}
-              type="presale"
-              onInquiry={() => navigate && navigate('inquiry')}
+              name={property.name}
+              location={property.location}
+              price={property.price}
+              status={property.status}
+              onClick={() => navigate && navigate('inquiry')}
             />
           ))}
         </div>

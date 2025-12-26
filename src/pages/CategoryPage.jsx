@@ -71,24 +71,17 @@ export default function CategoryPage({ navigate, selectedCategory }) {
             {config.emoji} {config.title} 인기 매물 TOP 5
           </h2>
 
-          <div className="grid grid-cols-5 gap-6">
+          <div className="flex flex-wrap gap-6">
             {topProperties.map((property) => (
-              <div key={property.id} className="relative">
-                <PropertyCard
-                  item={property}
-                  category={category}
-                  type="category"
-                  onInquiry={() => navigate && navigate('inquiry')}
-                />
-                {/* 순위 배지 오버레이 */}
-                <div className={`absolute top-3 left-3 w-10 h-10 ${
-                  category === 'golf' ? 'bg-green-600' :
-                  category === 'condo' ? 'bg-blue-600' :
-                  'bg-purple-600'
-                } text-white rounded-full flex items-center justify-center font-bold text-lg z-10 shadow-lg`}>
-                  {property.rank}
-                </div>
-              </div>
+              <PropertyCard
+                key={property.id}
+                category={category}
+                name={property.name}
+                location={property.location}
+                price={property.price}
+                rank={property.rank}
+                onClick={() => navigate && navigate('inquiry')}
+              />
             ))}
           </div>
         </section>
@@ -99,14 +92,15 @@ export default function CategoryPage({ navigate, selectedCategory }) {
             전체 {config.title} 매물
           </h2>
 
-          <div className="grid grid-cols-5 gap-6">
+          <div className="flex flex-wrap gap-6">
             {propertyData.map((property) => (
               <PropertyCard
                 key={property.id}
-                item={property}
                 category={category}
-                type="category"
-                onInquiry={() => navigate && navigate('inquiry')}
+                name={property.name}
+                location={property.location}
+                price={property.price}
+                onClick={() => navigate && navigate('inquiry')}
               />
             ))}
           </div>
