@@ -1,50 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { memberships } from '../data/memberships';
+import { priceHistory } from '../data/priceHistory';
 
 export default function PriceTablePage({ navigate }) {
   const [activeTab, setActiveTab] = useState('golf');
   const [selectedItem, setSelectedItem] = useState(null);
   const [chartPeriod, setChartPeriod] = useState('week');
 
-  // 확장된 시세 데이터 (기존 5개 + 5개 추가 = 10개)
-  const priceData = {
-    golf: [
-      { id: 1, name: '○○컨트리클럽', price: 45000, change: 1035, changePercent: 2.3, trend: 'up' },
-      { id: 2, name: '△△골프장', price: 38500, change: -467, changePercent: -1.2, trend: 'down' },
-      { id: 3, name: '□□레이크CC', price: 52000, change: 1757, changePercent: 3.5, trend: 'up' },
-      { id: 4, name: '◇◇밸리', price: 41200, change: 0, changePercent: 0.0, trend: 'stable' },
-      { id: 5, name: '☆☆오션뷰CC', price: 47800, change: 845, changePercent: 1.8, trend: 'up' },
-      { id: 6, name: '▽▽마운틴CC', price: 39800, change: -523, changePercent: -1.3, trend: 'down' },
-      { id: 7, name: '▷▷힐스CC', price: 54500, change: 2180, changePercent: 4.2, trend: 'up' },
-      { id: 8, name: '●●파크CC', price: 43200, change: 345, changePercent: 0.8, trend: 'up' },
-      { id: 9, name: '♤♤포레스트CC', price: 36900, change: -789, changePercent: -2.1, trend: 'down' },
-      { id: 10, name: '♧♧그린CC', price: 49500, change: 1234, changePercent: 2.6, trend: 'up' },
-    ],
-    condo: [
-      { id: 1, name: '○○콘도', price: 12000, change: 177, changePercent: 1.5, trend: 'up' },
-      { id: 2, name: '△△리조트', price: 15800, change: 325, changePercent: 2.1, trend: 'up' },
-      { id: 3, name: '□□타운', price: 9500, change: -77, changePercent: -0.8, trend: 'down' },
-      { id: 4, name: '◇◇빌리지', price: 11200, change: 56, changePercent: 0.5, trend: 'up' },
-      { id: 5, name: '☆☆힐스테이', price: 13500, change: 160, changePercent: 1.2, trend: 'up' },
-      { id: 6, name: '▽▽스파리조트', price: 16200, change: 405, changePercent: 2.6, trend: 'up' },
-      { id: 7, name: '▷▷비치콘도', price: 14800, change: -223, changePercent: -1.5, trend: 'down' },
-      { id: 8, name: '●●마리나', price: 10800, change: 89, changePercent: 0.8, trend: 'up' },
-      { id: 9, name: '♤♤레이크뷰', price: 13200, change: -145, changePercent: -1.1, trend: 'down' },
-      { id: 10, name: '♧♧힐링스테이', price: 11900, change: 178, changePercent: 1.5, trend: 'up' },
-    ],
-    fitness: [
-      { id: 1, name: '○○휘트니스', price: 3200, change: 32, changePercent: 1.0, trend: 'up' },
-      { id: 2, name: '△△스포츠센터', price: 2800, change: 0, changePercent: 0.0, trend: 'stable' },
-      { id: 3, name: '□□헬스클럽', price: 4100, change: 100, changePercent: 2.5, trend: 'up' },
-      { id: 4, name: '◇◇PT센터', price: 3600, change: -18, changePercent: -0.5, trend: 'down' },
-      { id: 5, name: '☆☆애슬레틱', price: 3900, change: 58, changePercent: 1.5, trend: 'up' },
-      { id: 6, name: '▽▽파워짐', price: 3400, change: -45, changePercent: -1.3, trend: 'down' },
-      { id: 7, name: '▷▷바디짐', price: 4500, change: 135, changePercent: 3.1, trend: 'up' },
-      { id: 8, name: '●●피지컬센터', price: 3100, change: 25, changePercent: 0.8, trend: 'up' },
-      { id: 9, name: '♤♤스트롱짐', price: 3750, change: -67, changePercent: -1.8, trend: 'down' },
-      { id: 10, name: '♧♧웰니스센터', price: 4200, change: 98, changePercent: 2.4, trend: 'up' },
-    ]
-  };
+  // 카테고리별 시세 데이터
+  const priceData = useMemo(() => {
+    const byCategory = { golf: [], condo: [], fitness: [] };
+
+    memberships
+      .filter(m => m.active_flag)
+      .forEach(m => {
+        byCategory[m.category].push({
+          id: m.id,
+          name: m.name,
+          price: m.current_price,
+          change: m.change_value,
+          changePercent: m.change_percent,
+          trend: m.trend
+        });
+      });
+
+    return byCategory;
+  }, []);
 
   // X축 가이드라인 인터벌 계산
   const getXAxisInterval = (period) => {
@@ -57,52 +39,44 @@ export default function PriceTablePage({ navigate }) {
     }
   };
 
-  // 차트 데이터 생성 함수
+  // 차트 데이터 생성 함수 - 실제 priceHistory 데이터 사용
   const generateChartData = (itemId, period) => {
-    const dataPoints = {
+    const today = new Date('2025-12-26');
+    const daysMap = {
       week: 7,
       month: 30,
-      sixMonths: 26, // 주단위
-      year: 12 // 월단위
+      sixMonths: 180,
+      year: 365
     };
 
-    const points = dataPoints[period];
-    const item = priceData[activeTab].find(i => i.id === itemId);
-    if (!item) return [];
+    const days = daysMap[period];
+    const startDate = new Date(today);
+    startDate.setDate(startDate.getDate() - days);
 
-    const data = [];
-    const basePrice = item.price;
-    const volatility = basePrice * 0.05; // 5% 변동폭
-    const today = new Date();
+    // 실제 priceHistory에서 데이터 가져오기
+    const historyData = priceHistory
+      .filter(p => p.c_id === itemId && new Date(p.date) >= startDate)
+      .sort((a, b) => new Date(a.date) - new Date(b.date));
 
-    for (let i = 0; i < points; i++) {
-      const variation = (Math.random() - 0.5) * volatility;
-      const price = Math.round(basePrice + variation);
+    if (historyData.length === 0) {
+      return [];
+    }
 
+    return historyData.map(h => {
+      const date = new Date(h.date);
       let label;
-      const date = new Date(today);
 
-      if (period === 'week') {
-        date.setDate(today.getDate() - (points - 1 - i));
+      if (period === 'week' || period === 'month') {
         label = `${date.getMonth() + 1}월 ${date.getDate()}일`;
-      } else if (period === 'month') {
-        date.setDate(today.getDate() - (points - 1 - i));
-        label = `${date.getMonth() + 1}월 ${date.getDate()}일`;
-      } else if (period === 'sixMonths') {
-        date.setDate(today.getDate() - (points - 1 - i) * 7);
-        label = `${date.getFullYear()}년 ${date.getMonth() + 1}월`;
       } else {
-        date.setMonth(today.getMonth() - (points - 1 - i));
         label = `${date.getFullYear()}년 ${date.getMonth() + 1}월`;
       }
 
-      data.push({
+      return {
         name: label,
-        price: price
-      });
-    }
-
-    return data;
+        price: h.price
+      };
+    });
   };
 
   const tabLabels = {

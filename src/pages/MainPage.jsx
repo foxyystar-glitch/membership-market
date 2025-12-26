@@ -1,78 +1,77 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import { memberships } from '../data/memberships';
+import { urgentSales } from '../data/urgentSales';
+import { presales } from '../data/presales';
 
 export default function MainPage({ navigate }) {
   const [priceTab, setPriceTab] = useState('golf');
   const [urgentTab, setUrgentTab] = useState('golf');
   const [saleTab, setSaleTab] = useState('golf');
 
-  // 샘플 시세 데이터
-  const priceData = {
-    golf: [
-      { name: '○○컨트리클럽', price: 45000, change: 1035, changePercent: 2.3, trend: 'up' },
-      { name: '△△골프장', price: 38500, change: -467, changePercent: -1.2, trend: 'down' },
-      { name: '□□레이크CC', price: 52000, change: 1757, changePercent: 3.5, trend: 'up' },
-      { name: '◇◇밸리', price: 41200, change: 0, changePercent: 0.0, trend: 'stable' },
-      { name: '☆☆오션뷰CC', price: 47800, change: 845, changePercent: 1.8, trend: 'up' },
-    ],
-    condo: [
-      { name: '○○콘도', price: 12000, change: 177, changePercent: 1.5, trend: 'up' },
-      { name: '△△리조트', price: 15800, change: 325, changePercent: 2.1, trend: 'up' },
-      { name: '□□타운', price: 9500, change: -77, changePercent: -0.8, trend: 'down' },
-      { name: '◇◇빌리지', price: 11200, change: 56, changePercent: 0.5, trend: 'up' },
-      { name: '☆☆힐스테이', price: 13500, change: 160, changePercent: 1.2, trend: 'up' },
-    ],
-    fitness: [
-      { name: '○○휘트니스', price: 3200, change: 32, changePercent: 1.0, trend: 'up' },
-      { name: '△△스포츠센터', price: 2800, change: 0, changePercent: 0.0, trend: 'stable' },
-      { name: '□□헬스클럽', price: 4100, change: 100, changePercent: 2.5, trend: 'up' },
-      { name: '◇◇PT센터', price: 3600, change: -18, changePercent: -0.5, trend: 'down' },
-      { name: '☆☆애슬레틱', price: 3900, change: 58, changePercent: 1.5, trend: 'up' },
-    ]
-  };
+  // 시세표 데이터: display_flag=true & rank가 있는 TOP 5
+  const priceData = useMemo(() => {
+    const byCategory = { golf: [], condo: [], fitness: [] };
 
-  // 샘플 급매 데이터
-  const urgentData = {
-    golf: [
-      { name: '○○컨트리클럽', price: '42,000', location: '경기' },
-      { name: '□□레이크CC', price: '48,000', location: '강원' },
-      { name: '☆☆오션뷰CC', price: '44,500', location: '부산' },
-    ],
-    condo: [
-      { name: '○○콘도', price: '10,500', location: '제주' },
-      { name: '△△리조트', price: '14,000', location: '강원' },
-      { name: '☆☆힐스테이', price: '12,000', location: '경북' },
-    ],
-    fitness: [
-      { name: '○○휘트니스', price: '2,800', location: '서울' },
-      { name: '□□헬스클럽', price: '3,700', location: '경기' },
-      { name: '☆☆애슬레틱', price: '3,400', location: '인천' },
-    ]
-  };
+    memberships
+      .filter(m => m.display_flag && m.rank !== null && m.active_flag)
+      .sort((a, b) => a.rank - b.rank)
+      .forEach(m => {
+        if (byCategory[m.category].length < 5) {
+          byCategory[m.category].push({
+            name: m.name,
+            price: m.current_price,
+            change: m.change_value,
+            changePercent: m.change_percent,
+            trend: m.trend
+          });
+        }
+      });
 
-  // 샘플 분양 데이터
-  const saleData = {
-    golf: [
-      { name: '○○컨트리클럽', price: 55000, location: '경기 용인', image: '🏌️', status: '분양가능' },
-      { name: '△△오션CC', price: 48000, location: '부산 기장', image: '🏌️', status: '분양가능' },
-      { name: '□□밸리CC', price: 42000, location: '강원 평창', image: '🏌️', status: '분양가능' },
-      { name: '◇◇레이크CC', price: 51000, location: '경기 가평', image: '🏌️', status: '분양가능' },
-      { name: '☆☆힐스CC', price: 58000, location: '경기 여주', image: '🏌️', status: '분양가능' },
-    ],
-    condo: [
-      { name: '○○리조트콘도', price: 18000, location: '제주 서귀포', image: '🏨', status: '분양가능' },
-      { name: '△△스파리조트', price: 15500, location: '강원 속초', image: '🏨', status: '분양가능' },
-      { name: '□□마리나콘도', price: 16800, location: '부산 해운대', image: '🏨', status: '분양가능' },
-      { name: '◇◇힐링콘도', price: 14200, location: '경북 경주', image: '🏨', status: '분양가능' },
-      { name: '☆☆오션뷰콘도', price: 19500, location: '강원 양양', image: '🏨', status: '분양가능' },
-    ],
-    fitness: [
-      { name: '○○프리미엄짐', price: 4500, location: '서울 강남', image: '💪', status: '분양가능' },
-      { name: '△△스포츠센터', price: 3800, location: '서울 송파', image: '💪', status: '분양가능' },
-      { name: '□□휘트니스', price: 3200, location: '경기 분당', image: '💪', status: '분양가능' },
-      { name: '◇◇헬스클럽', price: 4100, location: '인천 송도', image: '💪', status: '분양가능' },
-      { name: '☆☆애슬레틱센터', price: 4800, location: '서울 역삼', image: '💪', status: '분양가능' },
-    ]
-  };
+    return byCategory;
+  }, []);
+
+  // 급매 데이터: display_flag=true & status='available'
+  const urgentData = useMemo(() => {
+    const byCategory = { golf: [], condo: [], fitness: [] };
+
+    urgentSales
+      .filter(u => u.display_flag && u.status === 'available')
+      .forEach(u => {
+        const membership = memberships.find(m => m.id === u.c_id);
+        if (membership) {
+          byCategory[u.category].push({
+            name: membership.name,
+            price: u.urgent_price.toLocaleString(),
+            location: membership.location
+          });
+        }
+      });
+
+    return byCategory;
+  }, []);
+
+  // 분양 데이터: display_flag=true & status='available'
+  const saleData = useMemo(() => {
+    const byCategory = { golf: [], condo: [], fitness: [] };
+    const emojis = { golf: '🏌️', condo: '🏨', fitness: '💪' };
+
+    presales
+      .filter(p => p.display_flag && p.status === 'available')
+      .forEach(p => {
+        const membership = memberships.find(m => m.id === p.c_id);
+        if (membership) {
+          byCategory[p.category].push({
+            name: membership.name,
+            price: p.presale_price,
+            location: membership.location,
+            image: emojis[p.category],
+            status: '분양가능'
+          });
+        }
+      });
+
+    return byCategory;
+  }, []);
 
   const tabLabels = {
     golf: '골프',

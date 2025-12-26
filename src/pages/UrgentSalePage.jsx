@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import { memberships } from '../data/memberships';
+import { urgentSales } from '../data/urgentSales';
 
 export default function UrgentSalePage({ navigate }) {
   const [activeTab, setActiveTab] = useState('golf');
@@ -22,45 +24,43 @@ export default function UrgentSalePage({ navigate }) {
     }
   };
 
-  // 급매 데이터
-  const urgentData = {
-    golf: [
-      { id: 1, name: '○○컨트리클럽', price: 42000, location: '경기 용인', status: '거래가능' },
-      { id: 2, name: '□□레이크CC', price: 48000, location: '강원 평창', status: '거래가능' },
-      { id: 3, name: '☆☆오션뷰CC', price: 44500, location: '부산 기장', status: '거래완료' },
-      { id: 4, name: '▽▽마운틴CC', price: 36500, location: '강원 홍천', status: '거래가능' },
-      { id: 5, name: '▷▷힐스CC', price: 50000, location: '경기 여주', status: '거래가능' },
-      { id: 6, name: '◁◁파크CC', price: 39800, location: '충북 제천', status: '거래완료' },
-      { id: 7, name: '♤♤포레스트CC', price: 33500, location: '경북 포항', status: '거래가능' },
-      { id: 8, name: '♧♧그린CC', price: 45500, location: '전남 여수', status: '거래가능' },
-      { id: 9, name: '△△골프장', price: 35200, location: '경기 이천', status: '거래완료' },
-      { id: 10, name: '◇◇밸리', price: 38000, location: '경기 가평', status: '거래가능' },
-    ],
-    condo: [
-      { id: 1, name: '○○콘도', price: 10500, location: '제주 서귀포', status: '거래가능' },
-      { id: 2, name: '△△리조트', price: 14000, location: '강원 속초', status: '거래가능' },
-      { id: 3, name: '☆☆힐스테이', price: 12000, location: '충남 보령', status: '거래완료' },
-      { id: 4, name: '▽▽스파리조트', price: 14500, location: '강원 평창', status: '거래가능' },
-      { id: 5, name: '▷▷비치콘도', price: 13200, location: '부산 해운대', status: '거래가능' },
-      { id: 6, name: '◁◁마리나', price: 9800, location: '인천 영종도', status: '거래완료' },
-      { id: 7, name: '♤♤레이크뷰', price: 11800, location: '경기 가평', status: '거래가능' },
-      { id: 8, name: '♧♧힐링스테이', price: 10700, location: '전북 무주', status: '거래가능' },
-      { id: 9, name: '□□타운', price: 8500, location: '경북 경주', status: '거래완료' },
-      { id: 10, name: '◇◇빌리지', price: 10000, location: '전남 여수', status: '거래가능' },
-    ],
-    fitness: [
-      { id: 1, name: '○○휘트니스', price: 2800, location: '서울 강남', status: '거래가능' },
-      { id: 2, name: '□□헬스클럽', price: 3700, location: '서울 서초', status: '거래가능' },
-      { id: 3, name: '☆☆애슬레틱', price: 3400, location: '서울 역삼', status: '거래완료' },
-      { id: 4, name: '▽▽파워짐', price: 3000, location: '인천 송도', status: '거래가능' },
-      { id: 5, name: '▷▷바디짐', price: 4000, location: '서울 잠실', status: '거래가능' },
-      { id: 6, name: '◁◁피지컬센터', price: 2800, location: '경기 수원', status: '거래완료' },
-      { id: 7, name: '♤♤스트롱짐', price: 3300, location: '부산 해운대', status: '거래가능' },
-      { id: 8, name: '♧♧웰니스센터', price: 3800, location: '대구 수성', status: '거래가능' },
-      { id: 9, name: '△△스포츠센터', price: 2500, location: '서울 송파', status: '거래완료' },
-      { id: 10, name: '◇◇PT센터', price: 3200, location: '경기 분당', status: '거래가능' },
-    ]
-  };
+  // 급매 데이터 - 실제 데이터 사용
+  const urgentData = useMemo(() => {
+    const byCategory = { golf: [], condo: [], fitness: [] };
+
+    urgentSales
+      .filter(u => u.status === 'available')
+      .forEach(u => {
+        const membership = memberships.find(m => m.id === u.c_id);
+        if (membership) {
+          byCategory[u.category].push({
+            id: u.id,
+            name: membership.name,
+            price: u.urgent_price,
+            location: membership.location,
+            status: '거래가능'
+          });
+        }
+      });
+
+    // sold_out 상품도 추가
+    urgentSales
+      .filter(u => u.status === 'sold_out')
+      .forEach(u => {
+        const membership = memberships.find(m => m.id === u.c_id);
+        if (membership) {
+          byCategory[u.category].push({
+            id: u.id,
+            name: membership.name,
+            price: u.urgent_price,
+            location: membership.location,
+            status: '거래완료'
+          });
+        }
+      });
+
+    return byCategory;
+  }, []);
 
   const currentData = urgentData[activeTab];
   const config = categoryConfig[activeTab];
