@@ -71,7 +71,7 @@ export default function CategoryPage({ navigate, selectedCategory }) {
         {/* 인기 매물 TOP 5 */}
         <section style={{ marginBottom: '0px' }}>
           <h2 className="font-bold mb-8" style={{ color: '#111111', fontSize: '24px' }}>
-            {config.emoji} {config.title} 인기 매물 TOP 5
+            {config.title} 인기 매물 TOP 5
           </h2>
 
           <div className="flex flex-wrap" style={{ gap: '25px' }}>

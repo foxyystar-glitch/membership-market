@@ -51,7 +51,7 @@ const PropertyCard = ({
 
   return (
     <div
-      className="cursor-pointer transition-all hover:shadow-lg"
+      className="transition-all hover:shadow-lg"
       onClick={onClick}
       style={{
         width: '210px',
@@ -81,7 +81,7 @@ const PropertyCard = ({
             justifyContent: 'center',
             fontWeight: 700,
             fontSize: '16px',
-            zIndex: 10,
+            zIndex: 5,
             boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
           }}
         >
@@ -102,7 +102,7 @@ const PropertyCard = ({
             borderRadius: '20px',
             fontSize: '12px',
             fontWeight: 700,
-            zIndex: 10,
+            zIndex: 5,
             boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
           }}
         >
