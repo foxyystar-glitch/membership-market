@@ -40,14 +40,11 @@ export default function CategoryTabs({ activeTab, onTabChange, variant = 'defaul
           <button
             key={tab}
             onClick={() => onTabChange(tab)}
-            className={`px-6 py-4 font-bold transition-colors ${
-              activeTab === tab
-                ? `border-b-2 ${tabColors.border}`
-                : ''
-            }`}
+            className="px-6 py-4 font-bold transition-colors"
             style={{
               fontSize: '18px',
-              color: activeTab === tab ? tabColors.color : colors.textGray
+              color: activeTab === tab ? tabColors.color : colors.textGray,
+              borderBottom: activeTab === tab ? `2px solid ${tabColors.color}` : 'none'
             }}
           >
             {tabLabels[tab]}
