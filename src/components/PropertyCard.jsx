@@ -38,7 +38,7 @@ const PropertyCard = ({
     if (isAvailable) {
       return isUrgentSale ? colors.urgent : identityColor;
     }
-    return '#9E9E9E';
+    return '#BDBDBD'; // 거래완료/분양완료 색상 통일
   };
 
   // 버튼 텍스트 결정
@@ -138,6 +138,16 @@ const PropertyCard = ({
         />
       </div>
 
+      {/* 단 구분선 - 스티키 탭바와 분리 */}
+      <div
+        style={{
+          width: '100%',
+          height: '5px',
+          backgroundColor: '#F6F5FD',
+          flexShrink: 0
+        }}
+      />
+
       {/* 본문 영역 - 나머지 185px */}
       <div
         style={{
@@ -204,7 +214,7 @@ const PropertyCard = ({
                   lineHeight: '120%',
                   letterSpacing: '0%',
                   fontWeight: 700,
-                  color: hasStatus && !isAvailable ? '#9E9E9E' : identityColor
+                  color: hasStatus && !isAvailable ? '#BDBDBD' : identityColor
                 }}
               >
                 {typeof cardPrice === 'number' ? cardPrice.toLocaleString() : cardPrice}
@@ -247,7 +257,7 @@ const PropertyCard = ({
             marginTop: 'auto',
             height: '36px',
             borderRadius: '2px',
-            backgroundColor: hasStatus && !isAvailable ? '#9E9E9E' : identityColor,
+            backgroundColor: hasStatus && !isAvailable ? '#BDBDBD' : identityColor,
             color: '#ffffff',
             fontSize: '16px',
             fontWeight: 600,
