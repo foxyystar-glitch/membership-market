@@ -62,7 +62,8 @@ export default function MainPage({ navigate }) {
         const membership = memberships.find(m => m.id === p.c_id);
         if (membership) {
           byCategory[p.category].push({
-            name: membership.membership_name,
+            productName: membership.product_name,
+            membershipName: membership.membership_name,
             price: p.presale_price,
             location: membership.location,
             image: emojis[p.category],
@@ -203,7 +204,7 @@ export default function MainPage({ navigate }) {
             {/* 급매 리스트 */}
             <div className="h-96 overflow-y-auto space-y-4 mb-0">
               {urgentData[urgentTab].map((item, idx) => (
-                <div key={idx} className="p-5 rounded-[5px] transition-colors bg-[#FEF3F6]">
+                <div key={idx} className="rounded-[5px] transition-colors bg-[#FEF3F6]" style={{ padding: '16px' }}>
                   <div className="flex items-end justify-between mb-3">
                     <div>
                       <span className="inline-block px-2 py-1 text-white rounded mb-2" style={{ fontSize: '12px', fontWeight: 700, backgroundColor: '#FA3766' }}>
@@ -254,43 +255,38 @@ export default function MainPage({ navigate }) {
           </div>
 
           {/* 분양 카드 그리드 */}
-          <div className="grid grid-cols-5 gap-6">
+          <div className="grid grid-cols-5" style={{ gap: '23px' }}>
             {saleData[saleTab].map((item, idx) => {
-              const colorConfig = {
-                golf: { text: 'text-green-600', bg: 'bg-green-600', hover: 'hover:bg-green-700', border: 'border-green-600' },
-                condo: { text: 'text-blue-600', bg: 'bg-blue-600', hover: 'hover:bg-blue-700', border: 'border-blue-600' },
-                fitness: { text: 'text-purple-600', bg: 'bg-purple-600', hover: 'hover:bg-purple-700', border: 'border-purple-600' }
-              };
-              const colors = colorConfig[saleTab];
-              const isAvailable = item.status === '분양가능';
-              const badgeColor = isAvailable ? colors.bg : 'bg-gray-400';
+              const colors = getTabColors(saleTab);
 
               return (
-                <div key={idx} className={`relative bg-white border ${colors.border} rounded-lg overflow-hidden hover:shadow-lg transition-shadow`}>
-                  {/* 분양 상태 배지 */}
-                  <div className={`absolute top-2 left-2 px-2 py-0.5 ${badgeColor} text-white font-bold rounded-full z-10 shadow-lg`} style={{ fontSize: '10px' }}>
-                    {item.status}
-                  </div>
-
-                  {/* 썸네일 - 높이 183.47px */}
-                  <div className="bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center text-6xl" style={{ height: '183.47px' }}>
+                <div key={idx} className="bg-white rounded-[5px] overflow-hidden" style={{ width: '202px', height: '380px' }}>
+                  {/* 썸네일 */}
+                  <div className="bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center text-6xl" style={{ width: '202px', height: '202px' }}>
                     {item.image}
                   </div>
 
-                  {/* 정보 - 높이 172.01px */}
-                  <div className="p-4 flex flex-col" style={{ height: '172.01px' }}>
-                    <div className="font-bold text-gray-900 text-lg mb-1">{item.name}</div>
-                    <div className="text-sm text-gray-600 mb-3">{item.location}</div>
-                    <div className={`text-2xl font-bold ${colors.text} mb-auto`}>
+                  {/* 본문 영역 */}
+                  <div className="flex flex-col" style={{ padding: '16px', height: '178px' }}>
+                    <div className="font-semibold" style={{ fontSize: '18px', color: '#111111' }}>
+                      {item.productName}
+                    </div>
+                    <div className="font-medium" style={{ fontSize: '14px', color: '#111111', marginTop: '4px' }}>
+                      {item.membershipName}
+                    </div>
+                    <div className="font-medium" style={{ fontSize: '12px', color: '#717171', marginTop: '4px' }}>
+                      {item.location}
+                    </div>
+                    <div className="font-bold mb-auto" style={{ fontSize: '12px', color: colors.color, marginTop: '8px' }}>
                       {item.price.toLocaleString()}
-                      <span className="text-sm text-gray-500 ml-1">만원</span>
+                      <span className="font-medium" style={{ fontSize: '12px', color: '#717171', marginLeft: '4px' }}>만원</span>
                     </div>
                     <button
                       onClick={() => navigate && navigate('presale')}
-                      className={`w-full py-2 ${isAvailable ? colors.bg : 'bg-gray-400'} text-white rounded ${isAvailable ? colors.hover : ''} transition-colors text-sm font-medium ${!isAvailable && 'cursor-not-allowed'}`}
-                      disabled={!isAvailable}
+                      className="w-full text-white rounded-[2px] transition-colors font-semibold"
+                      style={{ height: '36px', backgroundColor: colors.color, fontSize: '14px', padding: 0 }}
                     >
-                      {isAvailable ? '문의하기' : '분양완료'}
+                      문의하기
                     </button>
                   </div>
                 </div>
