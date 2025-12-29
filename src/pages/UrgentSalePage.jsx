@@ -37,7 +37,8 @@ export default function UrgentSalePage({ navigate }) {
         if (membership) {
           byCategory[u.category].push({
             id: u.id,
-            name: membership.name,
+            product_name: membership.product_name,
+            membership_name: membership.membership_name,
             price: u.urgent_price,
             location: membership.location,
             status: '거래가능'
@@ -53,7 +54,8 @@ export default function UrgentSalePage({ navigate }) {
         if (membership) {
           byCategory[u.category].push({
             id: u.id,
-            name: membership.name,
+            product_name: membership.product_name,
+            membership_name: membership.membership_name,
             price: u.urgent_price,
             location: membership.location,
             status: '거래완료'
@@ -123,7 +125,8 @@ export default function UrgentSalePage({ navigate }) {
             <PropertyCard
               key={property.id}
               category="urgent"
-              name={property.name}
+              product_name={property.product_name}
+              membership_name={property.membership_name}
               location={property.location}
               price={property.price}
               status={property.status}

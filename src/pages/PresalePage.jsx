@@ -37,7 +37,8 @@ export default function PresalePage({ navigate }) {
         if (membership) {
           byCategory[p.category].push({
             id: p.id,
-            name: membership.name,
+            product_name: membership.product_name,
+            membership_name: membership.membership_name,
             price: p.presale_price,
             location: membership.location,
             status: '분양가능'
@@ -53,7 +54,8 @@ export default function PresalePage({ navigate }) {
         if (membership) {
           byCategory[p.category].push({
             id: p.id,
-            name: membership.name,
+            product_name: membership.product_name,
+            membership_name: membership.membership_name,
             price: p.presale_price,
             location: membership.location,
             status: '분양완료'
@@ -123,7 +125,8 @@ export default function PresalePage({ navigate }) {
             <PropertyCard
               key={property.id}
               category={activeTab}
-              name={property.name}
+              product_name={property.product_name}
+              membership_name={property.membership_name}
               location={property.location}
               price={property.price}
               status={property.status}
