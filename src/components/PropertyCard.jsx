@@ -13,8 +13,6 @@ const PropertyCard = ({
   location,
   price,
   rank, // 순위 배지 (옵션)
-  originalPrice, // 할인 전 가격 (급매용, 옵션)
-  discount, // 할인율 (급매용, 옵션)
   status, // 거래 상태 (급매용, 옵션)
   onClick,
   item // 기존 호환성 유지
@@ -194,75 +192,37 @@ const PropertyCard = ({
 
         {/* Price - 8px 여백 */}
         <div style={{ marginTop: '8px' }}>
-          {/* 할인 전 가격 (급매용) */}
-          {originalPrice && (
-            <div
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '5px' }}>
+            <span
               style={{
-                fontSize: '12px',
-                color: '#9E9E9E',
-                textDecoration: 'line-through',
-                marginBottom: '4px'
+                fontSize: '28px',
+                lineHeight: '120%',
+                letterSpacing: '0%',
+                fontWeight: 700,
+                color: hasStatus && !isAvailable ? '#BDBDBD' : identityColor
               }}
             >
-              {originalPrice}만원
-            </div>
-          )}
-
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'flex-end',
-              justifyContent: 'space-between'
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: '5px' }}>
-              <span
-                style={{
-                  fontSize: '28px',
-                  lineHeight: '120%',
-                  letterSpacing: '0%',
-                  fontWeight: 700,
-                  color: hasStatus && !isAvailable ? '#BDBDBD' : identityColor
-                }}
-              >
-                {typeof cardPrice === 'number' ? cardPrice.toLocaleString() : cardPrice}
-              </span>
-              <span
-                style={{
-                  fontSize: '16px',
-                  lineHeight: '120%',
-                  letterSpacing: '0%',
-                  fontWeight: 500,
-                  color: '#717171'
-                }}
-              >
-                만원
-              </span>
-            </div>
-
-            {/* 할인율 배지 (급매용) */}
-            {discount && (
-              <div
-                style={{
-                  padding: '4px 8px',
-                  backgroundColor: getBadgeColor(),
-                  color: '#ffffff',
-                  fontSize: '12px',
-                  fontWeight: 700,
-                  borderRadius: '2px'
-                }}
-              >
-                {discount}% ↓
-              </div>
-            )}
+              {typeof cardPrice === 'number' ? cardPrice.toLocaleString() : cardPrice}
+            </span>
+            <span
+              style={{
+                fontSize: '16px',
+                lineHeight: '120%',
+                letterSpacing: '0%',
+                fontWeight: 500,
+                color: '#717171'
+              }}
+            >
+              만원
+            </span>
           </div>
         </div>
 
-        {/* 문의하기 버튼 - 14px 여백, 높이 36px */}
+        {/* 문의하기 버튼 - 8px 여백, 높이 36px */}
         <button
           disabled={hasStatus && !isAvailable}
           style={{
-            marginTop: 'auto',
+            marginTop: '8px',
             height: '36px',
             borderRadius: '2px',
             backgroundColor: hasStatus && !isAvailable ? '#BDBDBD' : identityColor,
