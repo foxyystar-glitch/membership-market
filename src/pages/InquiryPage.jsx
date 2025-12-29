@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function InquiryPage() {
+export default function InquiryPage({ navigate }) {
   const [formData, setFormData] = useState({
     category: 'golf',
     membershipName: '',
@@ -26,29 +26,11 @@ export default function InquiryPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* 헤더 */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold text-gray-900">회원권마켓</div>
-            <nav className="flex gap-8">
-              <a href="#" className="text-gray-700 hover:text-gray-900">시세표</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">골프</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">콘도</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">피트니스</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">급매</a>
-              <a href="#" className="text-gray-700 hover:text-gray-900">분양</a>
-              <a href="#" className="text-gray-900 font-bold border-b-2 border-gray-900">문의</a>
-            </nav>
-          </div>
-        </div>
-      </header>
-
       {/* 메인 컨텐츠 */}
       <div className="max-w-3xl mx-auto px-6 py-12">
         <div className="bg-white rounded-lg shadow-sm p-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">회원권 매매문의</h1>
-          
+
           <div>
             {/* 회원권 구분 */}
             <div className="mb-6">
@@ -181,19 +163,19 @@ export default function InquiryPage() {
                     type="checkbox"
                     checked={formData.agreePrivacy}
                     onChange={(e) => setFormData({...formData, agreePrivacy: e.target.checked})}
-                    className="w-4 h-4 text-green-600 focus:ring-green-500 rounded"
+                    className="w-4 h-4 text-gray-900 focus:ring-gray-900 rounded"
                   />
                   <span className="ml-2 text-sm text-gray-700">개인정보 수집 및 이용에 동의합니다.</span>
                 </label>
                 <button
                   type="button"
                   onClick={() => setShowTerms(!showTerms)}
-                  className="text-sm text-green-600 hover:text-green-700 font-medium"
+                  className="px-3 py-1 text-sm text-gray-900 border border-gray-300 rounded hover:bg-gray-50 transition-colors font-medium"
                 >
                   약관보기
                 </button>
               </div>
-              
+
               {showTerms && (
                 <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200 text-sm text-gray-600 max-h-40 overflow-y-auto">
                   <p className="font-bold mb-2">개인정보 수집 및 이용 동의</p>
@@ -208,7 +190,7 @@ export default function InquiryPage() {
             {/* 신청 버튼 */}
             <button
               onClick={handleSubmit}
-              className="w-full py-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-lg font-bold"
+              className="w-full py-4 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors text-lg font-bold"
             >
               신청
             </button>
