@@ -58,7 +58,7 @@ export default function CategoryPage({ navigate, selectedCategory }) {
   return (
     <div className="min-h-screen bg-white">
       {/* 스티키 탭 */}
-      <div className="sticky top-0 bg-white z-10" style={{ height: '64px', borderBottom: '1px solid #F6F5FD' }}>
+      <div className="sticky top-0 bg-white z-10" style={{ height: '64px', borderBottom: '1px solid #BDBDBD' }}>
         <div className="mx-auto h-full flex items-center" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
           <CategoryTabs activeTab={category} onTabChange={setCategory} variant="default" />
         </div>
