@@ -126,7 +126,7 @@ export default function MainPage({ navigate }) {
                   <button
                     key={tab}
                     onClick={() => setPriceTab(tab)}
-                    className={`px-4 py-2 text-[18px] font-medium transition-colors ${
+                    className={`px-4 py-2 text-[16px] font-medium transition-colors ${
                       priceTab === tab
                         ? `border-b-2`
                         : 'text-[#717171] hover:text-gray-700'
@@ -149,7 +149,7 @@ export default function MainPage({ navigate }) {
                       <div className="font-semibold" style={{ fontSize: '18px', color: '#111111' }}>{item.name}</div>
                       <div className="font-bold" style={{ fontSize: '24px', color: '#111111', marginTop: '4px' }}>
                         {item.price.toLocaleString()}
-                        <span className="font-medium" style={{ fontSize: '14px', color: '#717171', marginLeft: '4px' }}>만원</span>
+                        <span className="font-medium" style={{ fontSize: '14px', color: '#717171', marginLeft: '5px' }}>만원</span>
                       </div>
                     </div>
                     <div className={`flex-shrink-0 text-right text-[18px] font-medium mx-8 ${
@@ -188,7 +188,7 @@ export default function MainPage({ navigate }) {
                   <button
                     key={tab}
                     onClick={() => setUrgentTab(tab)}
-                    className={`px-4 py-2 text-[18px] font-medium transition-colors ${
+                    className={`px-4 py-2 text-[16px] font-medium transition-colors ${
                       urgentTab === tab
                         ? 'border-b-2'
                         : 'text-[#717171] hover:text-gray-700'
@@ -205,7 +205,7 @@ export default function MainPage({ navigate }) {
             <div className="h-96 overflow-y-auto space-y-4 mb-0">
               {urgentData[urgentTab].map((item, idx) => (
                 <div key={idx} className="rounded-[5px] transition-colors bg-[#FEF3F6]" style={{ padding: '16px' }}>
-                  <div className="flex items-end justify-between mb-3">
+                  <div className="flex items-end justify-between" style={{ marginBottom: '10px' }}>
                     <div>
                       <span className="inline-block px-2 py-1 text-white rounded mb-2" style={{ fontSize: '12px', fontWeight: 700, backgroundColor: '#FA3766' }}>
                         급매
@@ -216,7 +216,7 @@ export default function MainPage({ navigate }) {
                     <div className="text-right">
                       <div className="font-bold" style={{ fontSize: '24px', color: '#111111' }}>
                         {item.price}
-                        <span className="font-medium" style={{ fontSize: '14px', color: '#717171', marginLeft: '4px' }}>만원</span>
+                        <span className="font-medium" style={{ fontSize: '14px', color: '#717171', marginLeft: '5px' }}>만원</span>
                       </div>
                     </div>
                   </div>
@@ -231,7 +231,7 @@ export default function MainPage({ navigate }) {
 
         {/* 분양 정보 섹션 */}
         <div className="mt-12 bg-white rounded-[5px] border border-[#BDBDBD] shadow-sm p-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">분양 정보</h2>
+          <h2 className="text-[24px] font-bold text-[#111111] mb-6">분양 정보</h2>
 
           {/* 탭 */}
           <div className="flex gap-2 mb-6 border-b border-[#BDBDBD]">
@@ -260,10 +260,10 @@ export default function MainPage({ navigate }) {
               const colors = getTabColors(saleTab);
 
               return (
-                <div key={idx} className="bg-white rounded-[5px] overflow-hidden" style={{ width: '202px', height: '380px' }}>
+                <div key={idx} className="rounded-[5px] overflow-hidden" style={{ width: '202px', height: '380px', backgroundColor: '#F6F5FD' }}>
                   {/* 썸네일 */}
-                  <div className="bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center text-6xl" style={{ width: '202px', height: '202px' }}>
-                    {item.image}
+                  <div className="flex items-center justify-center" style={{ width: '202px', height: '202px' }}>
+                    <img src="/thumbnail_tmp.png" alt="thumbnail" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
 
                   {/* 본문 영역 */}
@@ -274,12 +274,12 @@ export default function MainPage({ navigate }) {
                     <div className="font-medium" style={{ fontSize: '14px', color: '#111111', marginTop: '4px' }}>
                       {item.membershipName}
                     </div>
-                    <div className="font-medium" style={{ fontSize: '12px', color: '#717171', marginTop: '4px' }}>
+                    <div className="font-medium" style={{ fontSize: '12px', color: '#717171', marginTop: '8px' }}>
                       {item.location}
                     </div>
-                    <div className="font-bold mb-auto" style={{ fontSize: '12px', color: colors.color, marginTop: '8px' }}>
+                    <div className="font-bold mb-auto" style={{ fontSize: '24px', color: colors.color, marginTop: '8px', marginBottom: '8px' }}>
                       {item.price.toLocaleString()}
-                      <span className="font-medium" style={{ fontSize: '12px', color: '#717171', marginLeft: '4px' }}>만원</span>
+                      <span className="font-medium" style={{ fontSize: '12px', color: '#717171', marginLeft: '5px' }}>만원</span>
                     </div>
                     <button
                       onClick={() => navigate && navigate('presale')}
