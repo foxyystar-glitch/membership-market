@@ -165,8 +165,8 @@ export default function MainPage({ navigate }) {
                       </div>
                     </div>
                     <button
-                      className="flex-shrink-0 flex items-center justify-center text-white text-base font-semibold rounded-[2px] transition-colors"
-                      style={{ backgroundColor: colors.color, width: '60px', height: '40px' }}
+                      className="flex-shrink-0 flex items-center justify-center text-white font-semibold rounded-[2px] transition-colors"
+                      style={{ backgroundColor: colors.color, width: '60px', height: '36px', fontSize: '14px' }}
                     >
                       문의
                     </button>
@@ -178,22 +178,21 @@ export default function MainPage({ navigate }) {
 
           {/* 급매 정보 */}
           <div className="bg-white rounded-[5px] border border-[#BDBDBD] shadow-sm p-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">급매 정보</h2>
+            <h2 className="text-[24px] font-bold text-[#111111] mb-6">급매 정보</h2>
 
             {/* 탭 */}
             <div className="flex gap-2 mb-6 border-b border-[#BDBDBD]">
               {Object.keys(tabLabels).map(tab => {
-                const colors = getTabColors(tab);
                 return (
                   <button
                     key={tab}
                     onClick={() => setUrgentTab(tab)}
-                    className={`px-4 py-2 font-medium transition-colors ${
+                    className={`px-4 py-2 text-[18px] font-medium transition-colors ${
                       urgentTab === tab
                         ? 'border-b-2'
                         : 'text-[#717171] hover:text-gray-700'
                     }`}
-                    style={urgentTab === tab ? { color: colors.color, borderBottomColor: colors.color } : {}}
+                    style={urgentTab === tab ? { color: '#FA3766', borderBottomColor: '#FA3766' } : {}}
                   >
                     {tabLabels[tab]}
                   </button>
@@ -204,20 +203,23 @@ export default function MainPage({ navigate }) {
             {/* 급매 리스트 */}
             <div className="h-96 overflow-y-auto space-y-4 mb-0">
               {urgentData[urgentTab].map((item, idx) => (
-                <div key={idx} className="p-5 border-2 border-red-100 rounded-lg hover:border-red-200 transition-colors bg-red-50">
+                <div key={idx} className="p-5 rounded-[5px] transition-colors bg-[#FEF3F6]">
                   <div className="flex items-end justify-between mb-3">
                     <div>
-                      <span className="inline-block px-2 py-1 bg-red-600 text-white text-xs font-bold rounded mb-2">
+                      <span className="inline-block px-2 py-1 text-white rounded mb-2" style={{ fontSize: '12px', fontWeight: 700, backgroundColor: '#FA3766' }}>
                         급매
                       </span>
-                      <div className="font-bold text-gray-900 text-lg">{item.name}</div>
-                      <div className="text-sm text-gray-600 mt-1">{item.location}</div>
+                      <div className="font-semibold" style={{ fontSize: '18px', color: '#111111' }}>{item.name}</div>
+                      <div className="font-medium" style={{ fontSize: '14px', color: '#717171', marginTop: '4px' }}>{item.location}</div>
                     </div>
                     <div className="text-right">
-                      <div className="text-2xl font-bold text-gray-900">{item.price}<span className="text-sm text-gray-500 ml-1">만원</span></div>
+                      <div className="font-bold" style={{ fontSize: '24px', color: '#111111' }}>
+                        {item.price}
+                        <span className="font-medium" style={{ fontSize: '14px', color: '#717171', marginLeft: '4px' }}>만원</span>
+                      </div>
                     </div>
                   </div>
-                  <button className="w-full py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors text-sm font-medium">
+                  <button className="w-full text-white rounded-[2px] transition-colors font-medium" style={{ height: '36px', backgroundColor: '#FA3766', fontSize: '14px' }}>
                     문의하기
                   </button>
                 </div>
