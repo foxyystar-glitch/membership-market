@@ -18,7 +18,8 @@ export default function PriceTablePage({ navigate }) {
       .forEach(m => {
         byCategory[m.category].push({
           id: m.id,
-          name: m.name,
+          product_name: m.product_name,
+          membership_name: m.membership_name,
           price: m.current_price,
           change: m.change_value,
           changePercent: m.change_percent,
@@ -173,7 +174,10 @@ export default function PriceTablePage({ navigate }) {
                           }
                         }}
                       >
-                        <td className="py-4 px-4 font-medium text-gray-900">{item.name}</td>
+                        <td className="py-4 px-4">
+                          <div className="font-medium text-gray-900">{item.product_name}</div>
+                          <div className="text-sm text-gray-700 mt-1" style={{ fontWeight: 500 }}>{item.membership_name}</div>
+                        </td>
                         <td className="py-4 px-4 text-right">
                           <span className="text-lg font-bold text-gray-900">
                             {item.price.toLocaleString()}
@@ -243,7 +247,8 @@ export default function PriceTablePage({ navigate }) {
               {selectedItem ? (
                 <div>
                   <div className="mb-4 p-4 bg-gray-50 rounded-lg">
-                    <div className="font-bold text-gray-900 text-lg">{selectedItem.name}</div>
+                    <div className="font-bold text-gray-900 text-lg">{selectedItem.product_name}</div>
+                    <div className="text-sm text-gray-700 mt-1" style={{ fontWeight: 500 }}>{selectedItem.membership_name}</div>
                     <div className="text-3xl font-bold text-gray-900 mt-2">
                       {selectedItem.price.toLocaleString()}
                       <span className="text-base text-gray-500 ml-2">만원</span>

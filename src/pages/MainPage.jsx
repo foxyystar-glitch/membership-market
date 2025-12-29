@@ -19,7 +19,8 @@ export default function MainPage({ navigate }) {
       .forEach(m => {
         if (byCategory[m.category].length < 5) {
           byCategory[m.category].push({
-            name: m.name,
+            product_name: m.product_name,
+            membership_name: m.membership_name,
             price: m.current_price,
             change: m.change_value,
             changePercent: m.change_percent,
@@ -41,7 +42,8 @@ export default function MainPage({ navigate }) {
         const membership = memberships.find(m => m.id === u.c_id);
         if (membership) {
           byCategory[u.category].push({
-            name: membership.name,
+            product_name: membership.product_name,
+            membership_name: membership.membership_name,
             price: u.urgent_price.toLocaleString(),
             location: membership.location
           });
@@ -62,7 +64,8 @@ export default function MainPage({ navigate }) {
         const membership = memberships.find(m => m.id === p.c_id);
         if (membership) {
           byCategory[p.category].push({
-            name: membership.name,
+            product_name: membership.product_name,
+            membership_name: membership.membership_name,
             price: p.presale_price,
             location: membership.location,
             image: emojis[p.category],
@@ -144,7 +147,8 @@ export default function MainPage({ navigate }) {
                 return (
                   <div key={idx} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                     <div className="flex-1">
-                      <div className="font-medium text-gray-900">{item.name}</div>
+                      <div className="font-medium text-gray-900">{item.product_name}</div>
+                      <div className="text-sm text-gray-700 mt-1" style={{ fontWeight: 500 }}>{item.membership_name}</div>
                       <div className="text-2xl font-bold text-gray-900 mt-1">
                         {item.price.toLocaleString()}
                         <span className="text-sm text-gray-500 ml-1">만원</span>
@@ -209,7 +213,8 @@ export default function MainPage({ navigate }) {
                       <span className="inline-block px-2 py-1 bg-red-600 text-white text-xs font-bold rounded mb-2">
                         급매
                       </span>
-                      <div className="font-bold text-gray-900 text-lg">{item.name}</div>
+                      <div className="font-bold text-gray-900 text-lg">{item.product_name}</div>
+                      <div style={{ color: '#111111', fontWeight: 500, fontSize: '14px', marginTop: '4px' }}>{item.membership_name}</div>
                       <div className="text-sm text-gray-600 mt-1">{item.location}</div>
                     </div>
                     <div className="text-right">
@@ -280,17 +285,19 @@ export default function MainPage({ navigate }) {
                     {item.image}
                   </div>
 
-                  {/* 정보 - 높이 172.01px */}
-                  <div className="p-4 flex flex-col" style={{ height: '172.01px' }}>
-                    <div className="font-bold text-gray-900 text-lg mb-1">{item.name}</div>
-                    <div className="text-sm text-gray-600 mb-3">{item.location}</div>
-                    <div className={`text-2xl font-bold ${colors.text} mb-auto`}>
+                  {/* 정보 - 높이 216.53px */}
+                  <div className="p-4 flex flex-col" style={{ height: '216.53px' }}>
+                    <div className="font-bold text-gray-900 text-lg" style={{ marginBottom: '4px' }}>{item.product_name}</div>
+                    <div style={{ color: '#111111', fontWeight: 500, fontSize: '16px', marginBottom: '8px' }}>{item.membership_name}</div>
+                    <div className="text-sm text-gray-600" style={{ marginBottom: '8px' }}>{item.location}</div>
+                    <div className={`text-2xl font-bold ${colors.text}`} style={{ marginBottom: '8px' }}>
                       {item.price.toLocaleString()}
                       <span className="text-sm text-gray-500 ml-1">만원</span>
                     </div>
                     <button
                       onClick={() => navigate && navigate('presale')}
                       className={`w-full py-2 ${isAvailable ? colors.bg : 'bg-gray-400'} text-white rounded ${isAvailable ? colors.hover : ''} transition-colors text-sm font-medium ${!isAvailable && 'cursor-not-allowed'}`}
+                      style={{ marginTop: 'auto' }}
                       disabled={!isAvailable}
                     >
                       {isAvailable ? '문의하기' : '분양완료'}

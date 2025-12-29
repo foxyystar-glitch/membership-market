@@ -38,7 +38,8 @@ export default function CategoryPage({ navigate, selectedCategory }) {
       .filter(m => m.category === category && m.active_flag)
       .map(m => ({
         id: m.id,
-        name: m.name,
+        product_name: m.product_name,
+        membership_name: m.membership_name,
         price: m.current_price,
         location: m.location,
         rank: m.rank

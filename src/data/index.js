@@ -48,7 +48,8 @@ export const getDisplayUrgentSales = (category) => {
       const membership = memberships.find(m => m.id === urgent.c_id);
       return {
         ...urgent,
-        name: membership?.name,
+        product_name: membership?.product_name,
+        membership_name: membership?.membership_name,
         location: membership?.location,
       };
     });
@@ -67,7 +68,8 @@ export const getDisplayPresales = (category) => {
       const membership = memberships.find(m => m.id === presale.c_id);
       return {
         ...presale,
-        name: membership?.name,
+        product_name: membership?.product_name,
+        membership_name: membership?.membership_name,
         location: membership?.location,
       };
     });
@@ -86,7 +88,8 @@ export const getAllUrgentSalesByCategory = (category) => {
       const membership = memberships.find(m => m.id === urgent.c_id);
       return {
         ...urgent,
-        name: membership?.name,
+        product_name: membership?.product_name,
+        membership_name: membership?.membership_name,
         location: membership?.location,
         current_price: membership?.current_price,
       };
@@ -106,7 +109,8 @@ export const getAllPresalesByCategory = (category) => {
       const membership = memberships.find(m => m.id === presale.c_id);
       return {
         ...presale,
-        name: membership?.name,
+        product_name: membership?.product_name,
+        membership_name: membership?.membership_name,
         location: membership?.location,
         current_price: membership?.current_price,
       };

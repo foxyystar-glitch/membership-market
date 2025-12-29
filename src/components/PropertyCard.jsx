@@ -45,9 +45,10 @@ export default function PropertyCard({ item, category, type = 'category', onInqu
           {config.emoji}
         </div>
         <div className="p-4">
-          <div className="font-bold text-gray-900 text-lg mb-1">{item.name}</div>
-          <div className="text-sm text-gray-600 mb-3">{item.location}</div>
-          <div className="mb-3">
+          <div className="font-bold text-gray-900 text-lg" style={{ marginBottom: '4px' }}>{item.product_name}</div>
+          <div style={{ color: '#111111', fontWeight: 500, fontSize: '16px', marginBottom: '8px' }}>{item.membership_name}</div>
+          <div className="text-sm text-gray-600" style={{ marginBottom: '8px' }}>{item.location}</div>
+          <div style={{ marginBottom: '8px' }}>
             <div
               className="text-2xl font-bold"
               style={{ color: isAvailable ? urgentColor : '#9ca3af' }}
@@ -90,17 +91,18 @@ export default function PropertyCard({ item, category, type = 'category', onInqu
         <div className="bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center text-6xl" style={{ height: '183.47px' }}>
           {item.image || config.emoji}
         </div>
-        <div className="p-4 flex flex-col" style={{ height: '172.01px' }}>
-          <div className="font-bold text-gray-900 text-lg mb-1">{item.name}</div>
-          <div className="text-sm text-gray-600 mb-3">{item.location}</div>
-          <div className="text-2xl font-bold mb-auto" style={{ color: categoryColor }}>
+        <div className="p-4 flex flex-col" style={{ height: '216.53px' }}>
+          <div className="font-bold text-gray-900 text-lg" style={{ marginBottom: '4px' }}>{item.product_name}</div>
+          <div style={{ color: '#111111', fontWeight: 500, fontSize: '16px', marginBottom: '8px' }}>{item.membership_name}</div>
+          <div className="text-sm text-gray-600" style={{ marginBottom: '8px' }}>{item.location}</div>
+          <div className="text-2xl font-bold" style={{ color: categoryColor, marginBottom: '8px' }}>
             {item.price.toLocaleString()}
             <span className="text-sm text-gray-500 ml-1">만원</span>
           </div>
           <button
             onClick={() => isAvailable && onInquiry && onInquiry()}
             className={`w-full py-2 text-white rounded transition-colors text-sm font-medium ${!isAvailable && 'cursor-not-allowed'}`}
-            style={{ backgroundColor: isAvailable ? categoryColor : '#9ca3af' }}
+            style={{ backgroundColor: isAvailable ? categoryColor : '#9ca3af', marginTop: 'auto' }}
             disabled={!isAvailable}
           >
             {isAvailable ? '문의하기' : '분양완료'}
@@ -125,9 +127,10 @@ export default function PropertyCard({ item, category, type = 'category', onInqu
         {config.emoji}
       </div>
       <div className="p-4">
-        <div className="font-bold text-gray-900 text-lg mb-1">{item.name}</div>
-        <div className="text-sm text-gray-600 mb-3">{item.location}</div>
-        <div className="text-2xl font-bold mb-3" style={{ color: categoryColor }}>
+        <div className="font-bold text-gray-900 text-lg" style={{ marginBottom: '4px' }}>{item.product_name}</div>
+        <div style={{ color: '#111111', fontWeight: 500, fontSize: '16px', marginBottom: '8px' }}>{item.membership_name}</div>
+        <div className="text-sm text-gray-600" style={{ marginBottom: '8px' }}>{item.location}</div>
+        <div className="text-2xl font-bold" style={{ color: categoryColor, marginBottom: '8px' }}>
           {item.price.toLocaleString()}
           <span className="text-sm text-gray-500 ml-1">만원</span>
         </div>

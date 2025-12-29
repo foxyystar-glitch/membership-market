@@ -37,7 +37,8 @@ export default function UrgentSalePage({ navigate }) {
         if (membership) {
           byCategory[u.category].push({
             id: u.id,
-            name: membership.name,
+            product_name: membership.product_name,
+            membership_name: membership.membership_name,
             price: u.urgent_price,
             location: membership.location,
             status: '거래가능'
@@ -53,7 +54,8 @@ export default function UrgentSalePage({ navigate }) {
         if (membership) {
           byCategory[u.category].push({
             id: u.id,
-            name: membership.name,
+            product_name: membership.product_name,
+            membership_name: membership.membership_name,
             price: u.urgent_price,
             location: membership.location,
             status: '거래완료'
