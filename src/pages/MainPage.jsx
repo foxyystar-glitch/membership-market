@@ -115,7 +115,7 @@ export default function MainPage({ navigate }) {
         <div className="grid grid-cols-2 gap-8">
           {/* 실시간 시세표 */}
           <div className="bg-white rounded-[5px] border border-[#BDBDBD] shadow-sm p-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">실시간 시세표</h2>
+            <h2 className="text-[24px] font-bold text-[#111111] mb-6">실시간 시세표</h2>
 
             {/* 탭 */}
             <div className="flex gap-2 mb-6 border-b border-[#BDBDBD]">
@@ -125,7 +125,7 @@ export default function MainPage({ navigate }) {
                   <button
                     key={tab}
                     onClick={() => setPriceTab(tab)}
-                    className={`px-4 py-2 font-medium transition-colors ${
+                    className={`px-4 py-2 text-[18px] font-medium transition-colors ${
                       priceTab === tab
                         ? `border-b-2`
                         : 'text-[#717171] hover:text-gray-700'
@@ -139,19 +139,19 @@ export default function MainPage({ navigate }) {
             </div>
 
             {/* 시세 리스트 */}
-            <div className="h-96 overflow-y-auto space-y-3 mb-0">
+            <div className="h-96 overflow-y-auto space-y-4 mb-0">
               {priceData[priceTab].map((item, idx) => {
                 const colors = getTabColors(priceTab);
                 return (
                   <div key={idx} className="flex items-center justify-between p-4 bg-[#F6F5FD] rounded-lg hover:bg-[#E8E7F5] transition-colors">
                     <div className="flex-1">
-                      <div className="font-medium text-gray-900">{item.name}</div>
-                      <div className="text-2xl font-bold text-gray-900 mt-1">
+                      <div className="text-[20px] font-semibold text-[#111111]">{item.name}</div>
+                      <div className="text-[28px] font-bold text-[#111111] mt-1">
                         {item.price.toLocaleString()}
-                        <span className="text-sm text-gray-500 ml-1">만원</span>
+                        <span className="text-base font-medium text-[#717171] ml-1">만원</span>
                       </div>
                     </div>
-                    <div className={`flex-shrink-0 text-right font-medium mx-8 ${
+                    <div className={`flex-shrink-0 text-right text-[18px] font-medium mx-8 ${
                       item.trend === 'up' ? 'text-red-500' :
                       item.trend === 'down' ? 'text-blue-500' :
                       'text-[#717171]'
@@ -164,7 +164,10 @@ export default function MainPage({ navigate }) {
                         ({item.changePercent > 0 ? '+' : ''}{item.changePercent}%)
                       </div>
                     </div>
-                    <button className={`flex-shrink-0 px-4 py-2 text-white text-sm rounded transition-colors`} style={{ backgroundColor: colors.color }}>
+                    <button
+                      className="flex-shrink-0 flex items-center justify-center text-white text-base font-semibold rounded-[2px] transition-colors"
+                      style={{ backgroundColor: colors.color, width: '60px', height: '40px' }}
+                    >
                       문의
                     </button>
                   </div>
