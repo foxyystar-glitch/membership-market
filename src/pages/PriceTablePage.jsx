@@ -101,7 +101,9 @@ export default function PriceTablePage({ navigate }) {
         bg: 'bg-green-600',
         hover: 'hover:bg-green-700',
         lightBg: 'bg-green-50',
-        chartColor: '#16a34a'
+        chartColor: '#16a34a',
+        inquiryBg: '#10A369',
+        inquiryHover: '#0d8c5a'
       },
       condo: {
         text: 'text-blue-600',
@@ -109,7 +111,9 @@ export default function PriceTablePage({ navigate }) {
         bg: 'bg-blue-600',
         hover: 'hover:bg-blue-700',
         lightBg: 'bg-blue-50',
-        chartColor: '#2563eb'
+        chartColor: '#2563eb',
+        inquiryBg: '#2563eb',
+        inquiryHover: '#1d4ed8'
       },
       fitness: {
         text: 'text-purple-600',
@@ -117,7 +121,9 @@ export default function PriceTablePage({ navigate }) {
         bg: 'bg-purple-600',
         hover: 'hover:bg-purple-700',
         lightBg: 'bg-purple-50',
-        chartColor: '#9333ea'
+        chartColor: '#9333ea',
+        inquiryBg: '#9333ea',
+        inquiryHover: '#7e22ce'
       }
     };
     return colors[tab];
@@ -144,73 +150,96 @@ export default function PriceTablePage({ navigate }) {
       {/* 메인 컨텐츠 */}
       <div className="mx-auto py-6" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
         <div className="grid grid-cols-2 gap-8">
-          {/* 좌측: 시세표 테이블 */}
+          {/* 좌측: 시세표 카드 리스트 */}
           <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
             <div className="p-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">{tabLabels[activeTab]} 시세표</h2>
 
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b-2 border-gray-200">
-                    <th className="text-center py-3 px-4 font-bold text-gray-900">회원권명</th>
-                    <th className="text-center py-3 px-4 font-bold text-gray-900">시세</th>
-                    <th className="text-center py-3 px-4 font-bold text-gray-900">등락</th>
-                    <th className="text-right py-3 px-4 font-bold text-gray-900"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {priceData[activeTab].map((item) => {
-                    const colors = getTabColors(activeTab);
-                    return (
-                      <tr
-                        key={item.id}
-                        className={`border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition-colors ${
-                          selectedItem?.id === item.id ? colors.lightBg : ''
-                        }`}
-                        onClick={(e) => {
-                          if (!e.target.closest('button')) {
-                            setSelectedItem(item);
-                          }
-                        }}
-                      >
-                        <td className="py-4 px-4 font-medium text-gray-900">{item.name}</td>
-                        <td className="py-4 px-4 text-right">
-                          <span className="text-lg font-bold text-gray-900">
-                            {item.price.toLocaleString()}
-                          </span>
-                          <span className="text-sm text-gray-500 ml-1">만원</span>
-                        </td>
-                        <td className={`py-4 px-4 text-right font-medium ${
-                          item.trend === 'up' ? 'text-red-500' :
+              {/* 헤더 */}
+              <div className="flex items-center px-4 py-3 border-b-2 border-gray-200 mb-4">
+                <div className="flex-1 font-bold text-gray-900">회원권명</div>
+                <div className="w-24 font-bold text-gray-900 text-center">시세</div>
+                <div className="w-32 font-bold text-gray-900 text-center">등락</div>
+                <div className="w-32"></div>
+              </div>
+
+              {/* 카드 리스트 */}
+              <div className="flex flex-col gap-4">
+                {priceData[activeTab].map((item) => {
+                  const colors = getTabColors(activeTab);
+                  return (
+                    <div
+                      key={item.id}
+                      className={`w-full h-[74px] bg-[#F6F5FD] rounded-[5px] relative cursor-pointer transition-all ${
+                        selectedItem?.id === item.id ? 'ring-2 ring-offset-2' : 'hover:shadow-md'
+                      }`}
+                      style={selectedItem?.id === item.id ? { ringColor: colors.chartColor } : {}}
+                      onClick={(e) => {
+                        if (!e.target.closest('button')) {
+                          setSelectedItem(item);
+                        }
+                      }}
+                    >
+                      {/* 회원권명 */}
+                      <div className="absolute left-4 top-4 text-black text-base font-semibold leading-[19.2px]">
+                        {item.name}
+                      </div>
+
+                      {/* 카테고리 */}
+                      <div className="absolute left-4 top-[41px] text-black text-sm font-medium leading-[16.8px]">
+                        {tabLabels[activeTab]} 회원권
+                      </div>
+
+                      {/* 가격 */}
+                      <div className="absolute left-[169px] top-[26px] text-black text-lg font-bold leading-[21.6px]">
+                        {item.price.toLocaleString()}
+                      </div>
+
+                      {/* 만원 */}
+                      <div className="absolute left-[240px] top-[33px] text-[#717171] text-xs font-medium leading-[14.4px]">
+                        만원
+                      </div>
+
+                      {/* 등락 */}
+                      <div
+                        className={`absolute left-[279px] top-[18px] text-right ${
+                          item.trend === 'up' ? 'text-[#EF4444]' :
                           item.trend === 'down' ? 'text-blue-500' :
                           'text-gray-500'
-                        }`}>
-                          <div>
-                            {item.trend === 'up' ? '▲' : item.trend === 'down' ? '▼' : '─'}
-                            {' '}{Math.abs(item.change).toLocaleString()}
-                          </div>
-                          <div className="text-sm">
-                            ({item.changePercent > 0 ? '+' : ''}{item.changePercent}%)
-                          </div>
-                        </td>
-                        <td className="py-4 px-4">
-                          <div className="flex gap-2 justify-end">
-                            <button className="px-4 py-2 bg-gray-900 text-white text-sm rounded hover:bg-gray-800 transition-colors">
-                              상세
-                            </button>
-                            <button
-                              onClick={() => navigate && navigate('inquiry')}
-                              className={`px-4 py-2 ${colors.bg} text-white text-sm rounded ${colors.hover} transition-colors`}
-                            >
-                              문의
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+                        }`}
+                      >
+                        <div className="text-base font-medium leading-[22.4px]">
+                          {item.trend === 'up' ? '▲' : item.trend === 'down' ? '▼' : '─'} {Math.abs(item.change).toLocaleString()}
+                        </div>
+                        <div className="text-xs font-medium leading-[16.8px]">
+                          ({item.changePercent > 0 ? '+' : ''}{item.changePercent}%)
+                        </div>
+                      </div>
+
+                      {/* 상세 버튼 */}
+                      <button
+                        className="absolute left-[358px] top-[19px] w-[60px] h-[36px] bg-[#284AB5] rounded-[2px] text-white text-sm font-semibold leading-[16.8px] hover:opacity-90 transition-opacity"
+                        onClick={() => {
+                          // 상세 페이지로 이동 로직 추가 가능
+                        }}
+                      >
+                        상세
+                      </button>
+
+                      {/* 문의 버튼 */}
+                      <button
+                        className="absolute left-[434px] top-[19px] w-[60px] h-[36px] rounded-[2px] text-white text-sm font-semibold leading-[16.8px] transition-opacity hover:opacity-90"
+                        style={{ backgroundColor: colors.inquiryBg }}
+                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = colors.inquiryHover}
+                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = colors.inquiryBg}
+                        onClick={() => navigate && navigate('inquiry')}
+                      >
+                        문의
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
