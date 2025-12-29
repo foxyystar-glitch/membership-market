@@ -19,7 +19,7 @@ export default function MainPage({ navigate }) {
       .forEach(m => {
         if (byCategory[m.category].length < 5) {
           byCategory[m.category].push({
-            name: m.membership_name,
+            name: `${m.product_name} ${m.membership_name}`,
             price: m.current_price,
             change: m.change_value,
             changePercent: m.change_percent,
@@ -41,7 +41,7 @@ export default function MainPage({ navigate }) {
         const membership = memberships.find(m => m.id === u.c_id);
         if (membership) {
           byCategory[u.category].push({
-            name: membership.membership_name,
+            name: `${membership.product_name} ${membership.membership_name}`,
             price: u.urgent_price.toLocaleString(),
             location: membership.location
           });
@@ -139,11 +139,11 @@ export default function MainPage({ navigate }) {
             </div>
 
             {/* 시세 리스트 */}
-            <div className="h-96 overflow-y-auto space-y-3 mb-6">
+            <div className="h-96 overflow-y-auto space-y-3 mb-0">
               {priceData[priceTab].map((item, idx) => {
                 const colors = getTabColors(priceTab);
                 return (
-                  <div key={idx} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <div key={idx} className="flex items-center justify-between p-4 bg-[#F6F5FD] rounded-lg hover:bg-[#E8E7F5] transition-colors">
                     <div className="flex-1">
                       <div className="font-medium text-gray-900">{item.name}</div>
                       <div className="text-2xl font-bold text-gray-900 mt-1">
@@ -154,7 +154,7 @@ export default function MainPage({ navigate }) {
                     <div className={`flex-shrink-0 text-right font-medium mx-8 ${
                       item.trend === 'up' ? 'text-red-500' :
                       item.trend === 'down' ? 'text-blue-500' :
-                      'text-gray-500'
+                      'text-[#717171]'
                     }`}>
                       <div>
                         {item.trend === 'up' ? '▲' : item.trend === 'down' ? '▼' : '─'}
@@ -164,7 +164,7 @@ export default function MainPage({ navigate }) {
                         ({item.changePercent > 0 ? '+' : ''}{item.changePercent}%)
                       </div>
                     </div>
-                    <button className={`flex-shrink-0 px-4 py-2 ${colors.bg} text-white text-sm rounded ${colors.hover} transition-colors`}>
+                    <button className={`flex-shrink-0 px-4 py-2 text-white text-sm rounded transition-colors`} style={{ backgroundColor: colors.color }}>
                       문의
                     </button>
                   </div>
@@ -199,7 +199,7 @@ export default function MainPage({ navigate }) {
             </div>
 
             {/* 급매 리스트 */}
-            <div className="h-96 overflow-y-auto space-y-4 mb-6">
+            <div className="h-96 overflow-y-auto space-y-4 mb-0">
               {urgentData[urgentTab].map((item, idx) => (
                 <div key={idx} className="p-5 border-2 border-red-100 rounded-lg hover:border-red-200 transition-colors bg-red-50">
                   <div className="flex items-end justify-between mb-3">
