@@ -38,7 +38,8 @@ export default function CategoryPage({ navigate, selectedCategory }) {
       .filter(m => m.category === category && m.active_flag)
       .map(m => ({
         id: m.id,
-        name: m.name,
+        product_name: m.product_name,
+        membership_name: m.membership_name,
         price: m.current_price,
         location: m.location,
         rank: m.rank
@@ -57,7 +58,7 @@ export default function CategoryPage({ navigate, selectedCategory }) {
   return (
     <div className="min-h-screen bg-white">
       {/* 스티키 탭 */}
-      <div className="sticky top-0 bg-white z-10" style={{ height: '64px', borderBottom: '5px solid #F6F5FD' }}>
+      <div className="sticky top-0 bg-white z-10" style={{ height: '64px', borderBottom: '1px solid #BDBDBD' }}>
         <div className="mx-auto h-full flex items-center" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
           <CategoryTabs activeTab={category} onTabChange={setCategory} variant="default" />
         </div>
@@ -76,7 +77,8 @@ export default function CategoryPage({ navigate, selectedCategory }) {
               <PropertyCard
                 key={property.id}
                 category={category}
-                name={property.name}
+                product_name={property.product_name}
+                membership_name={property.membership_name}
                 location={property.location}
                 price={property.price}
                 rank={property.rank}
@@ -102,7 +104,8 @@ export default function CategoryPage({ navigate, selectedCategory }) {
               <PropertyCard
                 key={property.id}
                 category={category}
-                name={property.name}
+                product_name={property.product_name}
+                membership_name={property.membership_name}
                 location={property.location}
                 price={property.price}
                 onClick={() => navigate && navigate('inquiry')}

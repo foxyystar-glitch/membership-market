@@ -19,7 +19,7 @@ export default function MainPage({ navigate }) {
       .forEach(m => {
         if (byCategory[m.category].length < 5) {
           byCategory[m.category].push({
-            name: m.name,
+            name: m.membership_name,
             price: m.current_price,
             change: m.change_value,
             changePercent: m.change_percent,
@@ -41,7 +41,7 @@ export default function MainPage({ navigate }) {
         const membership = memberships.find(m => m.id === u.c_id);
         if (membership) {
           byCategory[u.category].push({
-            name: membership.name,
+            name: membership.membership_name,
             price: u.urgent_price.toLocaleString(),
             location: membership.location
           });
@@ -62,7 +62,7 @@ export default function MainPage({ navigate }) {
         const membership = memberships.find(m => m.id === p.c_id);
         if (membership) {
           byCategory[p.category].push({
-            name: membership.name,
+            name: membership.membership_name,
             price: p.presale_price,
             location: membership.location,
             image: emojis[p.category],

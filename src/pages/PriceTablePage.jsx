@@ -18,7 +18,7 @@ export default function PriceTablePage({ navigate }) {
       .forEach(m => {
         byCategory[m.category].push({
           id: m.id,
-          name: m.name,
+          name: m.product_name,
           price: m.current_price,
           change: m.change_value,
           changePercent: m.change_percent,
@@ -128,7 +128,7 @@ export default function PriceTablePage({ navigate }) {
   return (
     <div className="min-h-screen bg-white">
       {/* 스티키 탭 */}
-      <div className="sticky top-0 bg-white z-10" style={{ height: '64px' }}>
+      <div className="sticky top-0 bg-white z-10" style={{ height: '64px', borderBottom: '1px solid #BDBDBD' }}>
         <div className="mx-auto h-full flex items-center" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
           <CategoryTabs
             activeTab={activeTab}

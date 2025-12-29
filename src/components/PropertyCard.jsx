@@ -3,23 +3,23 @@ import { colors } from '../config/colors';
 
 /**
  * 공통 카드 컴포넌트
- * 크기: W 210px H 395px
+ * 크기: W 210px H 400px
  * 아이덴티티 컬러만 카테고리별로 다르게, 나머지는 공통
  */
 const PropertyCard = ({
   category, // 'golf', 'condo', 'fitness', 'urgent'
-  name,
+  product_name, // 상품명 (기존 name)
+  membership_name, // 회원권명 (신규 추가)
   location,
   price,
   rank, // 순위 배지 (옵션)
-  originalPrice, // 할인 전 가격 (급매용, 옵션)
-  discount, // 할인율 (급매용, 옵션)
   status, // 거래 상태 (급매용, 옵션)
   onClick,
   item // 기존 호환성 유지
 }) => {
   // item prop으로 전달된 경우 처리
-  const cardName = name || item?.name;
+  const cardProductName = product_name || item?.product_name || item?.name;
+  const cardMembershipName = membership_name || item?.membership_name;
   const cardLocation = location || item?.location;
   const cardPrice = price || item?.price;
 
@@ -55,7 +55,7 @@ const PropertyCard = ({
       onClick={onClick}
       style={{
         width: '210px',
-        height: '395px',
+        height: '400px',
         borderRadius: '5px',
         backgroundColor: '#F6F5FD',
         overflow: 'hidden',
@@ -124,7 +124,7 @@ const PropertyCard = ({
       >
         <img
           src="/thumbnail_tmp.png"
-          alt={cardName}
+          alt={cardProductName}
           style={{
             width: '100%',
             height: '100%',
@@ -147,7 +147,7 @@ const PropertyCard = ({
           padding: '16px'
         }}
       >
-        {/* Name - 본문 최상단 */}
+        {/* Product Name - 본문 최상단 */}
         <div
           style={{
             fontSize: '18px',
@@ -157,13 +157,29 @@ const PropertyCard = ({
             color: '#111111'
           }}
         >
-          {cardName}
+          {cardProductName}
         </div>
 
-        {/* Location - 10px 여백 */}
+        {/* Membership Name - 4px 여백 */}
+        {cardMembershipName && (
+          <div
+            style={{
+              marginTop: '4px',
+              fontSize: '16px',
+              lineHeight: '120%',
+              letterSpacing: '0%',
+              fontWeight: 500,
+              color: '#111111'
+            }}
+          >
+            {cardMembershipName}
+          </div>
+        )}
+
+        {/* Location - 8px 여백 */}
         <div
           style={{
-            marginTop: '10px',
+            marginTop: '8px',
             fontSize: '16px',
             lineHeight: '120%',
             letterSpacing: '0%',
@@ -174,77 +190,39 @@ const PropertyCard = ({
           {cardLocation}
         </div>
 
-        {/* Price - 14px 여백 */}
-        <div style={{ marginTop: '14px' }}>
-          {/* 할인 전 가격 (급매용) */}
-          {originalPrice && (
-            <div
+        {/* Price - 8px 여백 */}
+        <div style={{ marginTop: '8px' }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '5px' }}>
+            <span
               style={{
-                fontSize: '12px',
-                color: '#9E9E9E',
-                textDecoration: 'line-through',
-                marginBottom: '4px'
+                fontSize: '28px',
+                lineHeight: '120%',
+                letterSpacing: '0%',
+                fontWeight: 700,
+                color: hasStatus && !isAvailable ? '#BDBDBD' : identityColor
               }}
             >
-              {originalPrice}만원
-            </div>
-          )}
-
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'flex-end',
-              justifyContent: 'space-between'
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: '5px' }}>
-              <span
-                style={{
-                  fontSize: '28px',
-                  lineHeight: '120%',
-                  letterSpacing: '0%',
-                  fontWeight: 700,
-                  color: hasStatus && !isAvailable ? '#BDBDBD' : identityColor
-                }}
-              >
-                {typeof cardPrice === 'number' ? cardPrice.toLocaleString() : cardPrice}
-              </span>
-              <span
-                style={{
-                  fontSize: '16px',
-                  lineHeight: '120%',
-                  letterSpacing: '0%',
-                  fontWeight: 500,
-                  color: '#717171'
-                }}
-              >
-                만원
-              </span>
-            </div>
-
-            {/* 할인율 배지 (급매용) */}
-            {discount && (
-              <div
-                style={{
-                  padding: '4px 8px',
-                  backgroundColor: getBadgeColor(),
-                  color: '#ffffff',
-                  fontSize: '12px',
-                  fontWeight: 700,
-                  borderRadius: '2px'
-                }}
-              >
-                {discount}% ↓
-              </div>
-            )}
+              {typeof cardPrice === 'number' ? cardPrice.toLocaleString() : cardPrice}
+            </span>
+            <span
+              style={{
+                fontSize: '16px',
+                lineHeight: '120%',
+                letterSpacing: '0%',
+                fontWeight: 500,
+                color: '#717171'
+              }}
+            >
+              만원
+            </span>
           </div>
         </div>
 
-        {/* 문의하기 버튼 - 14px 여백, 높이 36px */}
+        {/* 문의하기 버튼 - 8px 여백, 높이 36px */}
         <button
           disabled={hasStatus && !isAvailable}
           style={{
-            marginTop: 'auto',
+            marginTop: '8px',
             height: '36px',
             borderRadius: '2px',
             backgroundColor: hasStatus && !isAvailable ? '#BDBDBD' : identityColor,
