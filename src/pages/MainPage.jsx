@@ -145,10 +145,10 @@ export default function MainPage({ navigate }) {
                 return (
                   <div key={idx} className="flex items-center justify-between p-4 bg-[#F6F5FD] rounded-lg hover:bg-[#E8E7F5] transition-colors">
                     <div className="flex-1">
-                      <div className="text-[20px] font-semibold text-[#111111]">{item.name}</div>
-                      <div className="text-[28px] font-bold text-[#111111] mt-1">
+                      <div className="font-semibold" style={{ fontSize: '18px', color: '#111111' }}>{item.name}</div>
+                      <div className="font-bold" style={{ fontSize: '24px', color: '#111111', marginTop: '4px' }}>
                         {item.price.toLocaleString()}
-                        <span className="text-base font-medium text-[#717171] ml-1">만원</span>
+                        <span className="font-medium" style={{ fontSize: '14px', color: '#717171', marginLeft: '4px' }}>만원</span>
                       </div>
                     </div>
                     <div className={`flex-shrink-0 text-right text-[18px] font-medium mx-8 ${
