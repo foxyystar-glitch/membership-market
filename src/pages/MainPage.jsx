@@ -314,18 +314,18 @@ export default function MainPage({ navigate }) {
 
                   {/* 본문 영역 */}
                   <div className="flex flex-col" style={{ padding: '16px', height: '178px' }}>
-                    <div className="font-semibold" style={{ fontSize: '18px', color: '#111111', lineHeight: 1 }}>
+                    <div className="font-semibold" style={{ fontSize: '18px', color: '#111111', lineHeight: '22px' }}>
                       {item.productName}
                     </div>
-                    <div className="font-medium" style={{ fontSize: '14px', color: '#111111', marginTop: '4px', lineHeight: 1 }}>
+                    <div className="font-medium" style={{ fontSize: '14px', color: '#111111', marginTop: '4px', lineHeight: '17px' }}>
                       {item.membershipName}
                     </div>
-                    <div className="font-medium" style={{ fontSize: '12px', color: '#717171', marginTop: '8px', lineHeight: 1 }}>
+                    <div className="font-medium" style={{ fontSize: '12px', color: '#717171', marginTop: '8px', lineHeight: '14px' }}>
                       {item.location}
                     </div>
-                    <div className="font-bold mb-auto" style={{ fontSize: '24px', color: colors.color, marginBottom: '8px', lineHeight: 1 }}>
+                    <div className="font-bold mb-auto" style={{ fontSize: '24px', color: colors.color, marginTop: '8px', marginBottom: '8px', lineHeight: '29px' }}>
                       {item.price.toLocaleString()}
-                      <span className="font-medium" style={{ fontSize: '12px', color: '#717171', marginLeft: '5px', lineHeight: 1 }}>만원</span>
+                      <span className="font-medium" style={{ fontSize: '12px', color: '#717171', marginLeft: '5px', lineHeight: '14px' }}>만원</span>
                     </div>
                     <button
                       onClick={() => navigate && navigate('presale')}
