@@ -102,17 +102,14 @@ export default function UrgentSalePage({ navigate }) {
   return (
     <div className="min-h-screen bg-white">
       {/* 스티키 탭 */}
-      <div className="sticky top-0 bg-white z-10" style={{ height: '64px' }}>
+      <div className="sticky top-0 bg-white z-10" style={{ height: '64px', borderBottom: '5px solid #F6F5FD' }}>
         <div className="mx-auto h-full flex items-center" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
           <CategoryTabs activeTab={activeTab} onTabChange={setActiveTab} variant="urgent" />
         </div>
       </div>
 
-      {/* 구분선 */}
-      <div style={{ width: '100%', height: '5px', backgroundColor: '#F6F5FD' }} />
-
       {/* 메인 컨텐츠 */}
-      <div className="mx-auto" style={{ maxWidth: '1200px', paddingLeft: '25px', paddingRight: '25px', paddingTop: '48px', paddingBottom: '48px' }}>
+      <div className="mx-auto" style={{ maxWidth: '1200px', paddingLeft: '25px', paddingRight: '25px', paddingTop: '50px', paddingBottom: '50px' }}>
         <div className="mb-8 flex items-baseline justify-between">
           <h2 className="font-bold" style={{ color: '#111111', fontSize: '24px' }}>
             {config.title} 급매 매물

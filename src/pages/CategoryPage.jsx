@@ -57,17 +57,14 @@ export default function CategoryPage({ navigate, selectedCategory }) {
   return (
     <div className="min-h-screen bg-white">
       {/* 스티키 탭 */}
-      <div className="sticky top-0 bg-white z-10" style={{ height: '64px' }}>
+      <div className="sticky top-0 bg-white z-10" style={{ height: '64px', borderBottom: '5px solid #F6F5FD' }}>
         <div className="mx-auto h-full flex items-center" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
           <CategoryTabs activeTab={category} onTabChange={setCategory} variant="default" />
         </div>
       </div>
 
-      {/* 구분선 */}
-      <div style={{ width: '100%', height: '5px', backgroundColor: '#F6F5FD' }} />
-
       {/* 메인 컨텐츠 */}
-      <div className="mx-auto" style={{ maxWidth: '1200px', paddingLeft: '25px', paddingRight: '25px', paddingTop: '48px', paddingBottom: '48px' }}>
+      <div className="mx-auto" style={{ maxWidth: '1200px', paddingLeft: '25px', paddingRight: '25px', paddingTop: '50px', paddingBottom: '50px' }}>
         {/* 인기 매물 TOP 5 */}
         <section style={{ marginBottom: '0px' }}>
           <h2 className="font-bold mb-8" style={{ color: '#111111', fontSize: '24px' }}>
@@ -90,11 +87,8 @@ export default function CategoryPage({ navigate, selectedCategory }) {
         </section>
       </div>
 
-      {/* 섹션 구분선 - 페이지 전체 너비 */}
-      <div style={{ width: '100%', height: '5px', backgroundColor: '#F6F5FD', marginBottom: '48px' }} />
-
       {/* 전체 매물 리스트 */}
-      <div className="mx-auto" style={{ maxWidth: '1200px', paddingLeft: '25px', paddingRight: '25px', paddingBottom: '48px' }}>
+      <div className="mx-auto" style={{ maxWidth: '1200px', paddingLeft: '25px', paddingRight: '25px', paddingTop: '50px', paddingBottom: '50px' }}>
         <section>
           <div className="mb-8 flex items-baseline justify-between">
             <h2 className="font-bold" style={{ color: '#111111', fontSize: '24px' }}>
