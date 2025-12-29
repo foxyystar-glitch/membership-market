@@ -102,30 +102,32 @@ export default function PresalePage({ navigate }) {
   return (
     <div className="min-h-screen bg-white">
       {/* 스티키 탭 */}
-      <div className="sticky top-0 bg-white z-10" style={{ height: '64px' }}>
+      <div className="sticky top-0 bg-white z-10" style={{ height: '64px', borderBottom: '5px solid #F6F5FD' }}>
         <div className="mx-auto h-full flex items-center" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
           <CategoryTabs activeTab={activeTab} onTabChange={setActiveTab} variant="default" />
         </div>
       </div>
 
       {/* 메인 컨텐츠 */}
-      <div className="mx-auto py-12" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
+      <div className="mx-auto" style={{ maxWidth: '1200px', paddingLeft: '25px', paddingRight: '25px', paddingTop: '50px', paddingBottom: '50px' }}>
         <div className="mb-8 flex items-baseline justify-between">
-          <h2 className="text-3xl font-bold text-gray-900">
-            {config.emoji} {config.title} 분양 정보
+          <h2 className="font-bold" style={{ color: '#111111', fontSize: '24px' }}>
+            {config.title} 분양 정보
           </h2>
-          <span className={`${colorClasses.text} font-bold text-lg`}>총 {currentData.length}건</span>
+          <span className="font-bold" style={{ color: '#111111', fontSize: '18px' }}>총 {currentData.length}건</span>
         </div>
 
         {/* 분양 리스트 */}
-        <div className="grid grid-cols-5 gap-6">
+        <div className="flex flex-wrap" style={{ gap: '25px' }}>
           {currentData.map((property) => (
             <PropertyCard
               key={property.id}
-              item={property}
               category={activeTab}
-              type="presale"
-              onInquiry={() => navigate && navigate('inquiry')}
+              name={property.name}
+              location={property.location}
+              price={property.price}
+              status={property.status}
+              onClick={() => navigate && navigate('inquiry')}
             />
           ))}
         </div>

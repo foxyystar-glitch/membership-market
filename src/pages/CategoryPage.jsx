@@ -57,56 +57,55 @@ export default function CategoryPage({ navigate, selectedCategory }) {
   return (
     <div className="min-h-screen bg-white">
       {/* 스티키 탭 */}
-      <div className="sticky top-0 bg-white z-10" style={{ height: '64px' }}>
+      <div className="sticky top-0 bg-white z-10" style={{ height: '64px', borderBottom: '5px solid #F6F5FD' }}>
         <div className="mx-auto h-full flex items-center" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
           <CategoryTabs activeTab={category} onTabChange={setCategory} variant="default" />
         </div>
       </div>
 
       {/* 메인 컨텐츠 */}
-      <div className="mx-auto py-12" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
+      <div className="mx-auto" style={{ maxWidth: '1200px', paddingLeft: '25px', paddingRight: '25px', paddingTop: '50px', paddingBottom: '50px' }}>
         {/* 인기 매물 TOP 5 */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">
-            {config.emoji} {config.title} 인기 매물 TOP 5
+        <section style={{ marginBottom: '0px' }}>
+          <h2 className="font-bold mb-8" style={{ color: '#111111', fontSize: '24px' }}>
+            {config.title} 인기 매물 TOP 5
           </h2>
 
-          <div className="grid grid-cols-5 gap-6">
+          <div className="flex flex-wrap" style={{ gap: '25px' }}>
             {topProperties.map((property) => (
-              <div key={property.id} className="relative">
-                <PropertyCard
-                  item={property}
-                  category={category}
-                  type="category"
-                  onInquiry={() => navigate && navigate('inquiry')}
-                />
-                {/* 순위 배지 오버레이 */}
-                <div className={`absolute top-3 left-3 w-10 h-10 ${
-                  category === 'golf' ? 'bg-green-600' :
-                  category === 'condo' ? 'bg-blue-600' :
-                  'bg-purple-600'
-                } text-white rounded-full flex items-center justify-center font-bold text-lg z-10 shadow-lg`}>
-                  {property.rank}
-                </div>
-              </div>
+              <PropertyCard
+                key={property.id}
+                category={category}
+                name={property.name}
+                location={property.location}
+                price={property.price}
+                rank={property.rank}
+                onClick={() => navigate && navigate('inquiry')}
+              />
             ))}
           </div>
         </section>
+      </div>
 
-        {/* 전체 매물 리스트 */}
+      {/* 전체 매물 리스트 */}
+      <div className="mx-auto" style={{ maxWidth: '1200px', paddingLeft: '25px', paddingRight: '25px', paddingTop: '50px', paddingBottom: '50px' }}>
         <section>
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">
-            전체 {config.title} 매물
-          </h2>
+          <div className="mb-8 flex items-baseline justify-between">
+            <h2 className="font-bold" style={{ color: '#111111', fontSize: '24px' }}>
+              전체 {config.title} 매물
+            </h2>
+            <span className="font-bold" style={{ color: '#111111', fontSize: '18px' }}>총 {propertyData.length}건</span>
+          </div>
 
-          <div className="grid grid-cols-5 gap-6">
+          <div className="flex flex-wrap" style={{ gap: '25px' }}>
             {propertyData.map((property) => (
               <PropertyCard
                 key={property.id}
-                item={property}
                 category={category}
-                type="category"
-                onInquiry={() => navigate && navigate('inquiry')}
+                name={property.name}
+                location={property.location}
+                price={property.price}
+                onClick={() => navigate && navigate('inquiry')}
               />
             ))}
           </div>
