@@ -114,11 +114,11 @@ export default function MainPage({ navigate }) {
       <div className="mx-auto py-12" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
         <div className="grid grid-cols-2 gap-8">
           {/* 실시간 시세표 */}
-          <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+          <div className="bg-white rounded-[5px] border border-[#BDBDBD] shadow-sm p-6">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">실시간 시세표</h2>
 
             {/* 탭 */}
-            <div className="flex gap-2 mb-6 border-b border-gray-200">
+            <div className="flex gap-2 mb-6 border-b border-[#BDBDBD]">
               {Object.keys(tabLabels).map(tab => {
                 const colors = getTabColors(tab);
                 return (
@@ -127,9 +127,10 @@ export default function MainPage({ navigate }) {
                     onClick={() => setPriceTab(tab)}
                     className={`px-4 py-2 font-medium transition-colors ${
                       priceTab === tab
-                        ? `${colors.text} border-b-2 ${colors.border}`
-                        : 'text-gray-500 hover:text-gray-700'
+                        ? `border-b-2`
+                        : 'text-[#717171] hover:text-gray-700'
                     }`}
+                    style={priceTab === tab ? { color: colors.color, borderBottomColor: colors.color } : {}}
                   >
                     {tabLabels[tab]}
                   </button>
@@ -170,34 +171,31 @@ export default function MainPage({ navigate }) {
                 );
               })}
             </div>
-
-            <button
-              onClick={() => navigate && navigate('sise')}
-              className="w-full py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
-            >
-              전체 시세표 보기
-            </button>
           </div>
 
           {/* 급매 정보 */}
-          <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+          <div className="bg-white rounded-[5px] border border-[#BDBDBD] shadow-sm p-6">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">급매 정보</h2>
 
             {/* 탭 */}
-            <div className="flex gap-2 mb-6 border-b border-gray-200">
-              {Object.keys(tabLabels).map(tab => (
-                <button
-                  key={tab}
-                  onClick={() => setUrgentTab(tab)}
-                  className={`px-4 py-2 font-medium transition-colors ${
-                    urgentTab === tab
-                      ? 'text-red-600 border-b-2 border-red-600'
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                >
-                  {tabLabels[tab]}
-                </button>
-              ))}
+            <div className="flex gap-2 mb-6 border-b border-[#BDBDBD]">
+              {Object.keys(tabLabels).map(tab => {
+                const colors = getTabColors(tab);
+                return (
+                  <button
+                    key={tab}
+                    onClick={() => setUrgentTab(tab)}
+                    className={`px-4 py-2 font-medium transition-colors ${
+                      urgentTab === tab
+                        ? 'border-b-2'
+                        : 'text-[#717171] hover:text-gray-700'
+                    }`}
+                    style={urgentTab === tab ? { color: colors.color, borderBottomColor: colors.color } : {}}
+                  >
+                    {tabLabels[tab]}
+                  </button>
+                );
+              })}
             </div>
 
             {/* 급매 리스트 */}
@@ -222,22 +220,15 @@ export default function MainPage({ navigate }) {
                 </div>
               ))}
             </div>
-
-            <button
-              onClick={() => navigate && navigate('urgent')}
-              className="w-full py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-            >
-              전체 급매 보기
-            </button>
           </div>
         </div>
 
         {/* 분양 정보 섹션 */}
-        <div className="mt-12 bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+        <div className="mt-12 bg-white rounded-[5px] border border-[#BDBDBD] shadow-sm p-6">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">분양 정보</h2>
 
           {/* 탭 */}
-          <div className="flex gap-2 mb-6 border-b border-gray-200">
+          <div className="flex gap-2 mb-6 border-b border-[#BDBDBD]">
             {Object.keys(tabLabels).map(tab => {
               const colors = getTabColors(tab);
               return (
@@ -246,9 +237,10 @@ export default function MainPage({ navigate }) {
                   onClick={() => setSaleTab(tab)}
                   className={`px-4 py-2 font-medium transition-colors ${
                     saleTab === tab
-                      ? `${colors.text} border-b-2 ${colors.border}`
-                      : 'text-gray-500 hover:text-gray-700'
+                      ? `border-b-2`
+                      : 'text-[#717171] hover:text-gray-700'
                   }`}
+                  style={saleTab === tab ? { color: colors.color, borderBottomColor: colors.color } : {}}
                 >
                   {tabLabels[tab]}
                 </button>
