@@ -166,6 +166,8 @@ export default function PriceTablePage({ navigate }) {
             onTabChange={(tab) => {
               setActiveTab(tab);
               setSelectedItem(null);
+              // 골프는 일주일, 콘도/피트니스는 1개월 디폴트
+              setChartPeriod(tab === 'golf' ? 'week' : 'month');
             }}
             variant="default"
           />
