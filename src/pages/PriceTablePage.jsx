@@ -170,7 +170,7 @@ export default function PriceTablePage({ navigate }) {
                   return (
                     <div
                       key={item.id}
-                      className={`w-full h-[74px] bg-[#F6F5FD] rounded-[5px] relative cursor-pointer transition-all ${
+                      className={`w-full p-4 bg-[#F6F5FD] rounded-[5px] flex items-center gap-4 cursor-pointer transition-all ${
                         selectedItem?.id === item.id ? 'ring-2 ring-offset-2' : 'hover:shadow-md'
                       }`}
                       style={selectedItem?.id === item.id ? { ringColor: colors.chartColor } : {}}
@@ -180,45 +180,45 @@ export default function PriceTablePage({ navigate }) {
                         }
                       }}
                     >
-                      {/* 회원권명 */}
-                      <div className="absolute left-4 top-4 text-black text-base font-semibold leading-[19.2px]">
-                        {item.name}
-                      </div>
-
-                      {/* 카테고리 */}
-                      <div className="absolute left-4 top-[41px] text-black text-sm font-medium leading-[16.8px]">
-                        {tabLabels[activeTab]} 회원권
+                      {/* 회원권명 + 카테고리 */}
+                      <div className="w-[135px] flex flex-col gap-1.5">
+                        <div className="w-[135px] h-[19px] text-[#111111] text-base font-semibold leading-[19.2px]">
+                          {item.name}
+                        </div>
+                        <div className="w-[135px] text-[#111111] text-sm font-medium leading-[16.8px]">
+                          {tabLabels[activeTab]} 회원권
+                        </div>
                       </div>
 
                       {/* 가격 */}
-                      <div className="absolute left-[169px] top-[26px] text-black text-lg font-bold leading-[21.6px]">
-                        {item.price.toLocaleString()}
-                      </div>
-
-                      {/* 만원 */}
-                      <div className="absolute left-[240px] top-[33px] text-[#717171] text-xs font-medium leading-[14.4px]">
-                        만원
+                      <div className="w-24 h-[22px] flex justify-end items-end gap-1">
+                        <div className="w-[66px] text-right text-[#111111] text-lg font-bold leading-[21.6px]">
+                          {item.price.toLocaleString()}
+                        </div>
+                        <div className="w-[23px] text-right text-[#717171] text-xs font-medium leading-[14.4px]">
+                          만원
+                        </div>
                       </div>
 
                       {/* 등락 */}
                       <div
-                        className={`absolute left-[279px] top-[18px] text-right ${
+                        className={`w-[63px] flex flex-col items-end ${
                           item.trend === 'up' ? 'text-[#EF4444]' :
                           item.trend === 'down' ? 'text-blue-500' :
                           'text-gray-500'
                         }`}
                       >
-                        <div className="text-base font-medium leading-[22.4px]">
+                        <div className="text-right text-base font-medium leading-[22.4px]">
                           {item.trend === 'up' ? '▲' : item.trend === 'down' ? '▼' : '─'} {Math.abs(item.change).toLocaleString()}
                         </div>
-                        <div className="text-xs font-medium leading-[16.8px]">
+                        <div className="text-right text-xs font-medium leading-[16.8px]">
                           ({item.changePercent > 0 ? '+' : ''}{item.changePercent}%)
                         </div>
                       </div>
 
                       {/* 상세 버튼 */}
                       <button
-                        className="absolute left-[358px] top-[19px] w-[60px] h-[36px] bg-[#284AB5] rounded-[2px] text-white text-sm font-semibold leading-[16.8px] hover:opacity-90 transition-opacity"
+                        className="w-[60px] h-[36px] bg-[#284AB5] rounded-[2px] text-white text-sm font-semibold leading-[16.8px] flex items-center justify-center hover:opacity-90 transition-opacity"
                         onClick={() => {
                           // 상세 페이지로 이동 로직 추가 가능
                         }}
@@ -228,7 +228,7 @@ export default function PriceTablePage({ navigate }) {
 
                       {/* 문의 버튼 */}
                       <button
-                        className="absolute left-[434px] top-[19px] w-[60px] h-[36px] rounded-[2px] text-white text-sm font-semibold leading-[16.8px] transition-opacity hover:opacity-90"
+                        className="w-[60px] h-[36px] rounded-[2px] text-white text-sm font-semibold leading-[16.8px] flex items-center justify-center transition-opacity hover:opacity-90"
                         style={{ backgroundColor: colors.inquiryBg }}
                         onMouseEnter={(e) => e.currentTarget.style.backgroundColor = colors.inquiryHover}
                         onMouseLeave={(e) => e.currentTarget.style.backgroundColor = colors.inquiryBg}
