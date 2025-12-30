@@ -181,10 +181,10 @@ export default function InquiryPage({ navigate }) {
               </div>
 
               {showTerms && (
-                <div className="mt-4 p-4 bg-white rounded-[5px] border border-[#BDBDBD] text-sm text-[#111111]">
-                  <p className="font-bold mb-2">개인정보 수집과 이용에 대한 동의</p>
+                <div className="mt-4 p-4 bg-[#FAFAFA] rounded-[5px] border border-[#BDBDBD] text-sm text-[#111111]">
+                  <p className="font-bold mb-2">개인정보 수집 및 이용에 대한 동의</p>
                   <p className="mb-2">1. 수집하는 자: (주)티앤지레저</p>
-                  <p className="mb-2">2. 개인정보 수집 및 이용 목적: 회원권 매매 상담 및 연락</p>
+                  <p className="mb-2">2. 개인정보 수집 및 이용 목적: 회원권 매매상담 및 연락</p>
                   <p className="mb-2">3. 수집하는 개인정보 항목: 이름, 연락처</p>
                   <p className="mb-2">4. 개인정보 보유 및 이용 기간: 상담 완료 후 6개월</p>
                   <p>※ 개인정보 수집에 동의하지 않을 수 있으며, 동의하지 않을 경우 상담 서비스 이용이 제한될 수 있습니다.</p>
