@@ -152,7 +152,7 @@ export default function PriceTablePage({ navigate }) {
       <div className="mx-auto py-6" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
         <div className="grid grid-cols-2 gap-8">
           {/* 좌측: 시세표 카드 리스트 */}
-          <div className="bg-white rounded-[5px] border border-[#BDBDBD] shadow-sm">
+          <div className="bg-white rounded-[5px] border border-[#BDBDBD]">
             <div className="p-6">
               <h2 className="text-2xl font-bold mb-6" style={{ color: '#111111', fontSize: '24px', fontWeight: 700 }}>
                 {tabLabels[activeTab]} 시세표
@@ -179,8 +179,9 @@ export default function PriceTablePage({ navigate }) {
                   return (
                     <div
                       key={item.id}
-                      className="w-full h-[74px] p-4 rounded-[5px] flex items-center gap-4 cursor-pointer hover:bg-[#E8E7F5] transition-colors"
-                      style={{ backgroundColor: isSelected ? '#E8E7F5' : '#F6F5FD' }}
+                      className={`w-full h-[74px] p-4 rounded-[5px] flex items-center gap-4 cursor-pointer transition-colors ${
+                        isSelected ? 'bg-[#E8E7F5]' : 'bg-[#F6F5FD] hover:bg-[#E8E7F5]'
+                      }`}
                       onClick={(e) => {
                         if (!e.target.closest('button')) {
                           setSelectedItem(item);
@@ -198,11 +199,11 @@ export default function PriceTablePage({ navigate }) {
                       </div>
 
                       {/* 가격 */}
-                      <div className="w-24 h-[22px] flex justify-end items-end gap-1">
-                        <div className="w-[66px] text-right text-[#111111] text-lg font-bold leading-[21.6px]">
+                      <div className="w-24 flex justify-end items-baseline gap-1">
+                        <div className="text-right text-[#111111] text-lg font-bold leading-[21.6px]">
                           {item.price.toLocaleString()}
                         </div>
-                        <div className="w-[23px] text-right text-[#717171] text-xs font-medium leading-[14.4px]">
+                        <div className="text-right text-[#717171] text-xs font-medium leading-[14.4px]">
                           만원
                         </div>
                       </div>
