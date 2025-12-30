@@ -195,7 +195,7 @@ export default function MainPage({ navigate }) {
                         e.stopPropagation();
                         navigate && navigate('inquiry');
                       }}
-                      className="flex-shrink-0 flex items-center justify-center text-white font-semibold rounded-[2px] transition-colors"
+                      className="flex-shrink-0 flex items-center justify-center text-white font-semibold rounded-[2px] hover:opacity-90 transition-opacity"
                       style={{ backgroundColor: colors.color, width: '60px', height: '36px', fontSize: '14px' }}
                     >
                       문의
@@ -271,7 +271,7 @@ export default function MainPage({ navigate }) {
                       e.stopPropagation();
                       navigate && navigate('inquiry');
                     }}
-                    className="w-full text-white rounded-[2px] transition-colors font-medium"
+                    className="w-full text-white rounded-[2px] hover:opacity-90 transition-opacity font-medium"
                     style={{ height: '36px', backgroundColor: '#FA3766', fontSize: '14px' }}
                   >
                     문의하기
@@ -375,7 +375,7 @@ export default function MainPage({ navigate }) {
                         e.stopPropagation();
                         navigate && navigate('inquiry');
                       }}
-                      className="w-full text-white rounded-[2px] transition-colors font-semibold"
+                      className="w-full text-white rounded-[2px] hover:opacity-90 transition-opacity font-semibold"
                       style={{ height: '36px', backgroundColor: colors.color, fontSize: '14px', padding: 0 }}
                     >
                       문의하기

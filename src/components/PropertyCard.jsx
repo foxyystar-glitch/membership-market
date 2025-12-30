@@ -228,6 +228,7 @@ const PropertyCard = ({
               navigate('inquiry');
             }
           }}
+          className={hasStatus && !isAvailable ? '' : 'hover:opacity-90 transition-opacity'}
           style={{
             marginTop: '8px',
             height: '36px',
@@ -237,15 +238,8 @@ const PropertyCard = ({
             fontSize: '16px',
             fontWeight: 600,
             border: 'none',
-            cursor: hasStatus && !isAvailable ? 'not-allowed' : 'pointer',
-            transition: 'opacity 0.2s'
+            cursor: hasStatus && !isAvailable ? 'not-allowed' : 'pointer'
           }}
-          onMouseEnter={(e) => {
-            if (!(hasStatus && !isAvailable)) {
-              e.target.style.opacity = '0.9';
-            }
-          }}
-          onMouseLeave={(e) => e.target.style.opacity = '1'}
         >
           {getButtonText()}
         </button>

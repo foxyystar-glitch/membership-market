@@ -272,10 +272,8 @@ export default function PriceTablePage({ navigate }) {
 
                       {/* 문의 버튼 */}
                       <button
-                        className="w-[60px] h-[36px] rounded-[2px] text-white text-sm font-semibold leading-[16.8px] flex items-center justify-center transition-opacity hover:opacity-90 cursor-pointer"
+                        className="w-[60px] h-[36px] rounded-[2px] text-white text-sm font-semibold leading-[16.8px] flex items-center justify-center hover:opacity-90 transition-opacity cursor-pointer"
                         style={{ backgroundColor: tabColors.inquiryBg }}
-                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = tabColors.inquiryHover}
-                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = tabColors.inquiryBg}
                         onClick={() => navigate && navigate('inquiry')}
                       >
                         문의

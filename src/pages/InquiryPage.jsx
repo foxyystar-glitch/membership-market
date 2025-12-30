@@ -195,7 +195,7 @@ export default function InquiryPage({ navigate }) {
             {/* 신청 버튼 */}
             <button
               onClick={handleSubmit}
-              className="w-full h-[52px] bg-[#284AB5] text-white rounded-[2px] hover:bg-[#1e3a8a] transition-colors text-[18px] font-bold"
+              className="w-full h-[52px] bg-[#284AB5] text-white rounded-[2px] hover:opacity-90 transition-opacity text-[18px] font-bold"
             >
               문의신청
             </button>
