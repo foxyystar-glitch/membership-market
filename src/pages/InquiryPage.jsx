@@ -25,10 +25,10 @@ export default function InquiryPage({ navigate }) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#F6F5FD]">
       {/* 메인 컨텐츠 */}
-      <div className="max-w-3xl mx-auto px-6 py-12">
-        <div className="bg-white rounded-lg shadow-sm p-8">
+      <div className="max-w-[1200px] mx-auto px-6 py-12 bg-[#F6F5FD]">
+        <div className="max-w-[720px] mx-auto bg-white rounded-[5px] border border-[#BDBDBD] p-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">회원권 매매문의</h1>
 
           <div>
