@@ -4,11 +4,13 @@ import { memberships } from '../data/memberships';
 import { priceHistory } from '../data/priceHistory';
 import CategoryTabs from '../components/CategoryTabs';
 import { colors } from '../config/colors';
+import DetailModal from '../components/DetailModal';
 
 export default function PriceTablePage({ navigate }) {
   const [activeTab, setActiveTab] = useState('golf');
   const [selectedItem, setSelectedItem] = useState(null);
   const [chartPeriod, setChartPeriod] = useState('week');
+  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
 
   // 카테고리별 시세 데이터
   const priceData = useMemo(() => {
@@ -261,7 +263,8 @@ export default function PriceTablePage({ navigate }) {
                       <button
                         className="w-[60px] h-[36px] bg-[#284AB5] rounded-[2px] text-white text-sm font-semibold leading-[16.8px] flex items-center justify-center hover:opacity-90 transition-opacity cursor-pointer"
                         onClick={() => {
-                          // 상세 페이지로 이동 로직 추가 가능
+                          setSelectedItem(item);
+                          setIsDetailModalOpen(true);
                         }}
                       >
                         상세
@@ -405,6 +408,34 @@ export default function PriceTablePage({ navigate }) {
           </div>
         </div>
       </div>
+
+      {/* 상세보기 모달 */}
+      <DetailModal isOpen={isDetailModalOpen} onClose={() => setIsDetailModalOpen(false)}>
+        {selectedItem && (
+          <div style={{ padding: '40px' }}>
+            <h2 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '20px' }}>
+              {(() => {
+                const membership = memberships.find(m => m.id === selectedItem.id);
+                return membership ? `${membership.product_name} ${membership.membership_name}` : selectedItem.name;
+              })()}
+            </h2>
+            <div style={{ fontSize: '28px', fontWeight: 700, color: colors[activeTab], marginBottom: '20px' }}>
+              {selectedItem.price.toLocaleString()} 만원
+            </div>
+            <div style={{ fontSize: '18px', marginBottom: '12px' }}>
+              <span style={{ color: '#717171' }}>변동: </span>
+              <span style={{
+                color: selectedItem.trend === 'up' ? '#ef4444' :
+                       selectedItem.trend === 'down' ? '#3b82f6' : '#717171'
+              }}>
+                {selectedItem.trend === 'up' ? '▲' : selectedItem.trend === 'down' ? '▼' : '─'}
+                {' '}{Math.abs(selectedItem.change).toLocaleString()} 만원
+                {' '}({selectedItem.changePercent > 0 ? '+' : ''}{selectedItem.changePercent}%)
+              </span>
+            </div>
+          </div>
+        )}
+      </DetailModal>
     </div>
   );
 }
