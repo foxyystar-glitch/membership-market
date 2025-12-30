@@ -79,7 +79,7 @@ export default function InquiryPage({ navigate }) {
                 type="text"
                 value={formData.membershipName}
                 onChange={(e) => setFormData({...formData, membershipName: e.target.value})}
-                className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:ring-2 focus:ring-green-500 text-[16px] font-normal text-[#111111] placeholder:text-[#BDBDBD]"
+                className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:border-[#717171] text-[16px] font-normal text-[#111111] placeholder:text-[#BDBDBD]"
                 placeholder="회원권명을 입력하세요"
               />
             </div>
@@ -91,7 +91,7 @@ export default function InquiryPage({ navigate }) {
                 type="text"
                 value={formData.desiredPrice}
                 onChange={(e) => setFormData({...formData, desiredPrice: e.target.value})}
-                className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:ring-2 focus:ring-green-500 text-[16px] font-normal text-[#111111] placeholder:text-[#BDBDBD]"
+                className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:border-[#717171] text-[16px] font-normal text-[#111111] placeholder:text-[#BDBDBD]"
                 placeholder="희망 가격을 입력하세요 (만원)"
               />
             </div>
@@ -103,7 +103,7 @@ export default function InquiryPage({ navigate }) {
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
-                className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:ring-2 focus:ring-green-500 text-[16px] font-normal text-[#111111] placeholder:text-[#BDBDBD]"
+                className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:border-[#717171] text-[16px] font-normal text-[#111111] placeholder:text-[#BDBDBD]"
                 placeholder="이름을 입력하세요"
               />
             </div>
@@ -116,7 +116,7 @@ export default function InquiryPage({ navigate }) {
                   type="text"
                   value={formData.phone1}
                   onChange={(e) => setFormData({...formData, phone1: e.target.value})}
-                  className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:ring-2 focus:ring-green-500 text-center text-[16px] font-normal text-[#111111]"
+                  className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:border-[#717171] text-center text-[16px] font-normal text-[#111111]"
                   style={{ flex: '3' }}
                   maxLength="3"
                 />
@@ -125,7 +125,7 @@ export default function InquiryPage({ navigate }) {
                   type="text"
                   value={formData.phone2}
                   onChange={(e) => setFormData({...formData, phone2: e.target.value})}
-                  className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:ring-2 focus:ring-green-500 text-center text-[16px] font-normal text-[#111111] placeholder:text-[#BDBDBD]"
+                  className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:border-[#717171] text-center text-[16px] font-normal text-[#111111] placeholder:text-[#BDBDBD]"
                   style={{ flex: '4' }}
                   maxLength="4"
                   placeholder="0000"
@@ -135,7 +135,7 @@ export default function InquiryPage({ navigate }) {
                   type="text"
                   value={formData.phone3}
                   onChange={(e) => setFormData({...formData, phone3: e.target.value})}
-                  className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:ring-2 focus:ring-green-500 text-center text-[16px] font-normal text-[#111111] placeholder:text-[#BDBDBD]"
+                  className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:border-[#717171] text-center text-[16px] font-normal text-[#111111] placeholder:text-[#BDBDBD]"
                   style={{ flex: '4' }}
                   maxLength="4"
                   placeholder="0000"
@@ -149,7 +149,7 @@ export default function InquiryPage({ navigate }) {
               <textarea
                 value={formData.note}
                 onChange={(e) => setFormData({...formData, note: e.target.value})}
-                className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:ring-2 focus:ring-green-500 resize-none text-[16px] font-normal text-[#111111] placeholder:text-[#BDBDBD]"
+                className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:border-[#717171] resize-none text-[16px] font-normal text-[#111111] placeholder:text-[#BDBDBD]"
                 rows="6"
                 placeholder="참고사항을 입력하세요"
               />
@@ -165,12 +165,12 @@ export default function InquiryPage({ navigate }) {
                     onChange={(e) => setFormData({...formData, agreePrivacy: e.target.checked})}
                     className="w-4 h-4 text-gray-900 focus:ring-gray-900 rounded"
                   />
-                  <span className="ml-2 text-sm text-[#717171]">개인정보 수집 및 이용에 동의합니다.</span>
+                  <span className="ml-2 text-[14px] font-normal text-[#717171]">개인정보 수집 및 이용에 동의합니다.</span>
                 </label>
                 <button
                   type="button"
                   onClick={() => setShowTerms(!showTerms)}
-                  className="px-3 py-1 text-sm text-[#111111] border border-[#BDBDBD] rounded-[2px] hover:bg-gray-50 transition-colors font-medium"
+                  className="px-3 py-1 text-[14px] text-[#111111] border border-[#BDBDBD] rounded-[2px] hover:bg-gray-50 transition-colors font-medium"
                 >
                   약관보기
                 </button>
@@ -190,7 +190,7 @@ export default function InquiryPage({ navigate }) {
             {/* 신청 버튼 */}
             <button
               onClick={handleSubmit}
-              className="w-full py-4 bg-[#284AB5] text-white rounded-[2px] hover:bg-[#1e3a8a] transition-colors text-lg font-bold"
+              className="w-full h-[52px] bg-[#284AB5] text-white rounded-[2px] hover:bg-[#1e3a8a] transition-colors text-[18px] font-bold"
             >
               문의신청
             </button>
