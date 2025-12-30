@@ -25,16 +25,16 @@ export default function InquiryPage({ navigate }) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#F6F5FD]">
       {/* 메인 컨텐츠 */}
-      <div className="max-w-3xl mx-auto px-6 py-12">
-        <div className="bg-white rounded-lg shadow-sm p-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">회원권 매매문의</h1>
+      <div className="max-w-[1200px] mx-auto px-6 py-12 bg-[#F6F5FD]">
+        <div className="max-w-[720px] mx-auto bg-white rounded-[5px] border border-[#BDBDBD] p-8">
+          <h1 className="text-[28px] font-bold text-[#111111] mb-8 text-center">회원권 매매문의</h1>
 
           <div>
             {/* 회원권 구분 */}
             <div className="mb-6">
-              <label className="block text-sm font-bold text-gray-900 mb-3">회원권 구분</label>
+              <label className="block text-[14px] font-bold text-[#111111] mb-3">회원권 구분</label>
               <div className="flex gap-6">
                 <label className="flex items-center cursor-pointer">
                   <input
@@ -43,9 +43,10 @@ export default function InquiryPage({ navigate }) {
                     value="golf"
                     checked={formData.category === 'golf'}
                     onChange={(e) => setFormData({...formData, category: e.target.value})}
-                    className="w-4 h-4 text-green-600 focus:ring-green-500"
+                    className="w-4 h-4 accent-[#284AB5]"
+                    style={{ border: '1px solid #717171' }}
                   />
-                  <span className="ml-2 text-gray-700">골프</span>
+                  <span className="ml-2 text-[16px] font-normal text-[#111111]">골프</span>
                 </label>
                 <label className="flex items-center cursor-pointer">
                   <input
@@ -54,9 +55,10 @@ export default function InquiryPage({ navigate }) {
                     value="condo"
                     checked={formData.category === 'condo'}
                     onChange={(e) => setFormData({...formData, category: e.target.value})}
-                    className="w-4 h-4 text-blue-600 focus:ring-blue-500"
+                    className="w-4 h-4 accent-[#284AB5]"
+                    style={{ border: '1px solid #717171' }}
                   />
-                  <span className="ml-2 text-gray-700">콘도</span>
+                  <span className="ml-2 text-[16px] font-normal text-[#111111]">콘도</span>
                 </label>
                 <label className="flex items-center cursor-pointer">
                   <input
@@ -65,58 +67,59 @@ export default function InquiryPage({ navigate }) {
                     value="fitness"
                     checked={formData.category === 'fitness'}
                     onChange={(e) => setFormData({...formData, category: e.target.value})}
-                    className="w-4 h-4 text-purple-600 focus:ring-purple-500"
+                    className="w-4 h-4 accent-[#284AB5]"
+                    style={{ border: '1px solid #717171' }}
                   />
-                  <span className="ml-2 text-gray-700">피트니스</span>
+                  <span className="ml-2 text-[16px] font-normal text-[#111111]">피트니스</span>
                 </label>
               </div>
             </div>
 
             {/* 회원권명 */}
             <div className="mb-6">
-              <label className="block text-sm font-bold text-gray-900 mb-2">회원권명</label>
+              <label className="block text-[14px] font-bold text-[#111111] mb-3">회원권명</label>
               <input
                 type="text"
                 value={formData.membershipName}
                 onChange={(e) => setFormData({...formData, membershipName: e.target.value})}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:border-[#717171] text-[16px] font-normal text-[#111111] placeholder:text-[#BDBDBD]"
                 placeholder="회원권명을 입력하세요"
               />
             </div>
 
             {/* 희망 가격 */}
             <div className="mb-6">
-              <label className="block text-sm font-bold text-gray-900 mb-2">희망 가격</label>
+              <label className="block text-[14px] font-bold text-[#111111] mb-3">희망 가격</label>
               <input
                 type="text"
                 value={formData.desiredPrice}
                 onChange={(e) => setFormData({...formData, desiredPrice: e.target.value})}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:border-[#717171] text-[16px] font-normal text-[#111111] placeholder:text-[#BDBDBD]"
                 placeholder="희망 가격을 입력하세요 (만원)"
               />
             </div>
 
             {/* 이름 */}
             <div className="mb-6">
-              <label className="block text-sm font-bold text-gray-900 mb-2">이름</label>
+              <label className="block text-[14px] font-bold text-[#111111] mb-3">이름</label>
               <input
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:border-[#717171] text-[16px] font-normal text-[#111111] placeholder:text-[#BDBDBD]"
                 placeholder="이름을 입력하세요"
               />
             </div>
 
             {/* 연락처 */}
             <div className="mb-6">
-              <label className="block text-sm font-bold text-gray-900 mb-2">연락처</label>
+              <label className="block text-[14px] font-bold text-[#111111] mb-3">연락처</label>
               <div className="flex items-center gap-2">
                 <input
                   type="text"
                   value={formData.phone1}
                   onChange={(e) => setFormData({...formData, phone1: e.target.value})}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-center"
+                  className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:border-[#717171] text-center text-[16px] font-normal text-[#111111]"
                   style={{ flex: '3' }}
                   maxLength="3"
                 />
@@ -125,7 +128,7 @@ export default function InquiryPage({ navigate }) {
                   type="text"
                   value={formData.phone2}
                   onChange={(e) => setFormData({...formData, phone2: e.target.value})}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-center"
+                  className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:border-[#717171] text-center text-[16px] font-normal text-[#111111] placeholder:text-[#BDBDBD]"
                   style={{ flex: '4' }}
                   maxLength="4"
                   placeholder="0000"
@@ -135,7 +138,7 @@ export default function InquiryPage({ navigate }) {
                   type="text"
                   value={formData.phone3}
                   onChange={(e) => setFormData({...formData, phone3: e.target.value})}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-center"
+                  className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:border-[#717171] text-center text-[16px] font-normal text-[#111111] placeholder:text-[#BDBDBD]"
                   style={{ flex: '4' }}
                   maxLength="4"
                   placeholder="0000"
@@ -145,11 +148,11 @@ export default function InquiryPage({ navigate }) {
 
             {/* 참고사항 */}
             <div className="mb-6">
-              <label className="block text-sm font-bold text-gray-900 mb-2">참고사항</label>
+              <label className="block text-[14px] font-bold text-[#111111] mb-3">참고사항</label>
               <textarea
                 value={formData.note}
                 onChange={(e) => setFormData({...formData, note: e.target.value})}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 resize-none"
+                className="w-full px-4 py-3 border border-[#BDBDBD] rounded-[5px] focus:outline-none focus:border-[#717171] resize-none text-[16px] font-normal text-[#111111] placeholder:text-[#BDBDBD]"
                 rows="6"
                 placeholder="참고사항을 입력하세요"
               />
@@ -163,26 +166,28 @@ export default function InquiryPage({ navigate }) {
                     type="checkbox"
                     checked={formData.agreePrivacy}
                     onChange={(e) => setFormData({...formData, agreePrivacy: e.target.checked})}
-                    className="w-4 h-4 text-gray-900 focus:ring-gray-900 rounded"
+                    className="w-4 h-4 accent-[#284AB5] rounded"
+                    style={{ border: '1px solid #717171' }}
                   />
-                  <span className="ml-2 text-sm text-gray-700">개인정보 수집 및 이용에 동의합니다.</span>
+                  <span className="ml-2 text-[14px] font-normal text-[#717171]">개인정보 수집 및 이용에 동의합니다.</span>
                 </label>
                 <button
                   type="button"
                   onClick={() => setShowTerms(!showTerms)}
-                  className="px-3 py-1 text-sm text-gray-900 border border-gray-300 rounded hover:bg-gray-50 transition-colors font-medium"
+                  className="px-3 py-1 text-[14px] text-[#111111] border border-[#BDBDBD] rounded-[2px] hover:bg-gray-50 transition-colors font-medium"
                 >
                   약관보기
                 </button>
               </div>
 
               {showTerms && (
-                <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200 text-sm text-gray-600 max-h-40 overflow-y-auto">
-                  <p className="font-bold mb-2">개인정보 수집 및 이용 동의</p>
-                  <p className="mb-2">1. 수집하는 개인정보 항목: 이름, 연락처, 회원권 정보</p>
-                  <p className="mb-2">2. 개인정보의 수집 및 이용 목적: 회원권 매매 상담 및 연락</p>
-                  <p className="mb-2">3. 개인정보의 보유 및 이용 기간: 상담 완료 후 6개월</p>
-                  <p>4. 동의를 거부할 권리 및 동의 거부에 따른 불이익: 개인정보 수집에 동의하지 않을 수 있으며, 동의하지 않을 경우 상담 서비스 이용이 제한될 수 있습니다.</p>
+                <div className="mt-4 p-4 bg-[#FAFAFA] rounded-[5px] border border-[#BDBDBD] text-sm text-[#111111]">
+                  <p className="font-bold mb-2">개인정보 수집 및 이용에 대한 동의</p>
+                  <p className="mb-2">1. 수집하는 자: (주)티앤지레저</p>
+                  <p className="mb-2">2. 개인정보 수집 및 이용 목적: 회원권 매매상담 및 연락</p>
+                  <p className="mb-2">3. 수집하는 개인정보 항목: 이름, 연락처</p>
+                  <p className="mb-2">4. 개인정보 보유 및 이용 기간: 상담 완료 후 6개월</p>
+                  <p>※ 개인정보 수집에 동의하지 않을 수 있으며, 동의하지 않을 경우 상담 서비스 이용이 제한될 수 있습니다.</p>
                 </div>
               )}
             </div>
@@ -190,9 +195,9 @@ export default function InquiryPage({ navigate }) {
             {/* 신청 버튼 */}
             <button
               onClick={handleSubmit}
-              className="w-full py-4 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors text-lg font-bold"
+              className="w-full h-[52px] bg-[#284AB5] text-white rounded-[2px] hover:bg-[#1e3a8a] transition-colors text-[18px] font-bold"
             >
-              신청
+              문의신청
             </button>
           </div>
         </div>
