@@ -136,7 +136,7 @@ export default function PriceTablePage({ navigate }) {
     <div className="min-h-screen bg-white">
       {/* 스티키 탭 */}
       <div className="sticky top-0 bg-white z-10" style={{ height: '64px', borderBottom: '1px solid #BDBDBD' }}>
-        <div className="mx-auto h-full flex items-center" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
+        <div className="mx-auto h-full flex items-center" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px', paddingTop: '48px', paddingBottom: '48px' }}>
           <CategoryTabs
             activeTab={activeTab}
             onTabChange={(tab) => {
