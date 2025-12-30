@@ -160,7 +160,7 @@ export default function PriceTablePage({ navigate }) {
     <div className="min-h-screen bg-white">
       {/* 스티키 탭 */}
       <div className="sticky top-0 bg-white z-10" style={{ height: '64px', borderBottom: '1px solid #BDBDBD' }}>
-        <div className="mx-auto h-full flex items-center" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
+        <div className="mx-auto h-full flex items-center" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px'}}>
           <CategoryTabs
             activeTab={activeTab}
             onTabChange={(tab) => {
@@ -175,7 +175,9 @@ export default function PriceTablePage({ navigate }) {
       </div>
 
       {/* 메인 컨텐츠 */}
+
       <div className="mx-auto" style={{ maxWidth: '1200px', paddingTop: '48px', paddingBottom: '48px', paddingLeft: '24px', paddingRight: '24px' }}>
+
         <div className="grid grid-cols-2 gap-8">
           {/* 좌측: 시세표 카드 리스트 */}
           <div className="bg-white rounded-[5px] border border-[#BDBDBD]">
