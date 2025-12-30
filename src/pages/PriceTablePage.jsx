@@ -179,7 +179,7 @@ export default function PriceTablePage({ navigate }) {
                   return (
                     <div
                       key={item.id}
-                      className={`w-full h-[74px] p-4 rounded-[5px] flex items-center gap-4 cursor-pointer transition-colors ${
+                      className={`w-full h-[74px] p-4 rounded-[5px] flex items-center gap-4 transition-colors ${
                         isSelected ? 'bg-[#E8E7F5]' : 'bg-[#F6F5FD] hover:bg-[#E8E7F5]'
                       }`}
                       onClick={(e) => {
@@ -226,7 +226,7 @@ export default function PriceTablePage({ navigate }) {
 
                       {/* 상세 버튼 */}
                       <button
-                        className="w-[60px] h-[36px] bg-[#284AB5] rounded-[2px] text-white text-sm font-semibold leading-[16.8px] flex items-center justify-center hover:opacity-90 transition-opacity"
+                        className="w-[60px] h-[36px] bg-[#284AB5] rounded-[2px] text-white text-sm font-semibold leading-[16.8px] flex items-center justify-center hover:opacity-90 transition-opacity cursor-pointer"
                         onClick={() => {
                           // 상세 페이지로 이동 로직 추가 가능
                         }}
@@ -236,7 +236,7 @@ export default function PriceTablePage({ navigate }) {
 
                       {/* 문의 버튼 */}
                       <button
-                        className="w-[60px] h-[36px] rounded-[2px] text-white text-sm font-semibold leading-[16.8px] flex items-center justify-center transition-opacity hover:opacity-90"
+                        className="w-[60px] h-[36px] rounded-[2px] text-white text-sm font-semibold leading-[16.8px] flex items-center justify-center transition-opacity hover:opacity-90 cursor-pointer"
                         style={{ backgroundColor: tabColors.inquiryBg }}
                         onMouseEnter={(e) => e.currentTarget.style.backgroundColor = tabColors.inquiryHover}
                         onMouseLeave={(e) => e.currentTarget.style.backgroundColor = tabColors.inquiryBg}
@@ -285,7 +285,10 @@ export default function PriceTablePage({ navigate }) {
                 <div>
                   <div className="mb-4 p-4 rounded-lg" style={{ width: '510px', backgroundColor: '#F6F5FD', padding: '16px', marginBottom: '16px' }}>
                     <div style={{ fontSize: '18px', color: '#111111', fontWeight: 600 }}>
-                      {selectedItem.name}
+                      {(() => {
+                        const membership = memberships.find(m => m.id === selectedItem.id);
+                        return membership ? `${membership.product_name} ${membership.membership_name}` : selectedItem.name;
+                      })()}
                     </div>
                     <div style={{ marginTop: '8px' }}>
                       <span style={{ fontSize: '30px', color: '#111111', fontWeight: 700 }}>
@@ -311,7 +314,7 @@ export default function PriceTablePage({ navigate }) {
 
                   <ResponsiveContainer width="100%" height={300}>
                     <LineChart data={chartData}>
-                      <CartesianGrid strokeDasharray="3 3" />
+                      <CartesianGrid strokeDasharray="3 3" stroke="#BDBDBD" />
                       <XAxis
                         dataKey="name"
                         tick={(props) => {
@@ -320,7 +323,7 @@ export default function PriceTablePage({ navigate }) {
                             return null;
                           }
                           return (
-                            <text x={x} y={y + 10} textAnchor="middle" fontSize={12} fill="#666">
+                            <text x={x} y={y + 10} textAnchor="middle" fontSize={12} fill="#717171">
                               {payload.value}
                             </text>
                           );
@@ -328,10 +331,12 @@ export default function PriceTablePage({ navigate }) {
                         tickLine={true}
                         interval={getXAxisInterval(chartPeriod)}
                         domain={['dataMin', 'dataMax']}
+                        stroke="#717171"
                       />
                       <YAxis
-                        tick={{ fontSize: 12 }}
+                        tick={{ fontSize: 12, fill: '#717171' }}
                         domain={['dataMin - 1000', 'dataMax + 1000']}
+                        stroke="#717171"
                       />
                       <Tooltip
                         formatter={(value) => [`${value.toLocaleString()}만원`, '시세']}
@@ -347,7 +352,7 @@ export default function PriceTablePage({ navigate }) {
                   </ResponsiveContainer>
                 </div>
               ) : (
-                <div className="h-96 flex items-center justify-center text-gray-400">
+                <div className="h-96 flex items-center justify-center" style={{ color: '#717171' }}>
                   <div className="text-center">
                     <div className="text-6xl mb-4">📊</div>
                     <div className="text-lg">좌측 시세표에서 항목을 선택하세요</div>
