@@ -129,8 +129,8 @@ export default function MainPage({ navigate }) {
               <h2 className="text-[24px] font-bold text-[#111111]">실시간 시세표</h2>
               <button
                 onClick={() => navigate && navigate('sise')}
-                className="cursor-pointer hover:text-gray-700 transition-colors"
-                style={{ fontSize: '20px', color: '#717171', fontWeight: 600 }}
+                className="cursor-pointer text-[#717171] hover:text-gray-700 transition-colors"
+                style={{ fontSize: '20px', fontWeight: 600 }}
               >
                 +전체보기
               </button>
@@ -212,8 +212,8 @@ export default function MainPage({ navigate }) {
               <h2 className="text-[24px] font-bold text-[#111111]">급매 정보</h2>
               <button
                 onClick={() => navigate && navigate('urgent')}
-                className="cursor-pointer hover:text-gray-700 transition-colors"
-                style={{ fontSize: '20px', color: '#717171', fontWeight: 600 }}
+                className="cursor-pointer text-[#717171] hover:text-gray-700 transition-colors"
+                style={{ fontSize: '20px', fontWeight: 600 }}
               >
                 +전체보기
               </button>
@@ -288,8 +288,8 @@ export default function MainPage({ navigate }) {
             <h2 className="text-[24px] font-bold text-[#111111]">분양 정보</h2>
             <button
               onClick={() => navigate && navigate('presale')}
-              className="cursor-pointer hover:text-gray-700 transition-colors"
-              style={{ fontSize: '20px', color: '#717171', fontWeight: 600 }}
+              className="cursor-pointer text-[#717171] hover:text-gray-700 transition-colors"
+              style={{ fontSize: '20px', fontWeight: 600 }}
             >
               +전체보기
             </button>
