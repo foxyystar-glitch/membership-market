@@ -309,7 +309,7 @@ export default function PriceTablePage({ navigate }) {
                       <button
                         key={period}
                         onClick={() => setChartPeriod(period)}
-                        className="px-4 transition-colors"
+                        className={`px-4 transition-colors ${chartPeriod === period ? '' : 'hover:text-gray-700'}`}
                         style={{
                           fontSize: '16px',
                           fontWeight: 500,

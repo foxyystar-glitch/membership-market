@@ -40,7 +40,7 @@ export default function CategoryTabs({ activeTab, onTabChange, variant = 'defaul
           <button
             key={tab}
             onClick={() => onTabChange(tab)}
-            className="px-6 py-4 font-bold transition-colors"
+            className={`px-6 py-4 font-bold transition-colors ${activeTab === tab ? '' : 'hover:text-gray-700'}`}
             style={{
               fontSize: '18px',
               color: activeTab === tab ? tabColors.color : colors.textGray,
