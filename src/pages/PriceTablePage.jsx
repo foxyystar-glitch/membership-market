@@ -152,16 +152,23 @@ export default function PriceTablePage({ navigate }) {
       <div className="mx-auto py-6" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
         <div className="grid grid-cols-2 gap-8">
           {/* 좌측: 시세표 카드 리스트 */}
-          <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
+          <div className="bg-white rounded-[5px] border border-[#BDBDBD] shadow-sm">
             <div className="p-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">{tabLabels[activeTab]} 시세표</h2>
+              <h2 className="text-2xl font-bold mb-6" style={{ color: '#111111', fontSize: '24px', fontWeight: 700 }}>
+                {tabLabels[activeTab]} 시세표
+              </h2>
 
               {/* 헤더 */}
-              <div className="flex items-center px-4 py-3 border-b-2 border-gray-200 mb-4">
-                <div className="flex-1 font-bold text-gray-900">회원권명</div>
-                <div className="w-24 font-bold text-gray-900 text-center">시세</div>
-                <div className="w-32 font-bold text-gray-900 text-center">등락</div>
-                <div className="w-32"></div>
+              <div className="flex items-center px-4 py-3 mb-4" style={{ width: '510px', borderBottom: '2px solid #BDBDBD' }}>
+                <div className="text-center font-medium" style={{ width: '135px', color: '#111111', fontSize: '16px', fontWeight: 500 }}>
+                  회원권명
+                </div>
+                <div className="text-center font-medium" style={{ width: '96px', color: '#111111', fontSize: '16px', fontWeight: 500, marginLeft: '16px' }}>
+                  시세
+                </div>
+                <div className="text-center font-medium" style={{ width: '63px', color: '#111111', fontSize: '16px', fontWeight: 500, marginLeft: '16px' }}>
+                  등락
+                </div>
               </div>
 
               {/* 카드 리스트 */}
@@ -172,7 +179,7 @@ export default function PriceTablePage({ navigate }) {
                   return (
                     <div
                       key={item.id}
-                      className="w-full h-[74px] p-4 rounded-[5px] flex items-center gap-4 cursor-pointer"
+                      className="w-full h-[74px] p-4 rounded-[5px] flex items-center gap-4 cursor-pointer hover:bg-[#E8E7F5] transition-colors"
                       style={{ backgroundColor: isSelected ? '#E8E7F5' : '#F6F5FD' }}
                       onClick={(e) => {
                         if (!e.target.closest('button')) {
