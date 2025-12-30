@@ -159,7 +159,7 @@ export default function PriceTablePage({ navigate }) {
               </h2>
 
               {/* 헤더 */}
-              <div className="flex items-center px-4 py-3 mb-4" style={{ width: '510px', borderBottom: '2px solid #BDBDBD' }}>
+              <div className="flex items-center px-4 py-3 mb-4" style={{ width: '510px', borderBottom: '1px solid #BDBDBD' }}>
                 <div className="text-center font-medium" style={{ width: '135px', color: '#111111', fontSize: '16px', fontWeight: 500 }}>
                   회원권명
                 </div>
@@ -213,7 +213,7 @@ export default function PriceTablePage({ navigate }) {
                         className={`w-[63px] flex flex-col items-end ${
                           item.trend === 'up' ? 'text-[#EF4444]' :
                           item.trend === 'down' ? 'text-blue-500' :
-                          'text-gray-500'
+                          'text-[#717171]'
                         }`}
                       >
                         <div className="text-right text-base font-medium leading-[22.4px]">
@@ -253,22 +253,26 @@ export default function PriceTablePage({ navigate }) {
 
           {/* 우측: 가격 변동 그래프 (sticky) */}
           <div className="sticky top-20 h-fit">
-            <div className="bg-white p-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">가격 변동 그래프</h2>
+            <div className="bg-white p-[25px]">
+              <h2 className="font-bold mb-[24px]" style={{ fontSize: '24px', color: '#111111', fontWeight: 700 }}>
+                가격 변동 그래프
+              </h2>
 
               {/* 기간 선택 탭 */}
-              <div className="flex gap-2 mb-6 border-b border-gray-200">
+              <div className="flex mb-4" style={{ width: '510px', height: '50px', borderBottom: '1px solid #BDBDBD' }}>
                 {Object.keys(periodLabels).map(period => {
-                  const colors = getTabColors(activeTab);
+                  const tabColors = getTabColors(activeTab);
                   return (
                     <button
                       key={period}
                       onClick={() => setChartPeriod(period)}
-                      className={`px-4 py-2 font-medium transition-colors ${
-                        chartPeriod === period
-                          ? `${colors.text} border-b-2 ${colors.border}`
-                          : 'text-gray-500 hover:text-gray-700'
-                      }`}
+                      className="px-4 transition-colors"
+                      style={{
+                        fontSize: '16px',
+                        fontWeight: 500,
+                        color: chartPeriod === period ? tabColors.chartColor : '#717171',
+                        borderBottom: chartPeriod === period ? `2px solid ${tabColors.chartColor}` : 'none'
+                      }}
                     >
                       {periodLabels[period]}
                     </button>
@@ -279,17 +283,26 @@ export default function PriceTablePage({ navigate }) {
               {/* 그래프 영역 */}
               {selectedItem ? (
                 <div>
-                  <div className="mb-4 p-4 bg-gray-50 rounded-lg">
-                    <div className="font-bold text-gray-900 text-lg">{selectedItem.name}</div>
-                    <div className="text-3xl font-bold text-gray-900 mt-2">
-                      {selectedItem.price.toLocaleString()}
-                      <span className="text-base text-gray-500 ml-2">만원</span>
+                  <div className="mb-4 p-4 rounded-lg" style={{ width: '510px', backgroundColor: '#F6F5FD', padding: '16px', marginBottom: '16px' }}>
+                    <div style={{ fontSize: '18px', color: '#111111', fontWeight: 600 }}>
+                      {selectedItem.name}
                     </div>
-                    <div className={`text-lg font-medium mt-1 ${
-                      selectedItem.trend === 'up' ? 'text-red-500' :
-                      selectedItem.trend === 'down' ? 'text-blue-500' :
-                      'text-gray-500'
-                    }`}>
+                    <div style={{ marginTop: '8px' }}>
+                      <span style={{ fontSize: '30px', color: '#111111', fontWeight: 700 }}>
+                        {selectedItem.price.toLocaleString()}
+                      </span>
+                      <span style={{ fontSize: '16px', color: '#717171', fontWeight: 500, marginLeft: '8px' }}>
+                        만원
+                      </span>
+                    </div>
+                    <div style={{
+                      fontSize: '18px',
+                      fontWeight: 500,
+                      marginTop: '8px',
+                      color: selectedItem.trend === 'up' ? '#EF4444' :
+                             selectedItem.trend === 'down' ? '#2563eb' :
+                             '#717171'
+                    }}>
                       {selectedItem.trend === 'up' ? '▲' : selectedItem.trend === 'down' ? '▼' : '─'}
                       {' '}{Math.abs(selectedItem.change).toLocaleString()}
                       {' '}({selectedItem.changePercent > 0 ? '+' : ''}{selectedItem.changePercent}%)
