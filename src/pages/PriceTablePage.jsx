@@ -3,6 +3,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { memberships } from '../data/memberships';
 import { priceHistory } from '../data/priceHistory';
 import CategoryTabs from '../components/CategoryTabs';
+import { colors } from '../config/colors';
 
 export default function PriceTablePage({ navigate }) {
   const [activeTab, setActiveTab] = useState('golf');
@@ -94,26 +95,26 @@ export default function PriceTablePage({ navigate }) {
   };
 
   const getTabColors = (tab) => {
-    const colors = {
+    const tabColors = {
       golf: {
         text: 'text-green-600',
         border: 'border-green-600',
         bg: 'bg-green-600',
         hover: 'hover:bg-green-700',
         lightBg: 'bg-green-50',
-        chartColor: '#16a34a',
-        inquiryBg: '#10A369',
+        chartColor: colors.golf,
+        inquiryBg: colors.golf,
         inquiryHover: '#0d8c5a'
       },
       condo: {
-        text: 'text-blue-600',
-        border: 'border-blue-600',
-        bg: 'bg-blue-600',
-        hover: 'hover:bg-blue-700',
-        lightBg: 'bg-blue-50',
-        chartColor: '#2563eb',
-        inquiryBg: '#2563eb',
-        inquiryHover: '#1d4ed8'
+        text: 'text-orange-600',
+        border: 'border-orange-600',
+        bg: 'bg-orange-600',
+        hover: 'hover:bg-orange-700',
+        lightBg: 'bg-orange-50',
+        chartColor: colors.condo,
+        inquiryBg: colors.condo,
+        inquiryHover: '#e67300'
       },
       fitness: {
         text: 'text-purple-600',
@@ -121,12 +122,12 @@ export default function PriceTablePage({ navigate }) {
         bg: 'bg-purple-600',
         hover: 'hover:bg-purple-700',
         lightBg: 'bg-purple-50',
-        chartColor: '#9333ea',
-        inquiryBg: '#9333ea',
-        inquiryHover: '#7e22ce'
+        chartColor: colors.fitness,
+        inquiryBg: colors.fitness,
+        inquiryHover: '#7444a8'
       }
     };
-    return colors[tab];
+    return tabColors[tab];
   };
 
   const chartData = selectedItem ? generateChartData(selectedItem.id, chartPeriod) : [];
@@ -166,14 +167,13 @@ export default function PriceTablePage({ navigate }) {
               {/* 카드 리스트 */}
               <div className="flex flex-col gap-4">
                 {priceData[activeTab].map((item) => {
-                  const colors = getTabColors(activeTab);
+                  const tabColors = getTabColors(activeTab);
+                  const isSelected = selectedItem?.id === item.id;
                   return (
                     <div
                       key={item.id}
-                      className={`w-full p-4 bg-[#F6F5FD] rounded-[5px] flex items-center gap-4 cursor-pointer transition-all ${
-                        selectedItem?.id === item.id ? 'ring-2 ring-offset-2' : 'hover:shadow-md'
-                      }`}
-                      style={selectedItem?.id === item.id ? { ringColor: colors.chartColor } : {}}
+                      className="w-full h-[74px] p-4 rounded-[5px] flex items-center gap-4 cursor-pointer"
+                      style={{ backgroundColor: isSelected ? '#E8E7F5' : '#F6F5FD' }}
                       onClick={(e) => {
                         if (!e.target.closest('button')) {
                           setSelectedItem(item);
@@ -229,9 +229,9 @@ export default function PriceTablePage({ navigate }) {
                       {/* 문의 버튼 */}
                       <button
                         className="w-[60px] h-[36px] rounded-[2px] text-white text-sm font-semibold leading-[16.8px] flex items-center justify-center transition-opacity hover:opacity-90"
-                        style={{ backgroundColor: colors.inquiryBg }}
-                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = colors.inquiryHover}
-                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = colors.inquiryBg}
+                        style={{ backgroundColor: tabColors.inquiryBg }}
+                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = tabColors.inquiryHover}
+                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = tabColors.inquiryBg}
                         onClick={() => navigate && navigate('inquiry')}
                       >
                         문의
