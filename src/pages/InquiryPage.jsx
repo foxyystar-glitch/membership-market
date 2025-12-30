@@ -181,7 +181,7 @@ export default function InquiryPage({ navigate }) {
               </div>
 
               {showTerms && (
-                <div className="mt-4 p-4 bg-[#F6F5FD] rounded-[5px] border border-[#BDBDBD] text-sm text-[#717171] max-h-40 overflow-y-auto">
+                <div className="mt-4 p-4 bg-white rounded-[5px] border border-[#BDBDBD] text-sm text-[#111111]">
                   <p className="font-bold mb-2">개인정보 수집과 이용에 대한 동의</p>
                   <p className="mb-2">1. 수집하는 자: (주)티앤지레저</p>
                   <p className="mb-2">2. 개인정보 수집 및 이용 목적: 회원권 매매 상담 및 연락</p>
