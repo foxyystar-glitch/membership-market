@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
  * 상세보기 모달 컴포넌트
  * 전체 배경: #111111 투명도 30%
  * 위아래 패딩: 48px
- * 카드: 960px 너비, 자동 높이, 5px 라운드, 1px #BDBDBD 보더
+ * 카드: 960px 너비, 창 영역에 꽉 차는 높이, 5px 라운드
  */
 const DetailModal = ({ isOpen, onClose, children }) => {
   // ESC 키로 모달 닫기
@@ -54,11 +54,9 @@ const DetailModal = ({ isOpen, onClose, children }) => {
         style={{
           width: '960px',
           maxWidth: 'calc(100vw - 48px)',
+          height: 'calc(100vh - 96px)',
           backgroundColor: '#FFFFFF',
           borderRadius: '5px',
-          border: '1px solid #BDBDBD',
-          minHeight: 'fit-content',
-          maxHeight: 'calc(100vh - 96px)',
           overflowY: 'auto'
         }}
         onClick={(e) => e.stopPropagation()}
