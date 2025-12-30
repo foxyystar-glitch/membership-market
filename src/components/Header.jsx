@@ -26,7 +26,7 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
         <nav className="flex gap-8">
           <button
             onClick={() => navigate('sise')}
-            className={`transition-all ${currentPage === 'sise' ? 'border-b-2' : ''}`}
+            className={`transition-all ${currentPage === 'sise' ? 'border-b-2' : 'hover:opacity-80'}`}
             style={{
               color: currentPage === 'sise' ? colors.selectedLight : colors.textWhite,
               fontWeight: currentPage === 'sise' ? '700' : '500',
@@ -38,7 +38,7 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
           </button>
           <button
             onClick={() => navigate('category', 'golf')}
-            className={`transition-all ${currentPage === 'category' && selectedCategory === 'golf' ? 'border-b-2' : ''}`}
+            className={`transition-all ${currentPage === 'category' && selectedCategory === 'golf' ? 'border-b-2' : 'hover:opacity-80'}`}
             style={{
               color: currentPage === 'category' && selectedCategory === 'golf' ? colors.selectedLight : colors.textWhite,
               fontWeight: currentPage === 'category' && selectedCategory === 'golf' ? '700' : '500',
@@ -50,7 +50,7 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
           </button>
           <button
             onClick={() => navigate('category', 'condo')}
-            className={`transition-all ${currentPage === 'category' && selectedCategory === 'condo' ? 'border-b-2' : ''}`}
+            className={`transition-all ${currentPage === 'category' && selectedCategory === 'condo' ? 'border-b-2' : 'hover:opacity-80'}`}
             style={{
               color: currentPage === 'category' && selectedCategory === 'condo' ? colors.selectedLight : colors.textWhite,
               fontWeight: currentPage === 'category' && selectedCategory === 'condo' ? '700' : '500',
@@ -62,7 +62,7 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
           </button>
           <button
             onClick={() => navigate('category', 'fitness')}
-            className={`transition-all ${currentPage === 'category' && selectedCategory === 'fitness' ? 'border-b-2' : ''}`}
+            className={`transition-all ${currentPage === 'category' && selectedCategory === 'fitness' ? 'border-b-2' : 'hover:opacity-80'}`}
             style={{
               color: currentPage === 'category' && selectedCategory === 'fitness' ? colors.selectedLight : colors.textWhite,
               fontWeight: currentPage === 'category' && selectedCategory === 'fitness' ? '700' : '500',
@@ -74,7 +74,7 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
           </button>
           <button
             onClick={() => navigate('urgent')}
-            className={`transition-all ${currentPage === 'urgent' ? 'border-b-2' : ''}`}
+            className={`transition-all ${currentPage === 'urgent' ? 'border-b-2' : 'hover:opacity-80'}`}
             style={{
               color: currentPage === 'urgent' ? colors.selectedLight : colors.textWhite,
               fontWeight: currentPage === 'urgent' ? '700' : '500',
@@ -86,7 +86,7 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
           </button>
           <button
             onClick={() => navigate('presale')}
-            className={`transition-all ${currentPage === 'presale' ? 'border-b-2' : ''}`}
+            className={`transition-all ${currentPage === 'presale' ? 'border-b-2' : 'hover:opacity-80'}`}
             style={{
               color: currentPage === 'presale' ? colors.selectedLight : colors.textWhite,
               fontWeight: currentPage === 'presale' ? '700' : '500',
@@ -98,7 +98,7 @@ export default function Header({ navigate, currentPage, selectedCategory }) {
           </button>
           <button
             onClick={() => navigate('inquiry')}
-            className={`transition-all ${currentPage === 'inquiry' ? 'border-b-2' : ''}`}
+            className={`transition-all ${currentPage === 'inquiry' ? 'border-b-2' : 'hover:opacity-80'}`}
             style={{
               color: currentPage === 'inquiry' ? colors.selectedLight : colors.textWhite,
               fontWeight: currentPage === 'inquiry' ? '700' : '500',

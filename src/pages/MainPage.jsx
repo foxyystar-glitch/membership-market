@@ -164,7 +164,7 @@ export default function MainPage({ navigate }) {
                 return (
                   <div
                     key={idx}
-                    className="flex items-center justify-between p-4 bg-[#F6F5FD] rounded-lg hover:bg-[#E8E7F5] transition-colors cursor-pointer"
+                    className="flex items-center justify-between p-4 bg-[#F6F5FD] rounded-lg hover:bg-[#E8E7F5] transition-colors"
                     onClick={() => {
                       setSelectedPriceItem(item);
                       setIsPriceModalOpen(true);
@@ -244,7 +244,7 @@ export default function MainPage({ navigate }) {
               {urgentData[urgentTab].map((item, idx) => (
                 <div
                   key={idx}
-                  className="rounded-[5px] transition-colors bg-[#FEF3F6] cursor-pointer hover:bg-[#FDE1E9]"
+                  className="rounded-[5px] transition-colors bg-[#FEF3F6] hover:bg-[#FDE1E9]"
                   style={{ padding: '16px' }}
                   onClick={() => {
                     setSelectedUrgentItem(item);
@@ -324,7 +324,7 @@ export default function MainPage({ navigate }) {
               return (
                 <div
                   key={idx}
-                  className="rounded-[5px] overflow-hidden cursor-pointer hover:shadow-lg transition-all"
+                  className="rounded-[5px] overflow-hidden hover:shadow-lg transition-all"
                   style={{ width: '202px', height: '380px', backgroundColor: '#F6F5FD', position: 'relative' }}
                   onClick={() => {
                     setSelectedSaleItem(item);
