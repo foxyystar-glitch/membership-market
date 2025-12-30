@@ -134,6 +134,7 @@ export default function PresalePage({ navigate }) {
               location={property.location}
               price={property.price}
               status={property.status}
+              navigate={navigate}
               onClick={() => {
                 setSelectedProperty(property);
                 setIsModalOpen(true);
@@ -147,22 +148,7 @@ export default function PresalePage({ navigate }) {
       <DetailModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         {selectedProperty && (
           <div style={{ padding: '40px' }}>
-            <div
-              style={{
-                position: 'absolute',
-                top: '20px',
-                left: '40px',
-                padding: '4px 12px',
-                backgroundColor: selectedProperty.status === '분양가능' ? colors[activeTab] : '#BDBDBD',
-                color: '#ffffff',
-                borderRadius: '20px',
-                fontSize: '12px',
-                fontWeight: 700
-              }}
-            >
-              {selectedProperty.status}
-            </div>
-            <h2 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '20px', marginTop: '20px' }}>
+            <h2 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '20px' }}>
               {selectedProperty.product_name}
             </h2>
             <div style={{ fontSize: '18px', marginBottom: '12px' }}>

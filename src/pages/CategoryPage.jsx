@@ -86,6 +86,7 @@ export default function CategoryPage({ navigate, selectedCategory }) {
                 location={property.location}
                 price={property.price}
                 rank={property.rank}
+                navigate={navigate}
                 onClick={() => {
                   setSelectedProperty(property);
                   setIsModalOpen(true);

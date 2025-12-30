@@ -15,6 +15,7 @@ const PropertyCard = ({
   rank, // 순위 배지 (옵션)
   status, // 거래 상태 (급매용, 옵션)
   onClick,
+  navigate, // 문의하기 버튼용 네비게이션
   item // 기존 호환성 유지
 }) => {
   // item prop으로 전달된 경우 처리
@@ -221,6 +222,12 @@ const PropertyCard = ({
         {/* 문의하기 버튼 - 8px 여백, 높이 36px */}
         <button
           disabled={hasStatus && !isAvailable}
+          onClick={(e) => {
+            e.stopPropagation();
+            if (navigate && !(hasStatus && !isAvailable)) {
+              navigate('inquiry');
+            }
+          }}
           style={{
             marginTop: '8px',
             height: '36px',
