@@ -43,7 +43,8 @@ export default function InquiryPage({ navigate }) {
                     value="golf"
                     checked={formData.category === 'golf'}
                     onChange={(e) => setFormData({...formData, category: e.target.value})}
-                    className="w-4 h-4 text-green-600 focus:ring-green-500"
+                    className="w-4 h-4 accent-[#284AB5]"
+                    style={{ border: '1px solid #717171' }}
                   />
                   <span className="ml-2 text-[16px] font-normal text-[#111111]">골프</span>
                 </label>
@@ -54,7 +55,8 @@ export default function InquiryPage({ navigate }) {
                     value="condo"
                     checked={formData.category === 'condo'}
                     onChange={(e) => setFormData({...formData, category: e.target.value})}
-                    className="w-4 h-4 text-blue-600 focus:ring-blue-500"
+                    className="w-4 h-4 accent-[#284AB5]"
+                    style={{ border: '1px solid #717171' }}
                   />
                   <span className="ml-2 text-[16px] font-normal text-[#111111]">콘도</span>
                 </label>
@@ -65,7 +67,8 @@ export default function InquiryPage({ navigate }) {
                     value="fitness"
                     checked={formData.category === 'fitness'}
                     onChange={(e) => setFormData({...formData, category: e.target.value})}
-                    className="w-4 h-4 text-purple-600 focus:ring-purple-500"
+                    className="w-4 h-4 accent-[#284AB5]"
+                    style={{ border: '1px solid #717171' }}
                   />
                   <span className="ml-2 text-[16px] font-normal text-[#111111]">피트니스</span>
                 </label>
@@ -163,7 +166,8 @@ export default function InquiryPage({ navigate }) {
                     type="checkbox"
                     checked={formData.agreePrivacy}
                     onChange={(e) => setFormData({...formData, agreePrivacy: e.target.checked})}
-                    className="w-4 h-4 text-gray-900 focus:ring-gray-900 rounded"
+                    className="w-4 h-4 accent-[#284AB5] rounded"
+                    style={{ border: '1px solid #717171' }}
                   />
                   <span className="ml-2 text-[14px] font-normal text-[#717171]">개인정보 수집 및 이용에 동의합니다.</span>
                 </label>
