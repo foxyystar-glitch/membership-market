@@ -254,12 +254,12 @@ export default function PriceTablePage({ navigate }) {
           {/* 우측: 가격 변동 그래프 (sticky) */}
           <div className="sticky top-20 h-fit">
             <div className="bg-white p-[25px]">
-              <h2 className="font-bold mb-[24px]" style={{ fontSize: '24px', color: '#111111', fontWeight: 700 }}>
+              <h2 className="font-bold mb-[24px]" style={{ height: '32px', fontSize: '24px', color: '#111111', fontWeight: 700 }}>
                 가격 변동 그래프
               </h2>
 
               {/* 기간 선택 탭 */}
-              <div className="flex mb-4" style={{ width: '510px', height: '50px', borderBottom: '1px solid #BDBDBD' }}>
+              <div className="flex mb-4" style={{ width: '510px', height: '49px', borderBottom: '1px solid #BDBDBD' }}>
                 {Object.keys(periodLabels).map(period => {
                   const tabColors = getTabColors(activeTab);
                   return (
