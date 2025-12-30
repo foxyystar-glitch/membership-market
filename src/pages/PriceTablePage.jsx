@@ -132,6 +132,30 @@ export default function PriceTablePage({ navigate }) {
 
   const chartData = selectedItem ? generateChartData(selectedItem.id, chartPeriod) : [];
 
+  // 날짜 포맷 함수
+  const getDateDisplay = (category) => {
+    const today = new Date();
+
+    if (category === 'golf') {
+      // 골프: 오늘 날짜
+      return `${today.getFullYear()}.${today.getMonth() + 1}.${today.getDate()}`;
+    } else {
+      // 콘도, 피트니스: 이번 주 월요일 ~ 일요일
+      const currentDay = today.getDay(); // 0: 일요일, 1: 월요일, ...
+      const monday = new Date(today);
+      const sunday = new Date(today);
+
+      // 월요일 계산 (일요일이면 -6, 월요일이면 0, 화요일이면 -1, ...)
+      const daysToMonday = currentDay === 0 ? -6 : 1 - currentDay;
+      monday.setDate(today.getDate() + daysToMonday);
+
+      // 일요일 계산 (월요일 + 6일)
+      sunday.setDate(monday.getDate() + 6);
+
+      return `${monday.getFullYear()}.${monday.getMonth() + 1}.${monday.getDate()} ~ ${sunday.getFullYear()}.${sunday.getMonth() + 1}.${sunday.getDate()}`;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* 스티키 탭 */}
@@ -149,14 +173,19 @@ export default function PriceTablePage({ navigate }) {
       </div>
 
       {/* 메인 컨텐츠 */}
-      <div className="mx-auto py-6" style={{ maxWidth: '1200px', paddingLeft: '24px', paddingRight: '24px' }}>
+      <div className="mx-auto" style={{ maxWidth: '1200px', paddingTop: '48px', paddingBottom: '48px', paddingLeft: '24px', paddingRight: '24px' }}>
         <div className="grid grid-cols-2 gap-8">
           {/* 좌측: 시세표 카드 리스트 */}
           <div className="bg-white rounded-[5px] border border-[#BDBDBD]">
             <div className="p-6">
-              <h2 className="text-2xl font-bold mb-6" style={{ color: '#111111', fontSize: '24px', fontWeight: 700 }}>
-                {tabLabels[activeTab]} 시세표
-              </h2>
+              <div className="flex items-end justify-between mb-6">
+                <h2 className="font-bold" style={{ color: '#111111', fontSize: '24px', fontWeight: 700 }}>
+                  {tabLabels[activeTab]} {activeTab === 'golf' ? '금일' : '금주'} 시세표
+                </h2>
+                <div style={{ fontSize: '14px', fontWeight: 500, color: '#717171' }}>
+                  {getDateDisplay(activeTab)}
+                </div>
+              </div>
 
               {/* 헤더 */}
               <div className="flex items-center px-4 py-3 mb-4" style={{ width: '510px', borderBottom: '1px solid #BDBDBD' }}>
