@@ -182,7 +182,7 @@ export default function PriceTablePage({ navigate }) {
                 <h2 className="font-bold" style={{ color: '#111111', fontSize: '24px', fontWeight: 700 }}>
                   {tabLabels[activeTab]} {activeTab === 'golf' ? '금일' : '금주'} 시세표
                 </h2>
-                <div style={{ fontSize: '14px', fontWeight: 500, color: '#717171' }}>
+                <div style={{ fontSize: '16px', fontWeight: 500, color: '#717171' }}>
                   {getDateDisplay(activeTab)}
                 </div>
               </div>
@@ -289,24 +289,33 @@ export default function PriceTablePage({ navigate }) {
 
               {/* 기간 선택 탭 */}
               <div className="flex mb-4" style={{ width: '510px', height: '49px', borderBottom: '1px solid #BDBDBD' }}>
-                {Object.keys(periodLabels).map(period => {
-                  const tabColors = getTabColors(activeTab);
-                  return (
-                    <button
-                      key={period}
-                      onClick={() => setChartPeriod(period)}
-                      className="px-4 transition-colors"
-                      style={{
-                        fontSize: '16px',
-                        fontWeight: 500,
-                        color: chartPeriod === period ? tabColors.chartColor : '#717171',
-                        borderBottom: chartPeriod === period ? `2px solid ${tabColors.chartColor}` : 'none'
-                      }}
-                    >
-                      {periodLabels[period]}
-                    </button>
-                  );
-                })}
+                {Object.keys(periodLabels)
+                  // 콘도, 피트니스일 때 일주일 제외 (나중에 복구 가능하도록 주석 처리)
+                  .filter(period => {
+                    // return true; // 주석 해제하면 모든 기간 표시
+                    if (activeTab === 'condo' || activeTab === 'fitness') {
+                      return period !== 'week'; // 일주일 제외
+                    }
+                    return true; // 골프는 모든 기간 표시
+                  })
+                  .map(period => {
+                    const tabColors = getTabColors(activeTab);
+                    return (
+                      <button
+                        key={period}
+                        onClick={() => setChartPeriod(period)}
+                        className="px-4 transition-colors"
+                        style={{
+                          fontSize: '16px',
+                          fontWeight: 500,
+                          color: chartPeriod === period ? tabColors.chartColor : '#717171',
+                          borderBottom: chartPeriod === period ? `2px solid ${tabColors.chartColor}` : 'none'
+                        }}
+                      >
+                        {periodLabels[period]}
+                      </button>
+                    );
+                  })}
               </div>
 
               {/* 그래프 영역 */}
