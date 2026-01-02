@@ -15,6 +15,7 @@ const PropertyCard = ({
   rank, // 순위 배지 (옵션)
   status, // 거래 상태 (급매용, 옵션)
   onClick,
+  navigate, // 문의하기 버튼용 네비게이션
   item // 기존 호환성 유지
 }) => {
   // item prop으로 전달된 경우 처리
@@ -221,6 +222,13 @@ const PropertyCard = ({
         {/* 문의하기 버튼 - 8px 여백, 높이 36px */}
         <button
           disabled={hasStatus && !isAvailable}
+          onClick={(e) => {
+            e.stopPropagation();
+            if (navigate && !(hasStatus && !isAvailable)) {
+              navigate('inquiry');
+            }
+          }}
+          className={hasStatus && !isAvailable ? '' : 'hover:opacity-90 transition-opacity'}
           style={{
             marginTop: '8px',
             height: '36px',
@@ -230,15 +238,8 @@ const PropertyCard = ({
             fontSize: '16px',
             fontWeight: 600,
             border: 'none',
-            cursor: hasStatus && !isAvailable ? 'not-allowed' : 'pointer',
-            transition: 'opacity 0.2s'
+            cursor: hasStatus && !isAvailable ? 'not-allowed' : 'pointer'
           }}
-          onMouseEnter={(e) => {
-            if (!(hasStatus && !isAvailable)) {
-              e.target.style.opacity = '0.9';
-            }
-          }}
-          onMouseLeave={(e) => e.target.style.opacity = '1'}
         >
           {getButtonText()}
         </button>

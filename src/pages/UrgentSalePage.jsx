@@ -1,11 +1,15 @@
 import React, { useState, useMemo } from 'react';
 import { memberships } from '../data/memberships';
 import { urgentSales } from '../data/urgentSales';
+import { colors } from '../config/colors';
 import CategoryTabs from '../components/CategoryTabs';
 import PropertyCard from '../components/PropertyCard';
+import DetailModal from '../components/DetailModal';
 
 export default function UrgentSalePage({ navigate }) {
   const [activeTab, setActiveTab] = useState('golf');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProperty, setSelectedProperty] = useState(null);
 
   // 카테고리별 설정
   const categoryConfig = {
@@ -130,11 +134,35 @@ export default function UrgentSalePage({ navigate }) {
               location={property.location}
               price={property.price}
               status={property.status}
-              onClick={() => navigate && navigate('inquiry')}
+              navigate={navigate}
+              onClick={() => {
+                setSelectedProperty(property);
+                setIsModalOpen(true);
+              }}
             />
           ))}
         </div>
       </div>
+
+      {/* 상세보기 모달 */}
+      <DetailModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        {selectedProperty && (
+          <div style={{ padding: '40px' }}>
+            <h2 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '20px' }}>
+              {selectedProperty.product_name}
+            </h2>
+            <div style={{ fontSize: '18px', marginBottom: '12px' }}>
+              {selectedProperty.membership_name}
+            </div>
+            <div style={{ fontSize: '16px', color: '#717171', marginBottom: '20px' }}>
+              {selectedProperty.location}
+            </div>
+            <div style={{ fontSize: '28px', fontWeight: 700, color: selectedProperty.status === '거래가능' ? colors.urgent : '#BDBDBD' }}>
+              {selectedProperty.price.toLocaleString()} 만원
+            </div>
+          </div>
+        )}
+      </DetailModal>
     </div>
   );
 }
